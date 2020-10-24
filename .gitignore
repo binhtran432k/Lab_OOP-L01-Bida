@@ -1,0 +1,7 @@
+*.png
+*.jpeg
+*.jpg
+*.pdf
+*.doc
+*.docx
+out/

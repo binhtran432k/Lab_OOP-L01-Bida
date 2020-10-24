@@ -1,0 +1,171 @@
+@startuml class-diagram-car-rental-company
+title Class diagram of car rental company
+skinparam ClassAttributeIconSize 0
+skinparam WrapWidth 200
+hide circle
+skinparam Monochrome true
+
+Class User <<abstract>> {
+    - _id: String
+    - _name: String
+    - _phone: String
+    - _password: String
+    + Login(): void
+    + Logout(): void
+    + ViewProfile(): void
+    + UpdateProfile(): void
+    + ViewCarList(): void
+}
+
+Class Customer {
+    - _licenseNo: String
+    - _expireDate: String
+    + ViewMyRentals(): void
+}
+
+Class Staff {
+    + AddVehicle(): void
+    + RemoveVehicle(vecId: String): void
+    + UpdateVehicle(vecId: String): void
+    + ViewCustomerList(): void
+    + ViewDailyReport(): void
+    + ViewMonthLyReport(): void
+}
+
+Class Report {
+    - _dateCreate: Date
+}
+
+Class StaffList {
+    - _staffList: Staff[]
+}
+
+Class CustomerList {
+    - _customerList: Customer[]
+}
+
+Class Contract {
+    - _id: String
+    - _customerId: String
+    - _vehicle: Vehicle
+    - _total: double
+    - _starDate: Date
+    - _endDate: Date
+    - _status: Status
+}
+
+Class ContractList {
+    - _contractList: Contract[]
+    + CalculateMonthlySale(): double
+}
+
+Class Vehicle {
+    - _id: String
+    - _name: String
+    - _color: String
+    - _brand: String
+    - _numberOfSeat: int
+    - _condition: double
+    - _year: int
+    - _price: double
+    - _available: bool
+}
+
+Class Garage {
+    - _vehicleList: Vehicle[]
+    - _location: String
+    - _capacity: int
+    + ShowAvailableVehicle(): void
+}
+
+
+Class IListManagement <<interface>>{
+    + AddItem()
+    + RemoveItem(itemId: String)
+    + Update(itemId: String)
+    + ShowItemList()
+}
+
+Class ReportGenerator <<interface>> {
+    + GenerateDailyReport()
+    + GenerateMonthlyReport()
+    + ExportPdf()
+    + ExportExcel()
+    + PrintReport()
+}
+
+Class ISearchCar <<interface>> {
+    + SearchByName(name: String)
+    + SearchByColor(color: String)
+    + SearchByBrand(brand: String)
+}
+
+Class IRentCar <<interface>> {
+    + CreateContract()
+    + ViewVehicleInfo()
+    + PickupVehicle()
+    + ReturnVehicle()
+    + PrintContract()
+    + CancelContract()
+}
+
+Class ISaleCalculator <<interface>> {
+    + CalculateTotalSale(): double
+    + CalculateDailySale(): double
+    + CalculateMonthlySale(): double
+}
+
+Class Status <<enumerate>> {
+    + PENDING
+    + READY
+    + FINISH
+    + CANCEL
+}
+
+'BEGIN: CLASS RELATION
+User <|-- Customer
+User <|-- Staff
+
+StaffList "1" -- "1..*" Staff
+
+CustomerList "1" -- "0..*" Customer
+
+'Customer-CustomerList
+Customer "1" -- "1" Contract
+
+'Staff-StaffList
+Staff "1..*" -- "0..*" Report
+Staff "1..*" -- "1" Garage
+
+'Report-Staff
+
+'Contract-Customer
+Contract "1" -- "1" Vehicle
+Contract "1..*" -- "1" ContractList
+
+'Vehicle-Contract
+Vehicle "0..*" -- "1" Garage
+
+'Garage-Vehicle
+
+'ContractList-Contract
+
+IListManagement <|.. CustomerList
+IListManagement <|.. ContractList
+IListManagement <|.. StaffList
+IListManagement <|.. Garage
+
+ReportGenerator <|.. Report
+
+ISearchCar <|.. Staff
+ISearchCar <|.. Customer
+
+IRentCar <|.. Customer
+IRentCar <|.. Contract
+
+ISaleCalculator <|.. ContractList
+
+Status -- Contract
+'END: CLASS RELATION
+
+@enduml
