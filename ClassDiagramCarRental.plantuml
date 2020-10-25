@@ -1,15 +1,15 @@
 @startuml class-diagram-car-rental-company
 title Class diagram of car rental company
 skinparam ClassAttributeIconSize 0
-skinparam WrapWidth 200
+'skinparam WrapWidth 200
 hide circle
 skinparam Monochrome true
 
 Class User <<abstract>> {
-    - _id: String
-    - _name: String
-    - _phone: String
-    - _password: String
+    - _id: string
+    - _name: string
+    - _phone: string
+    - _password: string
     + Login(): void
     + Logout(): void
     + ViewProfile(): void
@@ -18,22 +18,22 @@ Class User <<abstract>> {
 }
 
 Class Customer {
-    - _licenseNo: String
-    - _expireDate: String
+    - _licenseNo: string
+    - _expireDate: string
     + ViewMyRentals(): void
 }
 
 Class Staff {
     + AddVehicle(): void
-    + RemoveVehicle(vecId: String): void
-    + UpdateVehicle(vecId: String): void
+    + RemoveVehicle(vecId: string): void
+    + UpdateVehicle(vecId: string): void
     + ViewCustomerList(): void
     + ViewDailyReport(): void
     + ViewMonthLyReport(): void
 }
 
 Class Report {
-    - _dateCreate: Date
+    - _dateCreate: DateTime
 }
 
 Class StaffList {
@@ -45,25 +45,24 @@ Class CustomerList {
 }
 
 Class Contract {
-    - _id: String
-    - _customerId: String
+    - _id: string
+    - _customerId: string
     - _vehicle: Vehicle
     - _total: double
-    - _starDate: Date
-    - _endDate: Date
+    - _startDate: DateTime
+    - _endDate: DateTime
     - _status: Status
 }
 
 Class ContractList {
     - _contractList: Contract[]
-    + CalculateMonthlySale(): double
 }
 
 Class Vehicle {
-    - _id: String
-    - _name: String
-    - _color: String
-    - _brand: String
+    - _id: string
+    - _name: string
+    - _color: string
+    - _brand: string
     - _numberOfSeat: int
     - _condition: double
     - _year: int
@@ -73,40 +72,40 @@ Class Vehicle {
 
 Class Garage {
     - _vehicleList: Vehicle[]
-    - _location: String
+    - _location: string
     - _capacity: int
     + ShowAvailableVehicle(): void
 }
 
 
 Class IListManagement <<interface>>{
-    + AddItem()
-    + RemoveItem(itemId: String)
-    + Update(itemId: String)
-    + ShowItemList()
+    + AddItem(): void
+    + RemoveItem(itemId: string): void
+    + UpdateItem(itemId: string): void
+    + ShowItemList(): void
 }
 
-Class ReportGenerator <<interface>> {
-    + GenerateDailyReport()
-    + GenerateMonthlyReport()
-    + ExportPdf()
-    + ExportExcel()
-    + PrintReport()
+Class IReportGenerator <<interface>> {
+    + GenerateDailyReport(): void
+    + GenerateMonthlyReport(): void
+    + ExportPdf(): void
+    + ExportExcel(): void
+    + PrintReport(): void
 }
 
 Class ISearchCar <<interface>> {
-    + SearchByName(name: String)
-    + SearchByColor(color: String)
-    + SearchByBrand(brand: String)
+    + SearchByName(name: string): Vehicle
+    + SearchByColor(color: string): Vehicle
+    + SearchByBrand(brand: string): Vehicle
 }
 
 Class IRentCar <<interface>> {
-    + CreateContract()
-    + ViewVehicleInfo()
-    + PickupVehicle()
-    + ReturnVehicle()
-    + PrintContract()
-    + CancelContract()
+    + CreateContract(): void
+    + ViewVehicleInfo(): void
+    + PickupVehicle(): void
+    + ReturnVehicle(): void
+    + PrintContract(): void
+    + CancelContract(): void
 }
 
 Class ISaleCalculator <<interface>> {
@@ -155,7 +154,7 @@ IListManagement <|.. ContractList
 IListManagement <|.. StaffList
 IListManagement <|.. Garage
 
-ReportGenerator <|.. Report
+IReportGenerator <|.. Report
 
 ISearchCar <|.. Staff
 ISearchCar <|.. Customer
