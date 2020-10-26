@@ -2,6 +2,7 @@
 Github lưu trữ chung của nhóm, Lập trình hướng đối tượng
 
 # Thông báo
+- Đã có đề của Lab3, mọi nguời xem có nên làm lại đơn giản hóa class-diagram hay không? 
 - Github sẽ là nơi để project môn OOP đồng thời là trang thông báo, TODO để mọi tiện theo tránh trường hợp bị trôi như trên facebook, trang github: https://github.com/binhtran432k/Lab_OOP-L01-Bida
 - Mỗi người trong nhóm hãy:
     - Đưa cho mình địa chỉ mail của github (qua facebook) để mình add vào project này.
@@ -28,6 +29,13 @@ Explain how you respect the following guidelines you learned in the lecture.
 <p style="text-align: center; font-weight: bold;">OO naming convention</p>
 Follow Google naming convention to do a paper-based exercise given by the instructor
 
-[C# Coding Conventions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions)
+<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions" target="_blank">C# Coding Conventions</a>
 
-[C# at Google Style Guide](https://google.github.io/styleguide/csharp-style.html)
+<a href="https://google.github.io/styleguide/csharp-style.html" target="_blank">C# at Google Style Guide</a>
+
+## 3. Lab 3
+<p style="text-align: center; font-weight: bold;">Overloading in OO: Car rental company revisited</p>
+Let's revisit the OO design for a car rental company.
+<br>
+<br>
+Provide multiple constructors for creating a car rent. Define multiple methods that add a vehicle to the fleet of the said car rental company.
