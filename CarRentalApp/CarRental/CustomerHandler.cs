@@ -9,7 +9,7 @@ namespace CarRental
     {
         public static void Start()
         {
-            Garage garage = Garage.GetInstance();
+            CarRentalManagement garage = CarRentalManagement.GetInstance();
 
             Customer customer = LoginAction();
             Console.WriteLine("Welcome " + customer.Name);

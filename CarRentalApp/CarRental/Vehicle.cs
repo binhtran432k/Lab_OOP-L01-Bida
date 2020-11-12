@@ -1,26 +1,60 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CarRental
 {
     public abstract class Vehicle
     {
-        static int NumberOfVehicle = 0;
-        private static readonly Garage garage = Garage.GetInstance();
+        public class ServiceHistory
+        {
+            public string Type { get; set; }
+            public DateTime ServeTime { get; set; }
+            public int VehicleMileage { get; set; }
 
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string Color { get; set; }
-        public string Brand { get; set; }
-        public int Year { get; set; }
-        public int NumberOfSeat { get; set; }
-        public double Price { get; set; }
-        public double Condition { get; set; }
-        public bool Available { get; set; }
+            public ServiceHistory(string type, int mileage)
+            {
+                Type = type;
+                ServeTime = DateTime.Now;
+                VehicleMileage = mileage;
+            }
+        }
+
+        static int NumberOfVehicle = 0;
+        private static readonly CarRentalManagement garage = CarRentalManagement.GetInstance();
+        public string ID { get; protected set; }
+        public string Name { get; protected set; }
+        public string Color { get; protected set; }
+        public string Brand { get; protected set; }
+        public int Year { get; protected set; }
+        public int NumberOfSeat { get; protected set; }
+        public double Price { get; protected set; }
+        public double Condition { get; protected set; }
+        public bool Available { get; protected set; }
+        public int CurrentMileage { get; set; }
+        public int LastEngineServiceMileage { get; set; }
+        public int LastTransmissionServiceMileage { get; set; }
+        public int LastTireServiceMileage { get; set; }
+        public List<ServiceHistory> ServiceHistoryList = new List<ServiceHistory>();
 
         public void GenerateID()
         {
             NumberOfVehicle += 1;
             ID = NumberOfVehicle.ToString();
+        }
+
+        public virtual void ServeEngine()
+        {
+
+        }
+
+        public virtual void ServeTransmission()
+        {
+
+        }
+
+        public virtual void ServeTire()
+        {
+
         }
 
         public void ViewDetail()

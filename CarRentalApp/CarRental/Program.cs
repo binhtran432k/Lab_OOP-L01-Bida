@@ -6,9 +6,9 @@ namespace CarRental
     class Program
     {
         static void Main(string[] args)
-        {   
-            /*
-            Garage garage = null;
+        {
+            
+            CarRentalManagement garage = null;
 
             int action;
             string next_act;
@@ -17,19 +17,20 @@ namespace CarRental
             while (true)
             {   
                 action = ChooseAction();
+                Console.Clear();
                 switch (action)
                 {
                     case 1:
-                        next_act = CreateGarageAction();
+                        next_act = CreateCarRentalManagementAction();
                         if (next_act == "a")
                         {
-                            garage = new Garage();
+                            garage = new CarRentalManagement();
                             garage.ViewDetail();
                         } else if (next_act == "b")
                         {
                             Console.Write("Location: ");
                             location = Console.ReadLine();
-                            garage = new Garage(location);
+                            garage = new CarRentalManagement(location);
                             garage.ViewDetail();
                         } else
                         {
@@ -37,7 +38,7 @@ namespace CarRental
                             location = Console.ReadLine();
                             Console.Write("Capacity: ");
                             capacity = int.Parse(Console.ReadLine());
-                            garage = new Garage(location, capacity);
+                            garage = new CarRentalManagement(location, capacity);
                             garage.ViewDetail();
                         }
                         break;
@@ -62,8 +63,16 @@ namespace CarRental
                                 double price = double.Parse(Console.ReadLine());
                                 Console.Write("Condition (from 0.0 to 1.0): ");
                                 double condition = double.Parse(Console.ReadLine());
+                                Console.Write("Current mileage: ");
+                                int curMileage = int.Parse(Console.ReadLine());
+                                Console.Write("Last engine server mileage: ");
+                                int engineMileage = int.Parse(Console.ReadLine());
+                                Console.Write("Last transmission server mileage: ");
+                                int transmissionMileage = int.Parse(Console.ReadLine());
+                                Console.Write("Last tire server mileage: ");
+                                int tireMileage = int.Parse(Console.ReadLine());
 
-                                garage.AddVehicle(new Car(name, color, brand, year, numberOfSeat, price, condition));
+                                garage.AddVehicle(new Car(name, color, brand, year, numberOfSeat, price, condition, curMileage, engineMileage, transmissionMileage, tireMileage));
                             } else if (next_act == "b")
                             {
                                 Console.WriteLine("Please fill in some vehicle information ");
@@ -77,7 +86,14 @@ namespace CarRental
                                 double price = double.Parse(Console.ReadLine());
                                 Console.Write("Condition (from 0.0 to 1.0): ");
                                 double condition = double.Parse(Console.ReadLine());
-                                garage.AddVehicle(new Truck(name, color, year, price, condition));
+                                int curMileage = int.Parse(Console.ReadLine());
+                                Console.Write("Last engine server mileage: ");
+                                int engineMileage = int.Parse(Console.ReadLine());
+                                Console.Write("Last transmission server mileage: ");
+                                int transmissionMileage = int.Parse(Console.ReadLine());
+                                Console.Write("Last tire server mileage: ");
+                                int tireMileage = int.Parse(Console.ReadLine());
+                                garage.AddVehicle(new Truck(name, color, year, price, condition, curMileage, engineMileage, transmissionMileage, tireMileage));
                             } else
                             {
                                 garage.AddVehicle();
@@ -87,7 +103,7 @@ namespace CarRental
                             Console.WriteLine("Please create a garage first");
                         }
                         break;
-                    default:
+                    case 3:
                         if (garage != null)
                         {
                             garage.ShowList();
@@ -96,12 +112,25 @@ namespace CarRental
                             Console.WriteLine("Please create a garage first");
                         }
                         break;
+                    case 4:
+                        if (garage != null)
+                        {
+                            garage.ServeFleet();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please create a garage first");
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
-            */
+            
+            
 
-            ///*
-            Garage garage = Garage.GetInstance();
+            /*
+            CarRentalManagement garage = CarRentalManagement.GetInstance();
 
             while (true) 
             { 
@@ -158,12 +187,13 @@ namespace CarRental
             Console.WriteLine("1. Create new garage");
             Console.WriteLine("2. Add vehicle to garage");
             Console.WriteLine("3. Show vehicle list");
+            Console.WriteLine("4. Serve list");
             Console.WriteLine("--------------------------------------------");
             int choice = int.Parse(Console.ReadLine());
             return choice;
         }
 
-        static string CreateGarageAction()
+        static string CreateCarRentalManagementAction()
         {
             Console.WriteLine("--------------------------------------------");
             Console.WriteLine("Select an action to continue...");

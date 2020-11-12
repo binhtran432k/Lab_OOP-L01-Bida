@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\CarRentalApp\\CarRental\\CarRental.csproj": {}
+    "D:\\20-21\\HK1\\oop\\Lab_OOP-L01-Bida\\CarRentalApp\\CarRental\\CarRental.csproj": {}
   },
   "projects": {
-    "D:\\C#\\CarRentalApp\\CarRental\\CarRental.csproj": {
+    "D:\\20-21\\HK1\\oop\\Lab_OOP-L01-Bida\\CarRentalApp\\CarRental\\CarRental.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\CarRentalApp\\CarRental\\CarRental.csproj",
+        "projectUniqueName": "D:\\20-21\\HK1\\oop\\Lab_OOP-L01-Bida\\CarRentalApp\\CarRental\\CarRental.csproj",
         "projectName": "CarRental",
-        "projectPath": "D:\\C#\\CarRentalApp\\CarRental\\CarRental.csproj",
+        "projectPath": "D:\\20-21\\HK1\\oop\\Lab_OOP-L01-Bida\\CarRentalApp\\CarRental\\CarRental.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\CarRentalApp\\CarRental\\obj\\",
+        "outputPath": "D:\\20-21\\HK1\\oop\\Lab_OOP-L01-Bida\\CarRentalApp\\CarRental\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

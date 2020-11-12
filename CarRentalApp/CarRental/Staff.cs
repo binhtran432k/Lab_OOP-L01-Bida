@@ -4,7 +4,7 @@ namespace CarRental
 {
     class Staff : User, ISearchVehicle
     {
-        private static readonly Garage garage = Garage.GetInstance();
+        private static readonly CarRentalManagement garage = CarRentalManagement.GetInstance();
         public Staff(string name, string phone)
         {
             GenerateID();
@@ -52,17 +52,17 @@ namespace CarRental
 
         public void SearchByName(string name)
         {
-            Garage.SearchVehicle(1, false, name);
+            CarRentalManagement.SearchVehicle(1, false, name);
         }
 
         public void SearchByColor(string color)
         {
-            Garage.SearchVehicle(2, false, color);
+            CarRentalManagement.SearchVehicle(2, false, color);
         }
 
         public void SearchByBrand(string brand)
         {
-            Garage.SearchVehicle(3, false, brand);
+            CarRentalManagement.SearchVehicle(3, false, brand);
         }
     }
 }

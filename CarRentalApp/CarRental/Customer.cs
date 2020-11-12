@@ -74,17 +74,17 @@ namespace CarRental
 
         public void SearchByName(string name)
         {
-            Garage.SearchVehicle(1, true, name);
+            CarRentalManagement.SearchVehicle(1, true, name);
         }
 
         public void SearchByColor(string color)
         {
-            Garage.SearchVehicle(2, true, color);
+            CarRentalManagement.SearchVehicle(2, true, color);
         }
 
         public void SearchByBrand(string brand)
         {
-            Garage.SearchVehicle(3, true, brand);
+            CarRentalManagement.SearchVehicle(3, true, brand);
         }
     }
 }

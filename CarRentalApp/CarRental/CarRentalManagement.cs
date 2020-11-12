@@ -4,33 +4,53 @@ using System.Text;
 
 namespace CarRental
 {
-    class Garage : IListManagement<Vehicle>
+    class CarRentalManagement : IListManagement<Vehicle>
     {
         public string Location;
         public int Capacity { get; set; }
 
-        private static Garage _instance = null;
+        private static CarRentalManagement _instance = null;
 
-        private static readonly List<Vehicle> _vehicleList = InitializeRawVehicleList();
-        // private static List<Vehicle> _vehicleList = new List<Vehicle>();
+        // private static List<Vehicle> _vehicleList = InitializeRawVehicleList();
+        private static List<Vehicle> _vehicleList = new List<Vehicle>();
 
-
-        public Garage()
+        public CarRentalManagement()
         {
             Console.WriteLine("Default constructor for garage is called");
             Location = "128 To Hien Thanh";
             Capacity = 100;
-            // _vehicleList = new List<Vehicle>();
+            _vehicleList = new List<Vehicle>();
         }
 
-        /*
-        public Garage(string location)
+        ///*
+        public CarRentalManagement(string location)
         {
             Console.WriteLine("Constructor with only location parameter for garage is called");
             Location = location;
             Capacity = 100;
 
             _vehicleList = new List<Vehicle>();
+        }
+
+        public void ServeFleet()
+        {
+            foreach (Vehicle vec in _vehicleList)
+            {
+                Console.WriteLine("Checking for vehicle " + vec.ID.ToString());
+                Console.Write("Type: ");
+                if (vec is Car)
+                {
+                    Console.WriteLine("car");
+                }
+                else
+                {
+                    Console.WriteLine("truck");
+                }
+                vec.ServeEngine();
+                vec.ServeTransmission();
+                vec.ServeTire();
+                Console.WriteLine("--------------------------------------------");
+            }
         }
 
         public void AddVehicle()
@@ -46,7 +66,7 @@ namespace CarRental
         }
         
 
-        public Garage(string location, int capacity)
+        public CarRentalManagement(string location, int capacity)
         {
             Console.WriteLine("Constructor with all parameters for garage is called");
             Location = location;
@@ -54,20 +74,20 @@ namespace CarRental
 
             _vehicleList = new List<Vehicle>();
         }
-        */
+        //*/
 
         public void ViewDetail()
         {
-            Console.WriteLine("Garage detail: ");
+            Console.WriteLine("CarRentalManagement detail: ");
             Console.WriteLine("Location: " + Location);
             Console.WriteLine("Capacity: " + Capacity);
         }
 
-        public static Garage GetInstance()
+        public static CarRentalManagement GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new Garage();
+                _instance = null;
             }
             return _instance;
         }
