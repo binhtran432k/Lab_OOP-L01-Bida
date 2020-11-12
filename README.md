@@ -16,26 +16,34 @@ Github lưu trữ chung của nhóm, Lập trình hướng đối tượng
     - Cách 1: Sử dụng trực tiếp server của plantuml. Vào trang: http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000 và copy nội dung của file .plantuml vào, nhấn submit.
     - Cách 2: Sử dụng extention của vscode: plantuml. Cần jre và graphviz nếu muốn xài offline. Chi tiết ở trang sau: https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 # Nội dung lab
-## 1. Lab 1
-<p style="text-align: center; font-weight: bold;">How to Think in Terms of Objects: A car rental company</p>
-
+## 1. Lab 1: How to Think in Terms of Objects: A car rental company
 A car rental company offers vehicles for rent. It manages a fleet of vehicles and a set of rental contracts. Demonstrate how you code in an OO programming language of your choosing to implement a management system for this car rental company.
 
 Explain how you respect the following guidelines you learned in the lecture.
 - Knowing the difference between the interface and implementation
 - Thinking more abstractly
 - Giving the user the minimal interface possible
-## 2. Lab 2
-<p style="text-align: center; font-weight: bold;">OO naming convention</p>
+## 2. Lab 2: OO naming convention
 Follow Google naming convention to do a paper-based exercise given by the instructor
 
-<a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions" target="_blank">C# Coding Conventions</a>
+[C# Coding Conventions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions)
 
-<a href="https://google.github.io/styleguide/csharp-style.html" target="_blank">C# at Google Style Guide</a>
+[C# at Google Style Guide](https://google.github.io/styleguide/csharp-style.html)
 
-## 3. Lab 3
-<p style="text-align: center; font-weight: bold;">Overloading in OO: Car rental company revisited</p>
+## 3. Lab 3: Overloading in OO: Car rental company revisited
 Let's revisit the OO design for a car rental company.
 <br>
 <br>
 Provide multiple constructors for creating a car rent. Define multiple methods that add a vehicle to the fleet of the said car rental company.
+
+## 4. Lab 4: Inheritance and Composition
+For the sake of fleet maintenance, the car rental company would like to keep track the routine maintenance performed on its vehicles. More specifically, each vehicle has a service history telling how and when its engine, transmission and tires get serviced. In your source code, define the following methods as virtual for your superclass **Vehicle**. Override them in your subclasses. When implementing them, you should check if the vehicle, depending on its current mileage, really needs to have its engine / transmission / tires serviced. Vehicles of different types get serviced differently at different frequencies.
+
+*serviceEngine* // add a record to the vehicle history telling how the engine of the vehicle gets serviced (oil change, minor, major)
+
+*serviceTransmission* // add a record to the vehicle history telling how the transmission of the vehicle gets serviced (fluid change, minor, overhaul)
+
+*serviceTires* // add a record to the vehicle history telling how the tires of the vehicle get serviced (adjustment, replacement)
+
+Make sure that **Vehicle** is an abstract class that is connected to **ServiceHistory** via a composition.
+Your class **CarRentalManagement** has a method, called serviceFleet, that basically iterates through all vehicles it manages. For each vehicle, this operation calls the above methods to perform appropriate services if needed.
