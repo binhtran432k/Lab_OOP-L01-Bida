@@ -52,3 +52,12 @@ Your class **CarRentalManagement** has a method, called serviceFleet, that basic
 - BookAndRent là interface được implement bởi CarRentalManagement
 - Hỏi ta có nên có một interface thể hiện công việc đưa các xe đi bảo dưỡng không?
 - Rent là class mô tả hợp đồng thuê xe. Hỏi có interface nào được implement bởi Rent?
+
+## 6. Lab 6: Operator Overloading
+Remember that a vehicle in your car rental management company is associated with a service history, which keeps track of all maintenance jobs that have been done to the vehicle in question. A maintenance job should record the following pieces of information: mileage of the vehicle and date/time when the job was carried out, kind of service being performed (e.g., tires, engine oil, transmission fluid), costs, garage where the job was done.
+
+
+Overload the subtraction - operator to imply the distance the vehicle had been driven between any two maintenance jobs. Moreover, you may overload the comparison operators to see if a maintenance job takes place before or after another.
+
+
+Note: don't forget to check if the given two maintenance jobs were done for same vehicle. The above-mentioned operators would go meaningless otherwise.
