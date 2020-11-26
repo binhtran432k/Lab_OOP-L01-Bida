@@ -2,7 +2,8 @@
 title Class diagram of car rental company
 skinparam ClassAttributeIconSize 0
 'skinparam WrapWidth 200
-'skinparam Linetype ortho 'Use for straight line but now it error
+'Use for straight line but now it error
+skinparam Linetype ortho
 hide circle
 skinparam Monochrome true
 

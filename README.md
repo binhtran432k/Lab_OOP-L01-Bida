@@ -47,3 +47,8 @@ For the sake of fleet maintenance, the car rental company would like to keep tra
 
 Make sure that **Vehicle** is an abstract class that is connected to **ServiceHistory** via a composition.
 Your class **CarRentalManagement** has a method, called serviceFleet, that basically iterates through all vehicles it manages. For each vehicle, this operation calls the above methods to perform appropriate services if needed.
+
+## 5. Lab 5: Định nghĩa lại các interface / abstract class của bạn
+- BookAndRent là interface được implement bởi CarRentalManagement
+- Hỏi ta có nên có một interface thể hiện công việc đưa các xe đi bảo dưỡng không?
+- Rent là class mô tả hợp đồng thuê xe. Hỏi có interface nào được implement bởi Rent?
