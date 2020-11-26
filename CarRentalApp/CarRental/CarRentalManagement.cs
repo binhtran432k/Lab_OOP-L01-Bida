@@ -148,8 +148,8 @@ namespace CarRental
             List<Vehicle> vecList = new List<Vehicle>
             {
                 new Car("Ford X2345", "black", "Ford", 2018, 7, 99.99, 1.0, 2000, 500, 1400, 1200),
-                new Car("Ferrari AF512", "red", "Ferrari", 2019, 4, 68.99, 1.0),
-                new Car("Vinfast Hull", "white", "Vinfast", 2018, 7, 89.99, 1.0),
+                new Car("Ferrari AF512", "red", "Ferrari", 2019, 4, 68.99, 1.0, 1500, 1200, 1000, 1100),
+                new Car("Vinfast Hull", "white", "Vinfast", 2018, 7, 89.99, 1.0, 4000, 2000, 3000, 2300),
                 new Car("Bosche 9999", "black", "Bosche", 2018, 4, 99.99, 1.0),
                 new Car("Bus", "black", "Bus", 2018, 27, 49.99, 0.9),
                 new Car("Lamboghini ACBC", "yellow", "Lambo", 2015, 7, 199.99, 0.9),

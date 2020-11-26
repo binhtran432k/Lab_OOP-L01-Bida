@@ -44,6 +44,16 @@ namespace CarRental
 
         }
 
+        public void DisplayServiceHistory()
+        {
+            ServiceHistoryList.DisplayServiceHistory();
+        }
+
+        public MaintenanceJob GetMaintenanceJob(string id)
+        {
+            return ServiceHistoryList.GetMaintenanceJob(id);
+        }
+
         public void ViewDetail()
         {
             Console.WriteLine("--------------------------------------------");

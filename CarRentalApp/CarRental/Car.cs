@@ -50,7 +50,7 @@ namespace CarRental
                 Console.Write("Garage: ");
                 string garage = Console.ReadLine();
 
-                ServiceHistoryList.AddJob(new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
+                ServiceHistoryList.AddJob(new MaintenanceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
             }
         }
 
@@ -81,7 +81,7 @@ namespace CarRental
                 Console.Write("Garage: ");
                 string garage = Console.ReadLine();
 
-                ServiceHistoryList.AddJob(new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
+                ServiceHistoryList.AddJob(new MaintenanceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
             }
         }
 
@@ -108,7 +108,7 @@ namespace CarRental
                 Console.Write("Garage: ");
                 string garage = Console.ReadLine();
 
-                ServiceHistoryList.AddJob(new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
+                ServiceHistoryList.AddJob(new MaintenanceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
             }
         }
     }
