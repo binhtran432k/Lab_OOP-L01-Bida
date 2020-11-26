@@ -5,19 +5,6 @@ namespace CarRental
 {
     public abstract class Vehicle
     {
-        public class ServiceHistory
-        {
-            public string Type { get; set; }
-            public DateTime ServeTime { get; set; }
-            public int VehicleMileage { get; set; }
-
-            public ServiceHistory(string type, int mileage)
-            {
-                Type = type;
-                ServeTime = DateTime.Now;
-                VehicleMileage = mileage;
-            }
-        }
 
         static int NumberOfVehicle = 0;
         private static readonly CarRentalManagement garage = CarRentalManagement.GetInstance();
@@ -34,7 +21,7 @@ namespace CarRental
         public int LastEngineServiceMileage { get; set; }
         public int LastTransmissionServiceMileage { get; set; }
         public int LastTireServiceMileage { get; set; }
-        public List<ServiceHistory> ServiceHistoryList = new List<ServiceHistory>();
+        public ServiceHistory ServiceHistoryList = new ServiceHistory();
 
         public void GenerateID()
         {

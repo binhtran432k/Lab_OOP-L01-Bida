@@ -26,6 +26,7 @@ namespace CarRental
         public override void ServeEngine()
         {
             int distance = CurrentMileage - LastEngineServiceMileage;
+            string kind = "engine";
             if (distance >= 400)
             {
                 LastEngineServiceMileage = CurrentMileage;
@@ -42,14 +43,21 @@ namespace CarRental
                 {
                     type = "minor";
                 }
-                Console.WriteLine(type + " service for car engine");
-                ServiceHistoryList.Add(new ServiceHistory(type, CurrentMileage));
+                Console.WriteLine("Apply " + type + " service for car engine - Time serve: " + DateTime.Now.ToString());
+
+                Console.Write("Cost: ");
+                double cost = double.Parse(Console.ReadLine());
+                Console.Write("Garage: ");
+                string garage = Console.ReadLine();
+
+                ServiceHistoryList.AddJob(new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
             }
         }
 
         public override void ServeTransmission()
         {
             int distance = CurrentMileage - LastTransmissionServiceMileage;
+            string kind = "transmision";
             if (distance >= 600)
             {
                 LastTransmissionServiceMileage = CurrentMileage;
@@ -66,14 +74,21 @@ namespace CarRental
                 {
                     type = "overhaul";
                 }
-                Console.WriteLine(type + " service for car transmission");
-                ServiceHistoryList.Add(new ServiceHistory(type, CurrentMileage));
+                Console.WriteLine("Apply " + type + " service for car transmission - Time serve: " + DateTime.Now.ToString());
+
+                Console.Write("Cost: ");
+                double cost = double.Parse(Console.ReadLine());
+                Console.Write("Garage: ");
+                string garage = Console.ReadLine();
+
+                ServiceHistoryList.AddJob(new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
             }
         }
 
         public override void ServeTire()
         {
             int distance = CurrentMileage - LastTireServiceMileage;
+            string kind = "tire";
             if (distance >= 400)
             {
                 LastTireServiceMileage = CurrentMileage;
@@ -86,8 +101,14 @@ namespace CarRental
                 {
                     type = "adjustment";
                 }
-                Console.WriteLine(type + " service for car tire");
-                ServiceHistoryList.Add(new ServiceHistory(type, CurrentMileage));
+                Console.WriteLine("Apply " + type + " service for car tire - Time serve: " + DateTime.Now.ToString());
+
+                Console.Write("Cost: ");
+                double cost = double.Parse(Console.ReadLine());
+                Console.Write("Garage: ");
+                string garage = Console.ReadLine();
+
+                ServiceHistoryList.AddJob(new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage, cost, garage));
             }
         }
     }

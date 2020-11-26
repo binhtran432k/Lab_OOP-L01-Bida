@@ -86,6 +86,7 @@ namespace CarRental
                                 double price = double.Parse(Console.ReadLine());
                                 Console.Write("Condition (from 0.0 to 1.0): ");
                                 double condition = double.Parse(Console.ReadLine());
+                                Console.Write("Current mileage: ");
                                 int curMileage = int.Parse(Console.ReadLine());
                                 Console.Write("Last engine server mileage: ");
                                 int engineMileage = int.Parse(Console.ReadLine());
@@ -123,6 +124,16 @@ namespace CarRental
                         }
                         break;
                     default:
+                        Vehicle vec = garage.VehicleList[0];
+                        ServiceHistory serviceHistory = vec.ServiceHistoryList;
+                        MaintenaceJob job1 = serviceHistory.MaintenaceJobs[0];
+                        MaintenaceJob job2 = serviceHistory.MaintenaceJobs[1];
+                        int distance = job1 - job2;
+                        bool greater = job1 > job2;
+                        bool less = job1 < job2;
+                        Console.WriteLine(distance.ToString());
+                        Console.WriteLine(greater.ToString());
+                        Console.WriteLine(less.ToString());
                         break;
                 }
             }
@@ -187,7 +198,7 @@ namespace CarRental
             Console.WriteLine("1. Create new garage");
             Console.WriteLine("2. Add vehicle to garage");
             Console.WriteLine("3. Show vehicle list");
-            Console.WriteLine("4. Serve list");
+            Console.WriteLine("4. Serve fleet");
             Console.WriteLine("--------------------------------------------");
             int choice = int.Parse(Console.ReadLine());
             return choice;

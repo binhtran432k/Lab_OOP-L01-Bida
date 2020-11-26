@@ -45,6 +45,20 @@ namespace CarRental
         double CalculateMonthlySale();
     }
 
+    interface IBookAndRent
+    {
+        bool RentVehicle(string vehicleID);
+        List<Vehicle> SearchVehicleByName(string name);
+        List<Vehicle> SearchVehicleByBrand(string brand);
+        List<Vehicle> SearchVehicleByColor(string color);
+        List<Vehicle> SearchVehicleByPrice(double priceMin, double priceMax);
+    }
+
+    interface IServeFleet
+    {
+        void ServeFleet();
+    }
+
     interface IReportGenerator
     {
         void GenerateDailyReport();
