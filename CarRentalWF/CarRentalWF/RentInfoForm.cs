@@ -53,24 +53,32 @@ namespace CarRentalWF
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.InvariantCulture;
-            string customerName = txtCustomer.Text;
             string vehicleID = txtVehicle.Text;
-            double total = double.Parse(txtTotal.Text);
-            DateTime startDate = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture);
-            DateTime endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
-            RentStatus status =  (RentStatus) Enum.Parse(typeof(RentStatus), cbStatus.Text);
-
-            if (_rent == null)
+            Vehicle vehicle = _carRentalManagement.GetVehicle(vehicleID);
+            if (vehicle == null)
             {
-                _rent = new Rent(customerName, vehicleID, total, startDate, endDate);
-                _carRentalManagement.AddRent(_rent);
+                MessageBox.Show("Can't find vehicle or vehicle is unavailable", "Error");
             }
             else
             {
-                _rent.Update(customerName, vehicleID, total, startDate, endDate, status);
+                CultureInfo culture = CultureInfo.InvariantCulture;
+                string customerName = txtCustomer.Text;
+                double total = double.Parse(txtTotal.Text);
+                DateTime startDate = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture);
+                DateTime endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
+                RentStatus status = (RentStatus)Enum.Parse(typeof(RentStatus), cbStatus.Text);
+
+                if (_rent == null)
+                {
+                    _rent = new Rent(customerName, vehicleID, total, startDate, endDate);
+                    _carRentalManagement.AddRent(_rent);
+                }
+                else
+                {
+                    _rent.Update(customerName, vehicleID, total, startDate, endDate, status);
+                }
+                Close();
             }
-            Close();
         }
     }
 }

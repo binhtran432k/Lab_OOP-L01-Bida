@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalWF
 {   
-    /*
+    
     public class ServiceHistory
     {
         public List<MaintenaceJob> MaintenaceJobs;
@@ -21,5 +21,5 @@ namespace CarRentalWF
             MaintenaceJobs.Add(job);
         }
     }
-    */
+    
 }

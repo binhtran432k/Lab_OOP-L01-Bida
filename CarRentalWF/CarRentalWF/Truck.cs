@@ -24,6 +24,7 @@ namespace CarRentalWF
             LastEngineServiceMileage = engineMileage;
             LastTransmissionServiceMileage = transmissionMilage;
             LastTireServiceMileage = tireMilage;
+            ServiceHistoryList = new ServiceHistory();
         }
 
         public override string ServeEngine()
@@ -46,9 +47,9 @@ namespace CarRentalWF
                 {
                     type = "minor";
                 }
-                ServiceHistory service = new ServiceHistory(kind, type, ID, DateTime.Now, CurrentMileage);
-                ServiceHistoryList.Add(service);
-                return service.ToString();
+                MaintenaceJob job = new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceHistoryList.AddJob(job);
+                return job.ToString();
             }
             return "";
         }
@@ -73,9 +74,9 @@ namespace CarRentalWF
                 {
                     type = "overhaul";
                 }
-                ServiceHistory service = new ServiceHistory(kind, type, ID, DateTime.Now, CurrentMileage);
-                ServiceHistoryList.Add(service);
-                return service.ToString();
+                MaintenaceJob job = new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceHistoryList.AddJob(job);
+                return job.ToString();
             }
             return "";
         }
@@ -96,9 +97,9 @@ namespace CarRentalWF
                 {
                     type = "adjustment";
                 }
-                ServiceHistory service = new ServiceHistory(kind, type, ID, DateTime.Now, CurrentMileage);
-                ServiceHistoryList.Add(service);
-                return service.ToString();
+                MaintenaceJob job = new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceHistoryList.AddJob(job);
+                return job.ToString();
             }
             return "";
         }

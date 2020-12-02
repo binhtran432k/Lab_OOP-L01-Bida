@@ -41,67 +41,51 @@ namespace CarRentalWF
             return "Apply " + Type + " " + Kind + " service at " + ServeTime.ToString() + "\n";
         }
 
+        public string GetDetail()
+        {
+            string detail = "Maintenance job #" + ID + "\n";
+            detail += Type + " " + Kind + " service\n";
+            detail += "Serve time: " + ServeTime.ToString();
+            detail += "\nAt mileage: " + Mileage.ToString();
+            detail += "\nCost: " + Cost.ToString();
+            detail += "\nGarage: " + Garage;
+            return detail;
+        }
+
         public static int operator -(MaintenaceJob service1, MaintenaceJob service2)
         {
-            try
+            if (service1.VehicleID == service2.VehicleID)
             {
-                if (service1.VehicleID == service2.VehicleID)
-                {
-                    return service1.Mileage - service2.Mileage;
-                }
-                else
-                {
-                    throw new Exception("Two maintenence job must be for same vehicle!!!");
-                }
-
+                return service1.Mileage - service2.Mileage;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
+                throw new Exception("Two maintenence job must be for same vehicle!!!");
             }
-            return 0;
         }
 
         public static bool operator >(MaintenaceJob service1, MaintenaceJob service2)
         {
-            try
+            if (service1.VehicleID == service2.VehicleID)
             {
-                if (service1.VehicleID == service2.VehicleID)
-                {
-                    return service1.ServeTime > service2.ServeTime;
-                }
-                else
-                {
-                    throw new Exception("Two maintenence job must be for same vehicle!!!");
-                }
-
+                return service1.ServeTime > service2.ServeTime;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
+                throw new Exception("Two maintenence job must be for same vehicle!!!");
             }
-            return false;
         }
 
         public static bool operator <(MaintenaceJob service1, MaintenaceJob service2)
         {
-            try
+            if (service1.VehicleID == service2.VehicleID)
             {
-                if (service1.VehicleID == service2.VehicleID)
-                {
-                    return service1.ServeTime < service2.ServeTime;
-                }
-                else
-                {
-                    throw new Exception("Two maintenence job must be for same vehicle!!!");
-                }
-
+                return service1.ServeTime < service2.ServeTime;
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
+                throw new Exception("Two maintenence job must be for same vehicle!!!");
             }
-            return false;
         }
     }
 }

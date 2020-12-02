@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CarRentalWF
 {
@@ -24,6 +25,7 @@ namespace CarRentalWF
             LastEngineServiceMileage = engineMileage;
             LastTransmissionServiceMileage = transmissionMilage;
             LastTireServiceMileage = tireMilage;
+            ServiceHistoryList = new ServiceHistory();
         }
 
         public override string ServeEngine()
@@ -46,9 +48,13 @@ namespace CarRentalWF
                 {
                     type = "minor";
                 }
-                ServiceHistory service = new ServiceHistory(kind, type, ID, DateTime.Now, CurrentMileage);
-                ServiceHistoryList.Add(service);
-                return service.ToString();
+
+                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                serviceForm.ShowDialog();
+
+                MaintenaceJob job = serviceForm.Job;
+                ServiceHistoryList.AddJob(job);
+                return job.ToString();
             }
             return "";
         }
@@ -73,9 +79,13 @@ namespace CarRentalWF
                 {
                     type = "overhaul";
                 }
-                ServiceHistory service = new ServiceHistory(kind, type, ID, DateTime.Now, CurrentMileage);
-                ServiceHistoryList.Add(service);
-                return service.ToString();
+
+                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                serviceForm.ShowDialog();
+
+                MaintenaceJob job = serviceForm.Job;
+                ServiceHistoryList.AddJob(job);
+                return job.ToString();
             }
             return "";
         }
@@ -96,9 +106,13 @@ namespace CarRentalWF
                 {
                     type = "adjustment";
                 }
-                ServiceHistory service = new ServiceHistory(kind, type, ID, DateTime.Now, CurrentMileage);
-                ServiceHistoryList.Add(service);
-                return service.ToString();
+
+                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                serviceForm.ShowDialog();
+
+                MaintenaceJob job = serviceForm.Job;
+                ServiceHistoryList.AddJob(job);
+                return job.ToString();
             }
             return "";
         }

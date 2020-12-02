@@ -50,6 +50,7 @@ namespace CarRentalWF
             {
                 serviceReport += "Checking for vehicle #" + vec.ID;
                 serviceReport += "\nType: " + vec.Type + "\n";
+                serviceReport += "Name: " + vec.Name + "\n";
 
                 string vehicleService = "";
                 vehicleService += vec.ServeEngine();

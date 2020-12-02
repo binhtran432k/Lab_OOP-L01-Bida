@@ -77,6 +77,12 @@
     <Compile Include="RentInfoForm.Designer.cs">
       <DependentUpon>RentInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceForm.Designer.cs">
+      <DependentUpon>ServiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServiceHistory.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Vehicle.cs" />
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentInfoForm.resx">
       <DependentUpon>RentInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceForm.resx">
+      <DependentUpon>ServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VehicleFleetForm.resx">
       <DependentUpon>VehicleFleetForm.cs</DependentUpon>

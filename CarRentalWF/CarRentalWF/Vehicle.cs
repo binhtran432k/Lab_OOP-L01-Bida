@@ -8,29 +8,6 @@ namespace CarRentalWF
 {
     public abstract class Vehicle
     {
-        public class ServiceHistory
-        {   
-            public string ServiceKind { get; set; }
-            public string Type { get; set; }
-            public string VehicleID { get; set; }
-            public DateTime ServeTime { get; set; }
-            public int VehicleMileage { get; set; }
-
-            public ServiceHistory(string kind, string type, string vehicleID, DateTime time, int mileage)
-            {
-                ServiceKind = kind;
-                Type = type;
-                VehicleID = vehicleID;
-                ServeTime = time;
-                VehicleMileage = mileage;
-            }
-
-            public override string ToString()
-            {
-                return "Apply " + Type + " " + ServiceKind + " service at " + ServeTime.ToString() + "\n";
-            }
-        }
-
         static int NumberOfVehicle = 0;
         public string ID { get; protected set; }
         public string Type { get; protected set; }
@@ -46,7 +23,7 @@ namespace CarRentalWF
         public int LastEngineServiceMileage { get; set; }
         public int LastTransmissionServiceMileage { get; set; }
         public int LastTireServiceMileage { get; set; }
-        public List<ServiceHistory> ServiceHistoryList = new List<ServiceHistory>();
+        public ServiceHistory ServiceHistoryList { get; protected set; }
 
         public void GenerateID()
         {
