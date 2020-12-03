@@ -2,14 +2,36 @@
 Github lưu trữ chung của nhóm, Lập trình hướng đối tượng
 
 # Thông báo
-- Đã có đề của Lab3, mọi nguời xem có nên làm lại đơn giản hóa class-diagram hay không? 
-- Github sẽ là nơi để project môn OOP đồng thời là trang thông báo, TODO để mọi tiện theo tránh trường hợp bị trôi như trên facebook, trang github: https://github.com/binhtran432k/Lab_OOP-L01-Bida
-- Mỗi người trong nhóm hãy:
-    - Đưa cho mình địa chỉ mail của github (qua facebook) để mình add vào project này.
-    - Xem lại class diagram, các class được khai báo constructor theo lab2.
-    - Chuẩn bị cho mình kiến thức git, gợi ý: https://www.youtube.com/watch?v=1JuYQgpbrW0&t
-    - Chuẩn bị kiến thức về C#.
-- Nội dung này sẽ được để trên github để tiện xem lại.
+Phần BTL môn OOP có 3 phần lớn thì tạm thời ta sẽ tập trung hoàn thành phần 2 trước. Và ô @Bình Lê đã làm được hơn 4 phần nhỏ của phần 2 rồi nên phần còn lại sẽ do t với @Đạt và @Đạo Nguyễn hoàn thành nốt. Gồm phần 2.2 và 4 phần cuối của phần 2.
+
+Tạm thời t sẽ bắt đầu làm 2.2. Còn 4 câu cuối của phần 2, @Đạt, @Đạo Nguyễn chọn bớt rồi làm trước đi. Khi nào xong 2.2 t sẽ làm thêm phần còn lại.
+
+Hiện tại là chốt như vậy nha! Ai có thắc mắc gì thì nói lun nha.
+À thêm nữa, deadline của bài này là T4 tuần sau á. Với lại tuần sau nhóm mình báo nên mn nhớ đi học học đầy đủ đấy!
+# BTL
+## Nhóm / Thang điểm
+1. __Lược đồ lớp (2đ)__
+    1. Không có lược đồ (0đ)
+    1. Lược đồ sơ sài, còn nhiều lỗi (1đ)
+    1. Lược đồ tương đối đầy đủ nhưng vẫn còn một vài lỗi (1.5đ)
+    1. Lược đồ đầy đủ và không còn lỗi (2đ)
+2. __Các chức năng cần thực hiện (7đ)__
+    1. Chức năng tạo mới, cập nhật và đóng một hợp đồng thuê xe (phải thực hiện nhiều hàm khởi tạo (multiple constructors) cho đối tượng hợp đồng thuê xe) (1đ)
+    1. Chức năng BookAndRent (cần có thêm định nghĩa Interface cho chức năng này) (1đ)
+    1. Chức năng thêm, xóa, sửa một xe vào đội xe (phải thực hiện nhiều phương pháp thêm 1 xe vào đội xe (multiple methods)) (1đ)
+    1. Các chức năng bảo quản bảo dưỡng hiện thực khác nhau cho từng class xe cụ thể khác nhau (serviceEngine, serviceTransmission, serviceTires) (1đ)
+    1. Chức năng bảo quản bảo dưỡng cho cảđội xe (serviceFleet) (0.5đ)
+    1. Toán tử trừ "-" cho 2 mainternance jobs bất kỳ (0.5đ)
+    1. Toán tử so sánh cho 2 mainternance jobs bất kỳ (0.5đ)
+    1. Xuất kết quả dữ liệu json về lịch sử bảo quản bảo dưỡng của 1 xe bất kỳ ra màn hình (0.5đ)
+    1. Tạo tập tin json lưu trữ tất cả lịch sử bảo quản bảo dưỡng của 1 xe bất kỳ (1đ)
+3. __Trình bày mã nguồn (1đ)__
+    1. Không tuân thủ coding conventions (0đ)
+    1. Có tuân thủ coding conventions nhưng chưa đầy đủ (0.5đ)
+    1. Tuân thủ coding conventions một cách đầy đủ (1đ)
+4. __Điểm thưởng (+1đ)__
+    1. Kết nối database
+    1. Chức năng nâng cao
 # Hướng dẫn
 ## 1. Xem class diagram
 - Để xem được class diagram, ta có nhiều cách nhưng mình khuyến khích nên dùng trong 2 cách sau:
