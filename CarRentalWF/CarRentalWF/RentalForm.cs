@@ -25,6 +25,7 @@ namespace CarRentalWF
 
             rentDataGridView.AutoGenerateColumns = false;
             rentDataGridView.DataSource = _rentBindingSource;
+            rentDataGridView.Columns[4].DefaultCellStyle.Format = "N2";
 
         }
 
@@ -100,8 +101,7 @@ namespace CarRentalWF
             else if (status == "Ongoing")
             {
                 btnProcess.Show();
-
-                btnCancel.Show();
+                btnCancel.Hide();
                 btnProcess.Text = "Return Vehicle";
             }
             else

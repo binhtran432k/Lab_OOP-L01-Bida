@@ -89,10 +89,14 @@ namespace CarRentalWF
             VehicleList.Add(new Car("Ford Focus 2011", "white", "Ford", 2011, 7, 99.99, 1.0));
         }
 
-        public void AddVehicle(Vehicle vec)
+        public void AddVehicle(Car car)
         {
-            Console.WriteLine("Secondary method for adding vehicle is called");
-            VehicleList.Add(vec);
+            VehicleList.Add(car);
+        }
+
+        public void AddVehicle(Truck truck)
+        {
+            VehicleList.Add(truck);
         }
 
         public void RemoveVehicle(Vehicle vehicle)
@@ -197,10 +201,10 @@ namespace CarRentalWF
         {
             List<Rent> rentList = new List<Rent>
             {
-                new Rent("Romado Alice", "1", 283, new DateTime(2019, 12, 30), new DateTime(2020, 1, 13)),
-                new Rent("Amanda Simon", "2", 123, new DateTime(2018, 10, 30), new DateTime(2018, 11, 11), RentStatus.Ongoing),
-                new Rent("Roberto Shisui", "3", 567, new DateTime(2019, 2, 20), new DateTime(2019, 2, 28), RentStatus.Finish),
-                new Rent("John Smith", "4", 3984, new DateTime(2020, 10, 19), new DateTime(2020, 10, 22), RentStatus.Cancel)
+                new Rent("Romado Alice", "1", 99.99, new DateTime(2019, 12, 30), new DateTime(2020, 1, 13)),
+                new Rent("Amanda Simon", "2", 68.99, new DateTime(2018, 10, 30), new DateTime(2018, 11, 11), RentStatus.Ongoing),
+                new Rent("Roberto Shisui", "3", 89.99, new DateTime(2019, 2, 20), new DateTime(2019, 2, 28), RentStatus.Finish),
+                new Rent("John Smith", "4", 99.99, new DateTime(2020, 10, 19), new DateTime(2020, 10, 22), RentStatus.Cancel)
             };
 
             return rentList;

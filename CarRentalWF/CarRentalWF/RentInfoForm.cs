@@ -30,7 +30,6 @@ namespace CarRentalWF
 
             txtCustomer.Text = _rent.CustomerName;
             txtVehicle.Text = _rent.VehicleID;
-            txtTotal.Text = _rent.Total.ToString();
             txtStartDate.Text = _rent.StartDate.ToString("dd/MM/yyyy");
             txtEndDate.Text = _rent.EndDate.ToString("dd/MM/yyyy");
         }
@@ -57,25 +56,47 @@ namespace CarRentalWF
             Vehicle vehicle = _carRentalManagement.GetVehicle(vehicleID);
             if (vehicle == null)
             {
-                MessageBox.Show("Can't find vehicle or vehicle is unavailable", "Error");
+                MessageBox.Show("Can't find vehicle", "Error");
+            }
+            else if (vehicle.Available == false)
+            {
+                MessageBox.Show("The vehicle is unavailable for rent", "Error");
             }
             else
             {
                 CultureInfo culture = CultureInfo.InvariantCulture;
+                DateTime startDate;
+                DateTime endDate;
                 string customerName = txtCustomer.Text;
-                double total = double.Parse(txtTotal.Text);
-                DateTime startDate = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture);
-                DateTime endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
+                double price = vehicle.Price;
                 RentStatus status = (RentStatus)Enum.Parse(typeof(RentStatus), cbStatus.Text);
 
                 if (_rent == null)
-                {
-                    _rent = new Rent(customerName, vehicleID, total, startDate, endDate);
+                {   
+                    if (txtStartDate.Text == "" && txtEndDate.Text == "")
+                    {
+                        _rent = new Rent(customerName, vehicleID, price);
+                    }
+                    else if (txtStartDate.Text == "")
+                    {
+                        endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
+                        _rent = new Rent(customerName, vehicleID, price, endDate);
+                    }
+                    else
+                    {
+                        startDate = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture);
+                        endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
+                        _rent = new Rent(customerName, vehicleID, price, startDate, endDate);                  }
+
+
                     _carRentalManagement.AddRent(_rent);
+                    vehicle.Available = false;
                 }
                 else
                 {
-                    _rent.Update(customerName, vehicleID, total, startDate, endDate, status);
+                    startDate = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture);
+                    endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
+                    _rent.Update(customerName, vehicleID, price, startDate, endDate, status);
                 }
                 Close();
             }

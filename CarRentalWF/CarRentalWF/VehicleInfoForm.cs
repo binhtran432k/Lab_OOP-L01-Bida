@@ -52,18 +52,18 @@ namespace CarRentalWF
             int engineMileage = int.Parse(engineServiceText.Text);
             int transmissionMileage = int.Parse(transmissionServiceText.Text);
             int tireMileage = int.Parse(tireServiceText.Text);
-            Vehicle vec;
             if (_vehicle == null)
             {
                 if (type == "Car")
                 {
-                    vec = new Car(name, color, brand, year, numberOfSeat, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage);
+                    Car car = new Car(name, color, brand, year, numberOfSeat, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage);
+                    _carRentalManagement.AddVehicle(car);
                 }
                 else
                 {
-                    vec = new Truck(name, color, year, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage);
+                    Truck truck = new Truck(name, color, year, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage);
+                    _carRentalManagement.AddVehicle(truck);
                 }
-                _carRentalManagement.AddVehicle(vec);
             }
             else
             {

@@ -24,16 +24,51 @@ namespace CarRentalWF
         public DateTime EndDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public RentStatus Status { get; set; }
-        public Rent(string customerName, string vehicleID, double total, DateTime startDate, DateTime endDate, RentStatus status = RentStatus.Ready)
+
+        public Rent(string customerName, string vehicleID, double pricePerDay, DateTime startDate, DateTime endDate)
         {
             GenerateID();
             CustomerName = customerName;
             VehicleID = vehicleID;
-            Total = total;
             StartDate = startDate;
             EndDate = endDate;
+            Total = (endDate - startDate).TotalDays * pricePerDay;
+            Status = RentStatus.Ready;
+        }
+
+        public Rent(string customerName, string vehicleID, double pricePerDay, DateTime endDate)
+        {
+            GenerateID();
+            CustomerName = customerName;
+            VehicleID = vehicleID;
+            StartDate = DateTime.Today;
+            EndDate = endDate;
+            Total = (endDate - StartDate).TotalDays * pricePerDay;
+            Status = RentStatus.Ready;
+        }
+
+        public Rent(string customerName, string vehicleID, double pricePerDay)
+        {
+            GenerateID();
+            CustomerName = customerName;
+            VehicleID = vehicleID;
+            StartDate = DateTime.Today;
+            EndDate = DateTime.Today.AddDays(1);
+            Total = pricePerDay;
+            Status = RentStatus.Ready;
+        }
+
+        public Rent(string customerName, string vehicleID, double pricePerDay, DateTime startDate, DateTime endDate, RentStatus status)
+        {
+            GenerateID();
+            CustomerName = customerName;
+            VehicleID = vehicleID;
+            StartDate = startDate;
+            EndDate = endDate;
+            Total = (endDate - startDate).TotalDays * pricePerDay;
             Status = status;
         }
+
         private void GenerateID()
         {
             NumberOfRent += 1;
@@ -67,7 +102,7 @@ namespace CarRentalWF
 
         public void Cancel()
         {
-            if (Status < RentStatus.Finish)
+            if (Status == RentStatus.Ready)
             {
                 Status = RentStatus.Cancel;
             }
