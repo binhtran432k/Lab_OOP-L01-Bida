@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CarRentalWF
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private Form _activeForm = null;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             OpenChildForm(new HomeForm());

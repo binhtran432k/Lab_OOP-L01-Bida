@@ -1,6 +1,6 @@
 ﻿namespace CarRentalWF
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -50,10 +50,10 @@
             this.panelNavMenu.Controls.Add(this.homeBtn);
             this.panelNavMenu.Controls.Add(this.panelLogo);
             this.panelNavMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelNavMenu.Location = new System.Drawing.Point(0, 0);
+            this.panelNavMenu.Location = new System.Drawing.Point(0, 1);
             this.panelNavMenu.Margin = new System.Windows.Forms.Padding(4);
             this.panelNavMenu.Name = "panelNavMenu";
-            this.panelNavMenu.Size = new System.Drawing.Size(224, 562);
+            this.panelNavMenu.Size = new System.Drawing.Size(200, 600);
             this.panelNavMenu.TabIndex = 0;
             // 
             // aboutBtn
@@ -64,7 +64,7 @@
             this.aboutBtn.Location = new System.Drawing.Point(0, 280);
             this.aboutBtn.Name = "aboutBtn";
             this.aboutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.aboutBtn.Size = new System.Drawing.Size(224, 45);
+            this.aboutBtn.Size = new System.Drawing.Size(200, 45);
             this.aboutBtn.TabIndex = 5;
             this.aboutBtn.Text = "About Us";
             this.aboutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,7 +78,7 @@
             this.rentalBtn.Location = new System.Drawing.Point(0, 235);
             this.rentalBtn.Name = "rentalBtn";
             this.rentalBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.rentalBtn.Size = new System.Drawing.Size(224, 45);
+            this.rentalBtn.Size = new System.Drawing.Size(200, 45);
             this.rentalBtn.TabIndex = 4;
             this.rentalBtn.Text = "Rentals";
             this.rentalBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,7 +93,7 @@
             this.rentVehicleBtn.Location = new System.Drawing.Point(0, 190);
             this.rentVehicleBtn.Name = "rentVehicleBtn";
             this.rentVehicleBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.rentVehicleBtn.Size = new System.Drawing.Size(224, 45);
+            this.rentVehicleBtn.Size = new System.Drawing.Size(200, 45);
             this.rentVehicleBtn.TabIndex = 3;
             this.rentVehicleBtn.Text = "Book and Rent";
             this.rentVehicleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -107,7 +107,7 @@
             this.vehicleBtn.Location = new System.Drawing.Point(0, 145);
             this.vehicleBtn.Name = "vehicleBtn";
             this.vehicleBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.vehicleBtn.Size = new System.Drawing.Size(224, 45);
+            this.vehicleBtn.Size = new System.Drawing.Size(200, 45);
             this.vehicleBtn.TabIndex = 2;
             this.vehicleBtn.Text = "Vehicle Fleet";
             this.vehicleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -122,7 +122,7 @@
             this.homeBtn.Location = new System.Drawing.Point(0, 100);
             this.homeBtn.Name = "homeBtn";
             this.homeBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.homeBtn.Size = new System.Drawing.Size(224, 45);
+            this.homeBtn.Size = new System.Drawing.Size(200, 45);
             this.homeBtn.TabIndex = 1;
             this.homeBtn.Text = "Home";
             this.homeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -134,28 +134,29 @@
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(224, 100);
+            this.panelLogo.Size = new System.Drawing.Size(200, 100);
             this.panelLogo.TabIndex = 1;
             // 
             // panelChildForm
             // 
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChildForm.Location = new System.Drawing.Point(224, 0);
+            this.panelChildForm.Location = new System.Drawing.Point(200, 1);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(776, 562);
+            this.panelChildForm.Size = new System.Drawing.Size(900, 600);
             this.panelChildForm.TabIndex = 1;
             // 
-            // Form1
+            // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.ClientSize = new System.Drawing.Size(1100, 601);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelNavMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.Text = "MainForm";
             this.panelNavMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
