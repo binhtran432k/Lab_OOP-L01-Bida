@@ -123,9 +123,12 @@ namespace CarRentalWF
             MessageBox.Show(data, "Service Report");
         }
 
-        private void vehicleGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ViewMaintenance_Click(object sender, EventArgs e)
         {
-            
+            int index = vehicleGridView.SelectedRows[0].Index;
+            int id = int.Parse(vehicleGridView.Rows[index].Cells[0].Value.ToString());
+            Form maintenaceForm = new MaintenanceForm(id);
+            maintenaceForm.ShowDialog();
         }
     }
 }
