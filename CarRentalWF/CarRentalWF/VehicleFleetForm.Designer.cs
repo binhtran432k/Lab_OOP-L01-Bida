@@ -45,6 +45,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnServiceHistory = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.ViewMaintenance = new System.Windows.Forms.Button();
             this.vehicleGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleGridView)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,7 @@
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(557, 63);
+            this.btnNew.Location = new System.Drawing.Point(575, 26);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(155, 56);
@@ -64,7 +65,7 @@
             // btnServeFleet
             // 
             this.btnServeFleet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServeFleet.Location = new System.Drawing.Point(557, 477);
+            this.btnServeFleet.Location = new System.Drawing.Point(575, 488);
             this.btnServeFleet.Margin = new System.Windows.Forms.Padding(4);
             this.btnServeFleet.Name = "btnServeFleet";
             this.btnServeFleet.Size = new System.Drawing.Size(155, 50);
@@ -81,7 +82,7 @@
             this.vehicleGroupBox.Controls.Add(this.vehicleGridView);
             this.vehicleGroupBox.Location = new System.Drawing.Point(35, 26);
             this.vehicleGroupBox.Name = "vehicleGroupBox";
-            this.vehicleGroupBox.Size = new System.Drawing.Size(479, 515);
+            this.vehicleGroupBox.Size = new System.Drawing.Size(497, 526);
             this.vehicleGroupBox.TabIndex = 2;
             this.vehicleGroupBox.TabStop = false;
             this.vehicleGroupBox.Text = "Vehicle Fleet";
@@ -109,8 +110,9 @@
             this.vehicleGridView.RowHeadersWidth = 51;
             this.vehicleGridView.RowTemplate.Height = 24;
             this.vehicleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.vehicleGridView.Size = new System.Drawing.Size(467, 464);
+            this.vehicleGridView.Size = new System.Drawing.Size(485, 475);
             this.vehicleGridView.TabIndex = 0;
+            this.vehicleGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.vehicleGridView_CellContentClick);
             // 
             // Column1
             // 
@@ -196,7 +198,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(557, 153);
+            this.btnUpdate.Location = new System.Drawing.Point(575, 106);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(155, 52);
@@ -208,7 +210,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(557, 240);
+            this.btnDelete.Location = new System.Drawing.Point(575, 183);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(155, 50);
@@ -220,7 +222,7 @@
             // btnServiceHistory
             // 
             this.btnServiceHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServiceHistory.Location = new System.Drawing.Point(557, 322);
+            this.btnServiceHistory.Location = new System.Drawing.Point(575, 311);
             this.btnServiceHistory.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceHistory.Name = "btnServiceHistory";
             this.btnServiceHistory.Size = new System.Drawing.Size(155, 50);
@@ -231,7 +233,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(557, 400);
+            this.button1.Location = new System.Drawing.Point(575, 400);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 50);
@@ -239,11 +241,24 @@
             this.button1.Text = "Export Service History";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // ViewMaintenance
+            // 
+            this.ViewMaintenance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ViewMaintenance.Location = new System.Drawing.Point(575, 241);
+            this.ViewMaintenance.Margin = new System.Windows.Forms.Padding(4);
+            this.ViewMaintenance.Name = "ViewMaintenance";
+            this.ViewMaintenance.Size = new System.Drawing.Size(155, 50);
+            this.ViewMaintenance.TabIndex = 7;
+            this.ViewMaintenance.Text = "View Maintenance";
+            this.ViewMaintenance.UseVisualStyleBackColor = true;
+            this.ViewMaintenance.Click += new System.EventHandler(this.ViewMaintenance_Click);
+            // 
             // VehicleFleetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 562);
+            this.ClientSize = new System.Drawing.Size(794, 573);
+            this.Controls.Add(this.ViewMaintenance);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnServiceHistory);
             this.Controls.Add(this.btnDelete);
@@ -281,5 +296,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column9;
         private System.Windows.Forms.Button btnServiceHistory;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ViewMaintenance;
     }
 }

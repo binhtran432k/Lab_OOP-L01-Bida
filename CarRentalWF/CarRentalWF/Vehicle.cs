@@ -94,5 +94,9 @@ namespace CarRentalWF
             detail += string.Format("Price per day: {0}$/day\n", Price);
             return detail;
         }
+        public virtual List<MaintenaceJob> GetMaintenaceJobs()
+        {
+            return this.ServiceHistoryList.MaintenaceJobs;
+        }
     }
 }

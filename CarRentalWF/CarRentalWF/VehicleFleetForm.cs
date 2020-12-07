@@ -69,5 +69,24 @@ namespace CarRentalWF
             string serviceReport = _carRentalManagement.ServeFleet();
             MessageBox.Show(serviceReport, "Service Report");
         }
+
+        private void ViewMaintenance_Click(object sender, EventArgs e)
+        {
+            int index = vehicleGridView.SelectedRows[0].Index;
+            int id = int.Parse(vehicleGridView.Rows[index].Cells[0].Value.ToString());
+            Form maintenaceForm = new MaintenanceForm(id);
+            maintenaceForm.ShowDialog();
+        }
+
+        private void vehicleGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.vehicleGridView.Rows[e.RowIndex];
+                //Process data to send
+                int selectedId = int.Parse(row.Cells[0].Value.ToString());
+                //Init
+            }
+        }
     }
 }
