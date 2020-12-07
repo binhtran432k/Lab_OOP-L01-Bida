@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
+using System.IO;
 namespace CarRentalWF
 {
     public partial class VehicleFleetForm : Form
@@ -26,6 +28,7 @@ namespace CarRentalWF
 
             vehicleGridView.AutoGenerateColumns = false;
             vehicleGridView.DataSource = _vehicleBindingSource;
+            
 
         }
 
@@ -68,6 +71,61 @@ namespace CarRentalWF
         {
             string serviceReport = _carRentalManagement.ServeFleet();
             MessageBox.Show(serviceReport, "Service Report");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int index = vehicleGridView.SelectedRows[0].Index;
+            
+            Vehicle car = _carRentalManagement.VehicleList[index];
+            string serviceHistory = car.ServiceHistoryList.View();
+
+
+            var data = JsonConvert.SerializeObject(car, Formatting.Indented);
+
+            string path = @"../../json/" + car.ID + ".json";
+
+            if(File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            var tw = new StreamWriter(path, true);
+            tw.WriteLine(data);
+            tw.Close();
+            MessageBox.Show( "File được lưu ở json/"+car.ID+".json");
+        }
+
+        private void btnServiceHistory_Click(object sender, EventArgs e)
+        {
+            int index = vehicleGridView.SelectedRows[0].Index;
+            //string aha = vehicleGridView.SelectedRows[0].;
+            Vehicle car = _carRentalManagement.VehicleList[index];
+            string serviceHistory = car.ServiceHistoryList.View();
+
+            
+            var data=JsonConvert.SerializeObject(car,Formatting.Indented);
+            
+            string path = @"../../json/" + car.ID + ".json";
+
+            /*if (!File.Exists(path))
+            {
+                MessageBox.Show("Chưa có lịch sử bảo dưỡng");
+            }
+            else
+            {
+                var tw = new StreamWriter(path, true);
+                tw.WriteLine(data);
+                tw.Close();
+                var reader = new StreamReader(path);
+                string jsonFromFile = reader.ReadToEnd();
+                
+            }*/
+            MessageBox.Show(data, "Service Report");
+        }
+
+        private void vehicleGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

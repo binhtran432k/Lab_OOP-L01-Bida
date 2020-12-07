@@ -9,7 +9,7 @@ namespace CarRentalWF
     
     public class ServiceHistory
     {
-        public List<MaintenaceJob> MaintenaceJobs;
+         public List<MaintenaceJob> MaintenaceJobs;
 
         public ServiceHistory()
         {
@@ -20,6 +20,16 @@ namespace CarRentalWF
         {
             MaintenaceJobs.Add(job);
         }
+        public string View()
+        {
+            string history = "";
+            foreach (MaintenaceJob maintenance in MaintenaceJobs)
+            {
+                history += maintenance.ToString();
+            }
+            return history;
+        }
+        
     }
     
 }
