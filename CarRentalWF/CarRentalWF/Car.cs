@@ -54,6 +54,8 @@ namespace CarRentalWF
 
                 MaintenaceJob job = serviceForm.Job;
                 ServiceHistoryList.AddJob(job);
+                
+
                 return job.ToString();
             }
             return "";
