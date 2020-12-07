@@ -87,27 +87,5 @@ namespace CarRentalWF
                 throw new Exception("Two maintenence job must be for same vehicle!!!");
             }
         }
-        public static bool operator ==(MaintenaceJob service1, MaintenaceJob service2)
-        {
-            if (service1.VehicleID == service2.VehicleID)
-            {
-                return service1.ServeTime == service2.ServeTime;
-            }
-            else
-            {
-                throw new Exception("Two maintenence job must be for same vehicle!!!");
-            }
-        }
-        public static bool operator !=(MaintenaceJob service1, MaintenaceJob service2)
-        {
-            if (service1.VehicleID == service2.VehicleID)
-            {
-                return service1.ServeTime != service2.ServeTime;
-            }
-            else
-            {
-                throw new Exception("Two maintenence job must be for same vehicle!!!");
-            }
-        }
     }
 }
