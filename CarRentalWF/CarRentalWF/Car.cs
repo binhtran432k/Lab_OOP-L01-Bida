@@ -8,8 +8,13 @@ using System.Windows.Forms;
 namespace CarRentalWF
 {
     class Car : Vehicle
-    {
-        public Car(string name, string color, string brand, int year, int numberOfSeat, double price, double condition, int curMileage = 0, int engineMileage = 0, int transmissionMilage = 0, int tireMilage = 0)
+    {   
+        public Car()
+        {
+            Type = "Car";
+        }
+
+        public Car(string name, string color, string brand, int year, int numberOfSeat, double price, int condition, int curMileage = 0, int engineMileage = 0, int transmissionMilage = 0, int tireMilage = 0, bool available=true)
         {
             GenerateID();
             Type = "Car";
@@ -20,7 +25,7 @@ namespace CarRentalWF
             NumberOfSeat = numberOfSeat;
             Price = price;
             Condition = condition;
-            Available = true;
+            Available = available;
             CurrentMileage = curMileage;
             LastEngineServiceMileage = engineMileage;
             LastTransmissionServiceMileage = transmissionMilage;
@@ -34,7 +39,6 @@ namespace CarRentalWF
             string kind = "engine";
             if (distance >= 400)
             {
-                LastEngineServiceMileage = CurrentMileage;
                 string type;
                 if (distance >= 1000)
                 {
@@ -52,11 +56,17 @@ namespace CarRentalWF
                 ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
-                MaintenaceJob job = serviceForm.Job;
-                ServiceHistoryList.AddJob(job);
-                
-
-                return job.ToString();
+                MaintenanceJob job = serviceForm.Job;
+                if (job == null)
+                {
+                    return "Cancel " + type + " " + kind + " service for vehicle #" + ID.ToString() + "\n";
+                }
+                else
+                {
+                    LastEngineServiceMileage = CurrentMileage;
+                    ServiceHistoryList.AddJob(job);
+                    return job.ToString();
+                }
             }
             return "";
         }
@@ -67,8 +77,7 @@ namespace CarRentalWF
             string kind = "transmission";
             if (distance >= 600)
             {
-                LastTransmissionServiceMileage = CurrentMileage;
-                string type = "";
+                string type;
                 if (distance >= 2000)
                 {
                     type = "fluid change";
@@ -85,9 +94,17 @@ namespace CarRentalWF
                 ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
-                MaintenaceJob job = serviceForm.Job;
-                ServiceHistoryList.AddJob(job);
-                return job.ToString();
+                MaintenanceJob job = serviceForm.Job;
+                if (job == null)
+                {
+                    return "Cancel " + type + " " + kind + " service for vehicle #" + ID.ToString() + "\n";
+                }
+                else
+                {
+                    LastTransmissionServiceMileage = CurrentMileage;
+                    ServiceHistoryList.AddJob(job);
+                    return job.ToString();
+                }
             }
             return "";
         }
@@ -98,8 +115,7 @@ namespace CarRentalWF
             string kind = "tire";
             if (distance >= 400)
             {
-                LastTireServiceMileage = CurrentMileage;
-                string type = "";
+                string type;
                 if (distance >= 800)
                 {
                     type = "replacement";
@@ -112,9 +128,17 @@ namespace CarRentalWF
                 ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
-                MaintenaceJob job = serviceForm.Job;
-                ServiceHistoryList.AddJob(job);
-                return job.ToString();
+                MaintenanceJob job = serviceForm.Job;
+                if (job == null)
+                {
+                    return "Cancel " + type + " " + kind + " service for vehicle #" + ID.ToString() + "\n";
+                }
+                else
+                {
+                    LastTireServiceMileage = CurrentMileage;
+                    ServiceHistoryList.AddJob(job);
+                    return job.ToString();
+                }
             }
             return "";
         }

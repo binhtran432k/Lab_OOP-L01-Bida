@@ -159,7 +159,7 @@ namespace CarRentalWF
             // 
             // maintenaceJobBindingSource
             // 
-            this.maintenaceJobBindingSource.DataSource = typeof(CarRentalWF.MaintenaceJob);
+            this.maintenaceJobBindingSource.DataSource = typeof(CarRentalWF.MaintenanceJob);
             // 
             // MaintenanceForm
             // 

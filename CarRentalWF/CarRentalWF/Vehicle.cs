@@ -8,8 +8,10 @@ namespace CarRentalWF
 {
     public abstract class Vehicle
     {
+        protected Database _database = Database.GetInstance();
+
         static int NumberOfVehicle = 0;
-        public string ID { get; protected set; }
+        public int ID { get; set; }
         public string Type { get; protected set; }
         public string Name { get; protected set; }
         public string Color { get; protected set; }
@@ -17,7 +19,7 @@ namespace CarRentalWF
         public int Year { get; protected set; }
         public int NumberOfSeat { get; protected set; }
         public double Price { get; protected set; }
-        public double Condition { get; protected set; }
+        public int Condition { get; protected set; }
         public bool Available { get; set; }
         public int CurrentMileage { get; set; }
         public int LastEngineServiceMileage { get; set; }
@@ -28,7 +30,7 @@ namespace CarRentalWF
         public void GenerateID()
         {
             NumberOfVehicle += 1;
-            ID = NumberOfVehicle.ToString();
+            ID = NumberOfVehicle;
         }
 
         public virtual string ServeEngine() { return ""; }
@@ -37,20 +39,7 @@ namespace CarRentalWF
 
         public virtual string ServeTire() { return ""; }
 
-        public void ViewDetail()
-        {
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("Vehicle #" + ID);
-            Console.WriteLine(string.Format("Name: {0}", Name));
-            Console.WriteLine(string.Format("Color: {0}", Color));
-            Console.WriteLine(string.Format("Brand: {0}", Brand));
-            Console.WriteLine(string.Format("Year: {0}", Year));
-            Console.WriteLine(string.Format("Seats: {0}", NumberOfSeat));
-            Console.WriteLine(string.Format("Condition: {0}", GetCondition()));
-            Console.WriteLine(string.Format("Price per day: {0}$/day", Price));
-        }
-
-        public void Update(string name, string color, string brand, int year, int numberOfSeat, double price, double condition, int currentMileage)
+        public void Update(string name, string color, string brand, int year, int numberOfSeat, double price, int condition, int currentMileage)
         {
             Name = name;
             Color = color;
@@ -60,30 +49,37 @@ namespace CarRentalWF
             Price = price;
             Condition = condition;
             CurrentMileage = currentMileage;
+            Save();
         }
 
-        public void SetAvailable(bool value)
+        public void UpdateAvailable(bool value)
         {
             Available = value;
+            Save();
         }
 
         public string GetCondition()
         {
-            if (Condition >= 0.8)
+            if (Condition >= 80)
             {
                 return "Good";
             }
-            else if (Condition >= 0.5)
+            else if (Condition >= 50)
             {
                 return "Normal";
             }
             return "Bad";
         }
 
+        public void Save()
+        {
+            _database.UpdateVehicle(this);
+        }
+
         public override string ToString()
         {
             string detail = "";
-            detail += "Vehicle #" + ID + "\n";
+            detail += "Vehicle #" + ID.ToString() + "\n";
             detail += string.Format("Type: {0}\n", Type);
             detail += string.Format("Name: {0}\n", Name);
             detail += string.Format("Color: {0}\n", Color);

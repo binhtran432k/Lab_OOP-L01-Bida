@@ -24,12 +24,12 @@ namespace CarRentalWF
             {
                 int id1 = int.Parse(this.service1ID.Text);
                 int id2 = int.Parse(this.service2ID.Text);
-                MaintenaceJob job1 = null;
-                MaintenaceJob job2 = null;
-                List<MaintenaceJob> mainJob = _maintenaceManagement.localMaintenances;
+                MaintenanceJob job1 = null;
+                MaintenanceJob job2 = null;
+                List<MaintenanceJob> mainJob = _maintenaceManagement.localMaintenances;
                 foreach(var job in mainJob)
                 {
-                    if(int.Parse(job.ID) == id1)
+                    if(job.ID == id1)
                     {
                         if (job1 == null) job1 = job;
                         else
@@ -37,7 +37,7 @@ namespace CarRentalWF
                             throw new System.InvalidOperationException("Something went wrong with the Data");
                         }
                     }
-                    if (int.Parse(job.ID) == id2)
+                    if (job.ID == id2)
                     {
                         if (job2 == null) job2 = job;
                         else
@@ -62,12 +62,12 @@ namespace CarRentalWF
             {
                 int id1 = int.Parse(this.service1ID.Text);
                 int id2 = int.Parse(this.service2ID.Text);
-                MaintenaceJob job1 = null;
-                MaintenaceJob job2 = null;
-                List<MaintenaceJob> mainJob = _maintenaceManagement.localMaintenances;
+                MaintenanceJob job1 = null;
+                MaintenanceJob job2 = null;
+                List<MaintenanceJob> mainJob = _maintenaceManagement.localMaintenances;
                 foreach (var job in mainJob)
                 {
-                    if (int.Parse(job.ID) == id1)
+                    if (job.ID == id1)
                     {
                         if (job1 == null) job1 = job;
                         else
@@ -75,7 +75,7 @@ namespace CarRentalWF
                             throw new System.InvalidOperationException("Something went wrong with the Data");
                         }
                     }
-                    if (int.Parse(job.ID) == id2)
+                    if (job.ID == id2)
                     {
                         if (job2 == null) job2 = job;
                         else

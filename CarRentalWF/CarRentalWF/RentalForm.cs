@@ -21,12 +21,11 @@ namespace CarRentalWF
 
         private void RentalForm_Load(object sender, EventArgs e)
         {
-            _rentBindingSource.DataSource = _carRentalManagement.RentList;
+            _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
 
             rentDataGridView.AutoGenerateColumns = false;
             rentDataGridView.DataSource = _rentBindingSource;
             rentDataGridView.Columns[4].DefaultCellStyle.Format = "N2";
-
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -35,7 +34,7 @@ namespace CarRentalWF
 
             rentForm.FormClosed += (s, a) =>
             {
-                _rentBindingSource.ResetBindings(false);
+                _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
             };
 
             rentForm.Show();
@@ -43,13 +42,13 @@ namespace CarRentalWF
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            int index = rentDataGridView.SelectedRows[0].Index;
-            Rent rent = _carRentalManagement.RentList[index];
+            int index = int.Parse(rentDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Rent rent = _carRentalManagement.GetRent(index);
             Form rentForm = new RentInfoForm(rent);
 
             rentForm.FormClosed += (s, a) =>
             {
-                _rentBindingSource.ResetBindings(false);
+                _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
                 UpdateBtnProcess();
             };
 
@@ -63,29 +62,29 @@ namespace CarRentalWF
 
         private void BtnProcess_Click(object sender, EventArgs e)
         {
-            int index = rentDataGridView.SelectedRows[0].Index;
-            Rent rent = _carRentalManagement.RentList[index];
+            int index = int.Parse(rentDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Rent rent = _carRentalManagement.GetRent(index);
 
             rent.UpdateStatus();
-            _rentBindingSource.ResetBindings(false);
+            _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
             UpdateBtnProcess();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            int index = rentDataGridView.SelectedRows[0].Index;
-            Rent rent = _carRentalManagement.RentList[index];
+            int index = int.Parse(rentDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Rent rent = _carRentalManagement.GetRent(index);
             _carRentalManagement.RemoveRent(rent);
-            _rentBindingSource.ResetBindings(false);
+            _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
             UpdateBtnProcess();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            int index = rentDataGridView.SelectedRows[0].Index;
-            Rent rent = _carRentalManagement.RentList[index];
+            int index = int.Parse(rentDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Rent rent = _carRentalManagement.GetRent(index);
             rent.Cancel();
-            _rentBindingSource.ResetBindings(false);
+            _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
             UpdateBtnProcess();
         }
 

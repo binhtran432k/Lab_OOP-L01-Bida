@@ -9,14 +9,14 @@ namespace CarRentalWF
     
     public class ServiceHistory
     {
-         public List<MaintenaceJob> MaintenaceJobs;
+        public List<MaintenanceJob> MaintenaceJobs;
 
         public ServiceHistory()
         {
-            MaintenaceJobs = new List<MaintenaceJob>();
+            MaintenaceJobs = new List<MaintenanceJob>();
         }
 
-        public void AddJob(MaintenaceJob job)
+        public void AddJob(MaintenanceJob job)
         {
             MaintenaceJobs.Add(job);
         }
@@ -24,7 +24,7 @@ namespace CarRentalWF
         public string View()
         {
             string history = "";
-            foreach (MaintenaceJob maintenance in MaintenaceJobs)
+            foreach (MaintenanceJob maintenance in MaintenaceJobs)
             {
                 history += maintenance.ToString();
             }

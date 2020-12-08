@@ -24,7 +24,7 @@ namespace CarRentalWF
 
         private void VehicleFleetForm_Load(object sender, EventArgs e)
         {
-            _vehicleBindingSource.DataSource = _carRentalManagement.VehicleList;
+            _vehicleBindingSource.DataSource = _carRentalManagement.GetVehicleList();
 
             vehicleGridView.AutoGenerateColumns = false;
             vehicleGridView.DataSource = _vehicleBindingSource;
@@ -37,7 +37,7 @@ namespace CarRentalWF
             Form vehicleForm = new VehicleInfoForm();
             vehicleForm.FormClosed += (s, a) =>
             {
-                _vehicleBindingSource.ResetBindings(false);
+                _vehicleBindingSource.DataSource = _carRentalManagement.GetVehicleList();
             };
 
             vehicleForm.Show();
@@ -45,14 +45,13 @@ namespace CarRentalWF
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            int index = vehicleGridView.SelectedRows[0].Index;
-            Vehicle vec = _carRentalManagement.VehicleList[index];
-            MessageBox.Show(vec.ToString());
+            int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Vehicle vec = _carRentalManagement.GetVehicle(index);
 
             Form vehicleForm = new VehicleInfoForm(vec);
             vehicleForm.FormClosed += (s, a) =>
             {
-                _vehicleBindingSource.ResetBindings(false);
+                _vehicleBindingSource.DataSource = _carRentalManagement.GetVehicleList();
             };
 
             vehicleForm.Show();
@@ -60,11 +59,11 @@ namespace CarRentalWF
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            int index = vehicleGridView.SelectedRows[0].Index;
-            Vehicle vec = _carRentalManagement.VehicleList[index];
+            int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Vehicle vec = _carRentalManagement.GetVehicle(index);
 
             _carRentalManagement.RemoveVehicle(vec);
-            _vehicleBindingSource.ResetBindings(false);
+            _vehicleBindingSource.DataSource = _carRentalManagement.GetVehicleList();
         }
 
         private void BtnServeFleet_Click(object sender, EventArgs e)
@@ -75,13 +74,13 @@ namespace CarRentalWF
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int index = vehicleGridView.SelectedRows[0].Index;
-            Vehicle car = _carRentalManagement.VehicleList[index];
+            int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Vehicle vec = _carRentalManagement.GetVehicle(index);
 
-            var data = JsonConvert.SerializeObject(car, Formatting.Indented);
+            var data = JsonConvert.SerializeObject(vec, Formatting.Indented);
 
             string directory = @"../../json/";
-            string path = directory + car.ID + ".json";
+            string path = directory + vec.ID + ".json";
 
             if (!Directory.Exists(directory))
             {
@@ -92,15 +91,15 @@ namespace CarRentalWF
             {
                 sw.WriteLine(data);
             }
-            MessageBox.Show( "File  saved at json/"+car.ID+".json");
+            MessageBox.Show( "File  saved at json/"+vec.ID+".json");
         }
 
         private void BtnServiceHistory_Click(object sender, EventArgs e)
         {
-            int index = vehicleGridView.SelectedRows[0].Index;
-            Vehicle car = _carRentalManagement.VehicleList[index];
+            int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Vehicle vec = _carRentalManagement.GetVehicle(index);
 
-            var data=JsonConvert.SerializeObject(car,Formatting.Indented);
+            var data=JsonConvert.SerializeObject(vec,Formatting.Indented);
             MessageBox.Show(data, "Service Report");
         }
 

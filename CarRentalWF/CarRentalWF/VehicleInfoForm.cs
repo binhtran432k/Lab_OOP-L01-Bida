@@ -47,7 +47,7 @@ namespace CarRentalWF
             int year = int.Parse(yearText.Text);
             int numberOfSeat = int.Parse(seatText.Text);
             double price = double.Parse(priceText.Text);
-            double condition = double.Parse(conditionText.Text);
+            int condition = int.Parse(conditionText.Text);
             int currentMileage = int.Parse(currentMileageText.Text);
             int engineMileage = int.Parse(engineServiceText.Text);
             int transmissionMileage = int.Parse(transmissionServiceText.Text);
@@ -56,12 +56,12 @@ namespace CarRentalWF
             {
                 if (type == "Car")
                 {
-                    Car car = new Car(name, color, brand, year, numberOfSeat, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage);
+                    Car car = new Car(name, color, brand, year, numberOfSeat, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage, true);
                     _carRentalManagement.AddVehicle(car);
                 }
                 else
                 {
-                    Truck truck = new Truck(name, color, year, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage);
+                    Truck truck = new Truck(name, color, year, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage, true);
                     _carRentalManagement.AddVehicle(truck);
                 }
             }

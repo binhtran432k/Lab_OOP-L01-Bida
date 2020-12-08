@@ -57,6 +57,8 @@
             // 
             // typeComboBox
             // 
+            this.typeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.FormattingEnabled = true;
             this.typeComboBox.Location = new System.Drawing.Point(233, 12);
@@ -67,9 +69,6 @@
             // 
             // typeLabel
             // 
-            this.typeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.typeLabel.Location = new System.Drawing.Point(174, 15);
             this.typeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.typeLabel.Name = "typeLabel";
@@ -80,9 +79,6 @@
             // 
             // nameLabel
             // 
-            this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.nameLabel.Location = new System.Drawing.Point(166, 59);
             this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLabel.Name = "nameLabel";
@@ -93,9 +89,6 @@
             // 
             // colorLabel
             // 
-            this.colorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.colorLabel.Location = new System.Drawing.Point(170, 100);
             this.colorLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.colorLabel.Name = "colorLabel";
@@ -106,9 +99,6 @@
             // 
             // brandLabel
             // 
-            this.brandLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.brandLabel.Location = new System.Drawing.Point(165, 142);
             this.brandLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.brandLabel.Name = "brandLabel";
@@ -119,9 +109,6 @@
             // 
             // seatLabel
             // 
-            this.seatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.seatLabel.Location = new System.Drawing.Point(86, 225);
             this.seatLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.seatLabel.Name = "seatLabel";
@@ -132,9 +119,6 @@
             // 
             // priceLabel
             // 
-            this.priceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.priceLabel.Location = new System.Drawing.Point(171, 266);
             this.priceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.priceLabel.Name = "priceLabel";
@@ -145,9 +129,6 @@
             // 
             // conditionLabel
             // 
-            this.conditionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.conditionLabel.Location = new System.Drawing.Point(140, 305);
             this.conditionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.conditionLabel.Name = "conditionLabel";
@@ -158,9 +139,6 @@
             // 
             // currentMileageLabel
             // 
-            this.currentMileageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.currentMileageLabel.Location = new System.Drawing.Point(91, 344);
             this.currentMileageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.currentMileageLabel.Name = "currentMileageLabel";
@@ -171,9 +149,6 @@
             // 
             // engineServicecLabel
             // 
-            this.engineServicecLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.engineServicecLabel.Location = new System.Drawing.Point(60, 388);
             this.engineServicecLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.engineServicecLabel.Name = "engineServicecLabel";
@@ -184,9 +159,6 @@
             // 
             // transmissionLabel
             // 
-            this.transmissionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.transmissionLabel.Location = new System.Drawing.Point(10, 432);
             this.transmissionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.transmissionLabel.Name = "transmissionLabel";
@@ -197,9 +169,6 @@
             // 
             // tireLabel
             // 
-            this.tireLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tireLabel.Location = new System.Drawing.Point(82, 476);
             this.tireLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tireLabel.Name = "tireLabel";
@@ -210,6 +179,8 @@
             // 
             // nameText
             // 
+            this.nameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nameText.Location = new System.Drawing.Point(233, 56);
             this.nameText.Name = "nameText";
             this.nameText.Size = new System.Drawing.Size(244, 26);
@@ -217,6 +188,8 @@
             // 
             // colorText
             // 
+            this.colorText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.colorText.Location = new System.Drawing.Point(233, 97);
             this.colorText.Name = "colorText";
             this.colorText.Size = new System.Drawing.Size(244, 26);
@@ -224,6 +197,8 @@
             // 
             // brandText
             // 
+            this.brandText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.brandText.Location = new System.Drawing.Point(233, 139);
             this.brandText.Name = "brandText";
             this.brandText.Size = new System.Drawing.Size(244, 26);
@@ -231,6 +206,8 @@
             // 
             // seatText
             // 
+            this.seatText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.seatText.Location = new System.Drawing.Point(233, 222);
             this.seatText.Name = "seatText";
             this.seatText.Size = new System.Drawing.Size(244, 26);
@@ -238,6 +215,8 @@
             // 
             // priceText
             // 
+            this.priceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.priceText.Location = new System.Drawing.Point(233, 263);
             this.priceText.Name = "priceText";
             this.priceText.Size = new System.Drawing.Size(244, 26);
@@ -245,6 +224,8 @@
             // 
             // conditionText
             // 
+            this.conditionText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.conditionText.Location = new System.Drawing.Point(233, 302);
             this.conditionText.Name = "conditionText";
             this.conditionText.Size = new System.Drawing.Size(244, 26);
@@ -252,6 +233,8 @@
             // 
             // currentMileageText
             // 
+            this.currentMileageText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.currentMileageText.Location = new System.Drawing.Point(233, 341);
             this.currentMileageText.Name = "currentMileageText";
             this.currentMileageText.Size = new System.Drawing.Size(244, 26);
@@ -259,6 +242,8 @@
             // 
             // engineServiceText
             // 
+            this.engineServiceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.engineServiceText.Location = new System.Drawing.Point(233, 385);
             this.engineServiceText.Name = "engineServiceText";
             this.engineServiceText.Size = new System.Drawing.Size(244, 26);
@@ -266,6 +251,8 @@
             // 
             // transmissionServiceText
             // 
+            this.transmissionServiceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.transmissionServiceText.Location = new System.Drawing.Point(233, 429);
             this.transmissionServiceText.Name = "transmissionServiceText";
             this.transmissionServiceText.Size = new System.Drawing.Size(244, 26);
@@ -273,6 +260,8 @@
             // 
             // tireServiceText
             // 
+            this.tireServiceText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tireServiceText.Location = new System.Drawing.Point(233, 473);
             this.tireServiceText.Name = "tireServiceText";
             this.tireServiceText.Size = new System.Drawing.Size(244, 26);
@@ -280,6 +269,8 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(387, 523);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 40);
@@ -290,9 +281,6 @@
             // 
             // yearLabel
             // 
-            this.yearLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.yearLabel.Location = new System.Drawing.Point(90, 185);
             this.yearLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.yearLabel.Name = "yearLabel";
@@ -303,6 +291,8 @@
             // 
             // yearText
             // 
+            this.yearText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.yearText.Location = new System.Drawing.Point(233, 182);
             this.yearText.Name = "yearText";
             this.yearText.Size = new System.Drawing.Size(244, 26);

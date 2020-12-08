@@ -49,7 +49,7 @@
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(131, 26);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Customer Name";
+            this.lblName.Text = "Customer";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtCustomer

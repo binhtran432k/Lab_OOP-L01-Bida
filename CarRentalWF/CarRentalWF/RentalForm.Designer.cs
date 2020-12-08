@@ -30,6 +30,11 @@
         {
             this.groupBoxRental = new System.Windows.Forms.GroupBox();
             this.rentDataGridView = new System.Windows.Forms.DataGridView();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnProcess = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,11 +43,6 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnProcess = new System.Windows.Forms.Button();
             this.groupBoxRental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rentDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -87,77 +87,6 @@
             this.rentDataGridView.Size = new System.Drawing.Size(724, 503);
             this.rentDataGridView.TabIndex = 0;
             this.rentDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RentDataGridView_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 55;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "CustomerName";
-            this.Column2.HeaderText = "Customer Name";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 146;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "VehicleID";
-            this.Column3.HeaderText = "Vehicle";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 93;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Status";
-            this.Column4.HeaderText = "Status";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 86;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "Total";
-            this.Column5.HeaderText = "Total";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 75;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "StartDate";
-            this.Column6.HeaderText = "Start Date";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 106;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "EndDate";
-            this.Column7.HeaderText = "End Date";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "ReturnDate";
-            this.Column8.HeaderText = "Return Date";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 118;
             // 
             // btnNew
             // 
@@ -213,6 +142,78 @@
             this.btnProcess.Text = "Pickup Vehicle";
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.BtnProcess_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ID";
+            this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 55;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "CustomerID";
+            this.Column2.HeaderText = "Customer ID";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 133;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "VehicleID";
+            this.Column3.HeaderText = "Vehicle ID";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 115;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Status";
+            this.Column4.HeaderText = "Status";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 86;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Total";
+            this.Column5.HeaderText = "Total";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 75;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "StartDate";
+            this.Column6.HeaderText = "Start Date";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 115;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "EndDate";
+            this.Column7.HeaderText = "End Date";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 108;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "ReturnDate";
+            this.Column8.HeaderText = "Return Date";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 129;
             // 
             // RentalForm
             // 

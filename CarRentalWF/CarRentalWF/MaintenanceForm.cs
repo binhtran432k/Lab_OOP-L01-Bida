@@ -28,10 +28,10 @@ namespace CarRentalWF
         {
             if(this.id > 0)
             {
-                List<MaintenaceJob> mainJob = _maintenaceManagement.localMaintenances;
+                List<MaintenanceJob> mainJob = _maintenaceManagement.localMaintenances;
                 foreach(var job in mainJob)
                 {
-                    if(int.Parse(job.VehicleID) == this.id)
+                    if(job.VehicleID == this.id)
                     {
                         maintenaceJobBindingSource.Add(job);
                     }

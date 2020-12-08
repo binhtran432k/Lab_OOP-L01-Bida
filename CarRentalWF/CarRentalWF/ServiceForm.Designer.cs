@@ -34,6 +34,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblGarage = new System.Windows.Forms.Label();
             this.txtGarage = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblService
@@ -67,7 +68,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.AutoSize = true;
-            this.btnSave.Location = new System.Drawing.Point(106, 200);
+            this.btnSave.Location = new System.Drawing.Point(191, 202);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 42);
             this.btnSave.TabIndex = 4;
@@ -91,11 +92,25 @@
             this.txtGarage.Size = new System.Drawing.Size(222, 26);
             this.txtGarage.TabIndex = 3;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.Location = new System.Drawing.Point(26, 202);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(108, 42);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
             // ServiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 274);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtGarage);
             this.Controls.Add(this.lblGarage);
@@ -119,5 +134,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblGarage;
         private System.Windows.Forms.TextBox txtGarage;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

@@ -15,56 +15,67 @@ namespace CarRentalWF
     }
     public class Rent
     {
+        private Database _database = Database.GetInstance();
+
         private static int NumberOfRent = 0;
-        public string ID { get; private set; }
-        public string CustomerName { get; set; }
-        public string VehicleID { get; set; }
+        public int ID { get; set; }
+        public int CustomerID { get; set; }
+        public int VehicleID { get; set; }
         public double Total { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public RentStatus Status { get; set; }
 
-        public Rent(string customerName, string vehicleID, double pricePerDay, DateTime startDate, DateTime endDate)
+        public Rent()
+        {
+            ReturnDate = null;
+        }
+
+        public Rent(int customerId, int vehicleID, double pricePerDay, DateTime startDate, DateTime endDate)
         {
             GenerateID();
-            CustomerName = customerName;
+            CustomerID = customerId;
             VehicleID = vehicleID;
             StartDate = startDate;
             EndDate = endDate;
+            ReturnDate = null;
             Total = (endDate - startDate).TotalDays * pricePerDay;
             Status = RentStatus.Ready;
         }
 
-        public Rent(string customerName, string vehicleID, double pricePerDay, DateTime endDate)
+        public Rent(int customerId, int vehicleID, double pricePerDay, DateTime endDate)
         {
             GenerateID();
-            CustomerName = customerName;
+            CustomerID = customerId;
             VehicleID = vehicleID;
             StartDate = DateTime.Today;
             EndDate = endDate;
+            ReturnDate = null;
             Total = (endDate - StartDate).TotalDays * pricePerDay;
             Status = RentStatus.Ready;
         }
 
-        public Rent(string customerName, string vehicleID, double pricePerDay)
+        public Rent(int customerId, int vehicleID, double pricePerDay)
         {
             GenerateID();
-            CustomerName = customerName;
+            CustomerID = customerId;
             VehicleID = vehicleID;
             StartDate = DateTime.Today;
             EndDate = DateTime.Today.AddDays(1);
+            ReturnDate = null;
             Total = pricePerDay;
             Status = RentStatus.Ready;
         }
 
-        public Rent(string customerName, string vehicleID, double pricePerDay, DateTime startDate, DateTime endDate, RentStatus status)
+        public Rent(int customerId, int vehicleID, double pricePerDay, DateTime startDate, DateTime endDate, RentStatus status)
         {
             GenerateID();
-            CustomerName = customerName;
+            CustomerID = customerId;
             VehicleID = vehicleID;
             StartDate = startDate;
             EndDate = endDate;
+            ReturnDate = null;
             Total = (endDate - startDate).TotalDays * pricePerDay;
             Status = status;
         }
@@ -72,17 +83,18 @@ namespace CarRentalWF
         private void GenerateID()
         {
             NumberOfRent += 1;
-            ID = NumberOfRent.ToString();
+            ID = NumberOfRent;
         }
 
-        public void Update(string customerName, string vehicleID, double total, DateTime startDate, DateTime endDate, RentStatus status)
+        public void Update(int customerId, int vehicleID, double total, DateTime startDate, DateTime endDate, RentStatus status)
         {
-            CustomerName = customerName;
+            CustomerID = customerId;
             VehicleID = vehicleID;
             Total = total;
             StartDate = startDate;
             EndDate = endDate;
             Status = status;
+            Save();
         }
 
         public void UpdateStatus()
@@ -91,9 +103,14 @@ namespace CarRentalWF
             {
                 case RentStatus.Ready:
                     Status = RentStatus.Ongoing;
+                    Save();
                     break;
                 case RentStatus.Ongoing:
                     Status = RentStatus.Finish;
+                    ReturnDate = DateTime.Now;
+                    Vehicle vehicle = _database.GetVehicle(VehicleID);
+                    vehicle.UpdateAvailable(true);
+                    Save();
                     break;
                 default:
                     break;
@@ -105,7 +122,13 @@ namespace CarRentalWF
             if (Status == RentStatus.Ready)
             {
                 Status = RentStatus.Cancel;
+                Save();
             }
+        }
+
+        public void Save()
+        {
+            _database.UpdateRent(this);
         }
 
     }

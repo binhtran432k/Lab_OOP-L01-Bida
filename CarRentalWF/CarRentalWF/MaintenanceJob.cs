@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace CarRentalWF
 {
-    public class MaintenaceJob
+    public class MaintenanceJob
     {
         private static int _numberOfJob = 0;
 
-        public string ID { get; private set; }
+        public int ID { get; set; }
         public string Kind { get; set; }
         public string Type { get; set; }
-        public string VehicleID { get; set; }
+        public int VehicleID { get; set; }
         public DateTime ServeTime { get; set; }
         public int Mileage { get; set; }
         public double Cost { get; set; }
         public string Garage { get; set; }
-        public MaintenaceJob(string kind, string type, string vehicleID, DateTime serveTime, int mileage, double cost = 0, string garage = "")
+
+        public MaintenanceJob() { }
+
+        public MaintenanceJob(string kind, string type, int vehicleID, DateTime serveTime, int mileage, double cost = 0, string garage = "")
         {
             GenerateID();
             Kind = kind;
@@ -33,7 +36,7 @@ namespace CarRentalWF
         private void GenerateID()
         {
             _numberOfJob += 1;
-            ID = _numberOfJob.ToString();
+            ID = _numberOfJob;
         }
 
         public override string ToString()
@@ -57,7 +60,7 @@ namespace CarRentalWF
             return detail;
         }
 
-        public static int operator -(MaintenaceJob service1, MaintenaceJob service2)
+        public static int operator -(MaintenanceJob service1, MaintenanceJob service2)
         {
             if (service1.VehicleID == service2.VehicleID)
             {
@@ -69,7 +72,7 @@ namespace CarRentalWF
             }
         }
 
-        public static bool operator >(MaintenaceJob service1, MaintenaceJob service2)
+        public static bool operator >(MaintenanceJob service1, MaintenanceJob service2)
         {
             if (service1.VehicleID == service2.VehicleID)
             {
@@ -81,7 +84,7 @@ namespace CarRentalWF
             }
         }
 
-        public static bool operator <(MaintenaceJob service1, MaintenaceJob service2)
+        public static bool operator <(MaintenanceJob service1, MaintenanceJob service2)
         {
             if (service1.VehicleID == service2.VehicleID)
             {
