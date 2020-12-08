@@ -41,6 +41,11 @@ namespace CarRentalWF
             return "Apply " + Type + " " + Kind + " service at " + ServeTime.ToString() + "\n";
         }
 
+        public void ToJson()
+        {
+
+        }
+
         public string GetDetail()
         {
             string detail = "Maintenance job #" + ID + "\n";

@@ -228,7 +228,7 @@
             this.btnServiceHistory.TabIndex = 3;
             this.btnServiceHistory.Text = "View Service History";
             this.btnServiceHistory.UseVisualStyleBackColor = true;
-            this.btnServiceHistory.Click += new System.EventHandler(this.btnServiceHistory_Click);
+            this.btnServiceHistory.Click += new System.EventHandler(this.BtnServiceHistory_Click);
             // 
             // button1
             // 

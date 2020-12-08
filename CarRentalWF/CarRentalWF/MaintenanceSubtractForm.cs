@@ -46,6 +46,7 @@ namespace CarRentalWF
                         }
                     }
                 }
+                MessageBox.Show(job1.VehicleID + " " + job2.VehicleID);
                 int result = job1 - job2;
                 this.Result.Text = result.ToString() + " Mileage";
             }

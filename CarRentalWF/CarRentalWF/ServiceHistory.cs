@@ -20,6 +20,7 @@ namespace CarRentalWF
         {
             MaintenaceJobs.Add(job);
         }
+
         public string View()
         {
             string history = "";

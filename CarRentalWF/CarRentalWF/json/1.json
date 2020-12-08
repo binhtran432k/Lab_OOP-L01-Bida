@@ -1,0 +1,19 @@
+{
+  "ID": "1",
+  "Type": "Car",
+  "Name": "Ford X2345",
+  "Color": "black",
+  "Brand": "Ford",
+  "Year": 2018,
+  "NumberOfSeat": 7,
+  "Price": 99.99,
+  "Condition": 1.0,
+  "Available": true,
+  "CurrentMileage": 2000,
+  "LastEngineServiceMileage": 1000,
+  "LastTransmissionServiceMileage": 1800,
+  "LastTireServiceMileage": 1500,
+  "ServiceHistoryList": {
+    "MaintenaceJobs": []
+  }
+}

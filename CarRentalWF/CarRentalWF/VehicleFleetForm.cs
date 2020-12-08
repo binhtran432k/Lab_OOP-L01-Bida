@@ -76,50 +76,31 @@ namespace CarRentalWF
         private void button1_Click(object sender, EventArgs e)
         {
             int index = vehicleGridView.SelectedRows[0].Index;
-            
             Vehicle car = _carRentalManagement.VehicleList[index];
-            string serviceHistory = car.ServiceHistoryList.View();
-
 
             var data = JsonConvert.SerializeObject(car, Formatting.Indented);
 
-            string path = @"../../json/" + car.ID + ".json";
+            string directory = @"../../json/";
+            string path = directory + car.ID + ".json";
 
-            if(File.Exists(path))
+            if (!Directory.Exists(directory))
             {
-                File.Delete(path);
+                Directory.CreateDirectory(directory);
             }
-            var tw = new StreamWriter(path, true);
-            tw.WriteLine(data);
-            tw.Close();
-            MessageBox.Show( "File được lưu ở json/"+car.ID+".json");
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(data);
+            }
+            MessageBox.Show( "File  saved at json/"+car.ID+".json");
         }
 
-        private void btnServiceHistory_Click(object sender, EventArgs e)
+        private void BtnServiceHistory_Click(object sender, EventArgs e)
         {
             int index = vehicleGridView.SelectedRows[0].Index;
-            //string aha = vehicleGridView.SelectedRows[0].;
             Vehicle car = _carRentalManagement.VehicleList[index];
-            string serviceHistory = car.ServiceHistoryList.View();
 
-            
             var data=JsonConvert.SerializeObject(car,Formatting.Indented);
-            
-            string path = @"../../json/" + car.ID + ".json";
-
-            /*if (!File.Exists(path))
-            {
-                MessageBox.Show("Chưa có lịch sử bảo dưỡng");
-            }
-            else
-            {
-                var tw = new StreamWriter(path, true);
-                tw.WriteLine(data);
-                tw.Close();
-                var reader = new StreamReader(path);
-                string jsonFromFile = reader.ReadToEnd();
-                
-            }*/
             MessageBox.Show(data, "Service Report");
         }
 
