@@ -20,6 +20,7 @@ namespace CarRentalWF
             NumberOfSeat = numberOfSeat;
             Price = price;
             Condition = condition;
+            ConditionText = GetCondition();
             Available = true;
             CurrentMileage = curMileage;
             LastEngineServiceMileage = engineMileage;

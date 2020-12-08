@@ -18,6 +18,7 @@ namespace CarRentalWF
         public int NumberOfSeat { get; protected set; }
         public double Price { get; protected set; }
         public double Condition { get; protected set; }
+        public string ConditionText { get; protected set; }
         public bool Available { get; set; }
         public int CurrentMileage { get; set; }
         public int LastEngineServiceMileage { get; set; }

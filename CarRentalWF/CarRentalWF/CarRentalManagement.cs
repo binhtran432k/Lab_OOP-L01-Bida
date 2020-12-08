@@ -9,7 +9,8 @@ namespace CarRentalWF
     class CarRentalManagement : IServeFleet
     {
         public string Location;
-        public int Capacity { get; set; }
+        public int Capacity { get; private set; }
+        public int Count { get; private set; }
         public List<Vehicle> VehicleList { get; private set; }
         public List<Rent> RentList { get; private set; }
 
@@ -17,28 +18,32 @@ namespace CarRentalWF
 
         public CarRentalManagement()
         {
-            Console.WriteLine("Default constructor for garage is called");
+            // Console.WriteLine("Default constructor for garage is called");
             Location = "128 To Hien Thanh";
             Capacity = 100;
-            VehicleList = InitializeRawVehicleList();
-            RentList = InitializeRawRentList();
+            VehicleList = new List<Vehicle>();
+            Count = 0;
+            RentList = new List<Rent>();
         }
 
         ///*
-        public CarRentalManagement(string location)
+        public CarRentalManagement(string location, int capacity = 100)
         {
-            Console.WriteLine("Constructor with only location parameter for garage is called");
+            // Console.WriteLine("Constructor with all parameters for garage is called");
             Location = location;
-            Capacity = 100;
+            Capacity = capacity;
 
             VehicleList = new List<Vehicle>();
+            Count = 0;
+            RentList = new List<Rent>();
+            InitializeRawData();
         }
 
         public static CarRentalManagement GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new CarRentalManagement();
+                _instance = new CarRentalManagement("128 To Hien Thanh", 100);
             }
             return _instance;
         }
@@ -66,15 +71,6 @@ namespace CarRentalWF
             }
             return serviceReport;
         }
-
-        public CarRentalManagement(string location, int capacity)
-        {
-            Console.WriteLine("Constructor with all parameters for garage is called");
-            Location = location;
-            Capacity = capacity;
-
-            VehicleList = new List<Vehicle>();
-        }
         //*/
 
         public Vehicle GetVehicle(string number)
@@ -83,20 +79,55 @@ namespace CarRentalWF
             return vec;
         }
 
-        public void AddVehicle()
+        public bool AddVehicle()
         {
-            Console.WriteLine("Default method for adding vehicle is called");
-            VehicleList.Add(new Car("Ford Focus 2011", "white", "Ford", 2011, 7, 99.99, 1.0));
+            // Console.WriteLine("Default method for adding vehicle is called");
+            if (Count < Capacity)
+            {
+                VehicleList.Add(new Car("Ford Focus 2011", "white", "Ford", 2011, 7, 99.99, 1.0));
+                Count++;
+                return true;
+            }
+            return false;
         }
 
-        public void AddVehicle(Car car)
+        public bool AddVehicle(Car car)
         {
-            VehicleList.Add(car);
+            if (Count < Capacity)
+            {
+                VehicleList.Add(car);
+                Count++;
+                return true;
+            }
+            return false;
         }
 
-        public void AddVehicle(Truck truck)
+        public bool AddVehicle(Truck truck)
         {
-            VehicleList.Add(truck);
+            if (Count < Capacity)
+            {
+                VehicleList.Add(truck);
+                Count++;
+                return true;
+            }
+            return false;
+        }
+        public bool AddVehicle(string name, string type, string color, string brand, int year, int numberOfSeat, double price, double condition, int curMileage = 0, int engineMileage = 0, int transmissionMilage = 0, int tireMilage = 0)
+        {
+            if (Count < Capacity)
+            {
+                if (type == "Car")
+                {
+                    AddVehicle(new Car(name, color, brand, year, numberOfSeat, price, condition, curMileage, engineMileage, transmissionMilage, tireMilage));
+                }
+                else if (type == "Truck")
+                {
+                    AddVehicle(new Truck(name, color, year, price, condition, curMileage, engineMileage, transmissionMilage, tireMilage));
+                }
+                Count++;
+                return true;
+            }
+            return false;
         }
 
         public void RemoveVehicle(Vehicle vehicle)
@@ -118,19 +149,6 @@ namespace CarRentalWF
         public void RemoveRent(Rent rent)
         {
             RentList.Remove(rent);
-        }
-
-        public List<Vehicle> GetAvailableVehicle()
-        {
-            List<Vehicle> availableVehicleList = new List<Vehicle>();
-            foreach (Vehicle vec in VehicleList)
-            {
-                if (vec.Available)
-                {
-                    availableVehicleList.Add(vec);
-                }
-            }
-            return availableVehicleList;
         }
 
         public void SearchVehicle(int option, bool showAvailable, string value)
@@ -180,34 +198,48 @@ namespace CarRentalWF
             }
         }
 
-        public static List<Vehicle> InitializeRawVehicleList()
+        public void InitializeRawData()
         {
-            List<Vehicle> vecList = new List<Vehicle>
-            {
-                new Car("Ford X2345", "black", "Ford", 2018, 7, 99.99, 1.0, 2000, 0, 1800, 1500),
-                new Car("Ferrari AF512", "red", "Ferrari", 2019, 4, 68.99, 1.0),
-                new Car("Vinfast Hull", "white", "Vinfast", 2018, 7, 89.99, 1.0),
-                new Car("Bosche 9999", "black", "Bosche", 2018, 4, 99.99, 1.0),
-                new Car("Bus", "black", "Bus", 2018, 27, 49.99, 0.9),
-                new Car("Lamboghini ACBC", "yellow", "Lambo", 2015, 7, 199.99, 0.9),
-                new Car("Mech 7000X", "black", "Mech", 2016, 4, 99.99, 1.0),
-                new Car("Truck kun", "gray", "Truck", 2013, 2, 45, 1.0)
-            };
-
-            return vecList;
+            AddVehicle(new Car("Ford X2345", "black", "Ford", 2018, 7, 99.99, 1.0, 2000, 0, 1800, 1500));
+            AddVehicle("Ferrari AF512", "Car", "red", "Ferrari", 2019, 4, 68.99, 1.0);
+            AddVehicle(new Car("Vinfast Hull", "white", "Vinfast", 2018, 7, 89.99, 1.0));
+            AddVehicle(new Car("Bosche 9999", "black", "Bosche", 2018, 4, 99.99, 1.0));
+            AddVehicle("Bus", "Car", "black", "Bus", 2018, 27, 49.99, 0.9);
+            AddVehicle(new Car("Lamboghini ACBC", "yellow", "Lambo", 2015, 7, 199.99, 0.9));
+            AddVehicle(new Car("Mech 7000X", "black", "Mech", 2016, 4, 99.99, 1.0));
+            AddVehicle(new Truck("Truck kun", "gray", 2013, 45, 1.0));
+            AddRent(new Rent("Romado Alice", GetVehicle("1"), new DateTime(2019, 12, 30), new DateTime(2020, 1, 13)));
+            AddRent(new Rent("Amanda Simon", GetVehicle("2"), new DateTime(2018, 10, 30), new DateTime(2018, 11, 11)));
+            GetRent("2").UpdateStatus();
+            AddRent(new Rent("Roberto Shisui", GetVehicle("3"), new DateTime(2019, 2, 20), new DateTime(2019, 2, 28)));
+            GetRent("3").UpdateStatus();
+            GetRent("3").UpdateStatus(3000, new DateTime(2019, 3, 30));
+            AddRent(new Rent("John Smith", GetVehicle("4"), new DateTime(2020, 10, 19), new DateTime(2020, 10, 22)));
+            GetRent("4").Cancel();
         }
 
-        public static List<Rent> InitializeRawRentList()
+        public List<Vehicle> GetAvailableVehicleList()
         {
-            List<Rent> rentList = new List<Rent>
-            {
-                new Rent("Romado Alice", "1", 99.99, new DateTime(2019, 12, 30), new DateTime(2020, 1, 13)),
-                new Rent("Amanda Simon", "2", 68.99, new DateTime(2018, 10, 30), new DateTime(2018, 11, 11), RentStatus.Ongoing),
-                new Rent("Roberto Shisui", "3", 89.99, new DateTime(2019, 2, 20), new DateTime(2019, 2, 28), RentStatus.Finish),
-                new Rent("John Smith", "4", 99.99, new DateTime(2020, 10, 19), new DateTime(2020, 10, 22), RentStatus.Cancel)
-            };
-
-            return rentList;
+            List<Vehicle> availableVehicles;
+            availableVehicles = VehicleList.FindAll(x => x.Available);
+            return availableVehicles;
+        }
+        public List<Vehicle> GetVehicleList()
+        {
+            List<Vehicle> vehicles;
+            vehicles = VehicleList;
+            return vehicles;
+        }
+        public Rent GetRent(string rentID)
+        {
+            Rent rent = RentList.Find(x => x.ID == rentID);
+            return rent;
+        }
+        public List<Rent> GetRentList()
+        {
+            List<Rent> rents;
+            rents = RentList;
+            return rents;
         }
     }
 }

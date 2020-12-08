@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxRental = new System.Windows.Forms.GroupBox();
             this.rentDataGridView = new System.Windows.Forms.DataGridView();
             this.btnNew = new System.Windows.Forms.Button();
@@ -84,7 +87,7 @@
             this.rentDataGridView.RowHeadersWidth = 51;
             this.rentDataGridView.RowTemplate.Height = 24;
             this.rentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.rentDataGridView.Size = new System.Drawing.Size(640, 487);
+            this.rentDataGridView.Size = new System.Drawing.Size(626, 487);
             this.rentDataGridView.TabIndex = 0;
             this.rentDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RentDataGridView_CellClick);
             // 
@@ -191,6 +194,8 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "StartDate";
+            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column6.FillWeight = 56.27266F;
             this.Column6.HeaderText = "Start Date";
             this.Column6.MinimumWidth = 84;
@@ -200,6 +205,8 @@
             // Column7
             // 
             this.Column7.DataPropertyName = "EndDate";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column7.FillWeight = 56.27266F;
             this.Column7.HeaderText = "End Date";
             this.Column7.MinimumWidth = 84;
@@ -209,6 +216,8 @@
             // Column8
             // 
             this.Column8.DataPropertyName = "ReturnDate";
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column8.FillWeight = 56.27266F;
             this.Column8.HeaderText = "Return Date";
             this.Column8.MinimumWidth = 84;

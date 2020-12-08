@@ -14,11 +14,12 @@ namespace CarRentalWF
             Type = "Truck";
             Name = name;
             Color = color;
-            Brand = "truck";
+            Brand = "";
             Year = year;
             NumberOfSeat = 2;
             Price = price;
             Condition = condition;
+            ConditionText = GetCondition();
             Available = true;
             CurrentMileage = curMileage;
             LastEngineServiceMileage = engineMileage;

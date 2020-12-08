@@ -58,5 +58,13 @@ namespace CarRentalWF
             childForm.BringToFront();
             childForm.Show();
         }
+
+        private void RentVehicleBtn_Click(object sender, EventArgs e)
+        {
+            if (!(_activeForm is BookAndRentForm))
+            {
+                OpenChildForm(new BookAndRentForm());
+            }
+        }
     }
 }

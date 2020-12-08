@@ -98,6 +98,7 @@
             this.rentVehicleBtn.Text = "Book and Rent";
             this.rentVehicleBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rentVehicleBtn.UseVisualStyleBackColor = true;
+            this.rentVehicleBtn.Click += new System.EventHandler(this.RentVehicleBtn_Click);
             // 
             // vehicleBtn
             // 

@@ -21,12 +21,12 @@ namespace CarRentalWF
 
         private void RentalForm_Load(object sender, EventArgs e)
         {
-            _rentBindingSource.DataSource = _carRentalManagement.RentList;
+            _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
 
             rentDataGridView.AutoGenerateColumns = false;
             rentDataGridView.DataSource = _rentBindingSource;
             rentDataGridView.Columns[4].DefaultCellStyle.Format = "N2";
-
+            UpdateBtnProcess();
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -65,16 +65,35 @@ namespace CarRentalWF
         {
             int index = rentDataGridView.SelectedRows[0].Index;
             Rent rent = _carRentalManagement.RentList[index];
+            if (rent != null && rent.Status == RentStatus.Ongoing)
+            {
+                RentInfoForm rentForm = new RentInfoForm(rent, true);
 
-            rent.UpdateStatus();
-            _rentBindingSource.ResetBindings(false);
-            UpdateBtnProcess();
+                rentForm.FormClosed += (s, a) =>
+                {
+                    if (rentForm.FormSaved)
+                    {
+                        rent.UpdateStatus(rentForm.MileageForm, rentForm.ReturnDateForm);
+                    }
+                    _rentBindingSource.ResetBindings(false);
+                    UpdateBtnProcess();
+                };
+
+                rentForm.Show();
+            }
+            else
+            {
+                rent.UpdateStatus();
+                _rentBindingSource.ResetBindings(false);
+                UpdateBtnProcess();
+            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             int index = rentDataGridView.SelectedRows[0].Index;
             Rent rent = _carRentalManagement.RentList[index];
+            _carRentalManagement.GetVehicle(rentDataGridView.SelectedRows[0].Cells[2].Value.ToString()).SetAvailable(true);
             _carRentalManagement.RemoveRent(rent);
             _rentBindingSource.ResetBindings(false);
             UpdateBtnProcess();
@@ -91,7 +110,19 @@ namespace CarRentalWF
 
         private void UpdateBtnProcess()
         {
-            string status = rentDataGridView.SelectedRows[0].Cells[3].Value.ToString();
+            string status;
+            if (rentDataGridView.Rows.Count == 0)
+            {
+                status = null;
+                btnUpdate.Hide();
+                btnDelete.Hide();
+            }
+            else
+            {
+                status = rentDataGridView.SelectedRows[0].Cells[3].Value.ToString();
+                btnUpdate.Show();
+                btnDelete.Show();
+            }
             if (status == "Ready")
             {
                 btnProcess.Show();

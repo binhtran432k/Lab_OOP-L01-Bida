@@ -22,11 +22,10 @@ namespace CarRentalWF
 
         private void VehicleFleetForm_Load(object sender, EventArgs e)
         {
-            _vehicleBindingSource.DataSource = _carRentalManagement.VehicleList;
+            _vehicleBindingSource.DataSource = _carRentalManagement.GetVehicleList();
 
             vehicleGridView.AutoGenerateColumns = false;
             vehicleGridView.DataSource = _vehicleBindingSource;
-
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -44,7 +43,7 @@ namespace CarRentalWF
         {
             int index = vehicleGridView.SelectedRows[0].Index;
             Vehicle vec = _carRentalManagement.VehicleList[index];
-            MessageBox.Show(vec.ToString());
+            //MessageBox.Show(vec.ToString());
 
             Form vehicleForm = new VehicleInfoForm(vec);
             vehicleForm.FormClosed += (s, a) =>
