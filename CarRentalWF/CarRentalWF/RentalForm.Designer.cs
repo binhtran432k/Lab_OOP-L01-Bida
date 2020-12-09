@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxRental = new System.Windows.Forms.GroupBox();
             this.rentDataGridView = new System.Windows.Forms.DataGridView();
             this.btnNew = new System.Windows.Forms.Button();
@@ -53,11 +56,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxRental.Controls.Add(this.rentDataGridView);
-            this.groupBoxRental.Location = new System.Drawing.Point(13, 13);
+            this.groupBoxRental.Location = new System.Drawing.Point(20, 20);
             this.groupBoxRental.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxRental.Name = "groupBoxRental";
             this.groupBoxRental.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxRental.Size = new System.Drawing.Size(738, 536);
+            this.groupBoxRental.Size = new System.Drawing.Size(640, 520);
             this.groupBoxRental.TabIndex = 0;
             this.groupBoxRental.TabStop = false;
             this.groupBoxRental.Text = "Rentals list";
@@ -67,7 +70,7 @@
             this.rentDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.rentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.rentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -84,16 +87,16 @@
             this.rentDataGridView.RowHeadersWidth = 51;
             this.rentDataGridView.RowTemplate.Height = 24;
             this.rentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.rentDataGridView.Size = new System.Drawing.Size(724, 503);
+            this.rentDataGridView.Size = new System.Drawing.Size(626, 487);
             this.rentDataGridView.TabIndex = 0;
             this.rentDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RentDataGridView_CellClick);
             // 
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(816, 39);
+            this.btnNew.Location = new System.Drawing.Point(686, 46);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(142, 49);
+            this.btnNew.Size = new System.Drawing.Size(160, 50);
             this.btnNew.TabIndex = 1;
             this.btnNew.Text = "New rent";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -102,9 +105,9 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(816, 134);
+            this.btnUpdate.Location = new System.Drawing.Point(686, 144);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(142, 49);
+            this.btnUpdate.Size = new System.Drawing.Size(160, 50);
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -113,9 +116,9 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(816, 325);
+            this.btnCancel.Location = new System.Drawing.Point(686, 340);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(142, 49);
+            this.btnCancel.Size = new System.Drawing.Size(160, 50);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -124,9 +127,9 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(816, 424);
+            this.btnDelete.Location = new System.Drawing.Point(686, 438);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(142, 49);
+            this.btnDelete.Size = new System.Drawing.Size(160, 50);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -135,9 +138,9 @@
             // btnProcess
             // 
             this.btnProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProcess.Location = new System.Drawing.Point(816, 229);
+            this.btnProcess.Location = new System.Drawing.Point(686, 242);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(142, 49);
+            this.btnProcess.Size = new System.Drawing.Size(160, 50);
             this.btnProcess.TabIndex = 3;
             this.btnProcess.Text = "Pickup Vehicle";
             this.btnProcess.UseVisualStyleBackColor = true;
@@ -145,81 +148,87 @@
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.MinimumWidth = 6;
+            this.Column1.DataPropertyName = "Id";
+            this.Column1.FillWeight = 54F;
+            this.Column1.HeaderText = "Id";
+            this.Column1.MinimumWidth = 30;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 55;
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "CustomerID";
-            this.Column2.HeaderText = "Customer ID";
-            this.Column2.MinimumWidth = 6;
+            this.Column2.DataPropertyName = "CustomerId";
+            this.Column2.FillWeight = 99F;
+            this.Column2.HeaderText = "Customer Id";
+            this.Column2.MinimumWidth = 100;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 133;
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "VehicleID";
-            this.Column3.HeaderText = "Vehicle ID";
-            this.Column3.MinimumWidth = 6;
+            this.Column3.DataPropertyName = "VehicleId";
+            this.Column3.FillWeight = 56.27266F;
+            this.Column3.HeaderText = "Vehicle";
+            this.Column3.MinimumWidth = 60;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 115;
             // 
             // Column4
             // 
             this.Column4.DataPropertyName = "Status";
+            this.Column4.FillWeight = 56.27266F;
             this.Column4.HeaderText = "Status";
-            this.Column4.MinimumWidth = 6;
+            this.Column4.MinimumWidth = 73;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 86;
             // 
             // Column5
             // 
             this.Column5.DataPropertyName = "Total";
+            this.Column5.FillWeight = 56.27266F;
             this.Column5.HeaderText = "Total";
-            this.Column5.MinimumWidth = 6;
+            this.Column5.MinimumWidth = 72;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 75;
             // 
             // Column6
             // 
             this.Column6.DataPropertyName = "StartDate";
+            dataGridViewCellStyle10.Format = "dd/MM/yyyy";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Column6.FillWeight = 56.27266F;
             this.Column6.HeaderText = "Start Date";
-            this.Column6.MinimumWidth = 6;
+            this.Column6.MinimumWidth = 84;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            this.Column6.Width = 115;
             // 
             // Column7
             // 
             this.Column7.DataPropertyName = "EndDate";
+            dataGridViewCellStyle11.Format = "dd/MM/yyyy";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Column7.FillWeight = 56.27266F;
             this.Column7.HeaderText = "End Date";
-            this.Column7.MinimumWidth = 6;
+            this.Column7.MinimumWidth = 84;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 108;
             // 
             // Column8
             // 
             this.Column8.DataPropertyName = "ReturnDate";
+            dataGridViewCellStyle12.Format = "dd/MM/yyyy";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Column8.FillWeight = 56.27266F;
             this.Column8.HeaderText = "Return Date";
-            this.Column8.MinimumWidth = 6;
+            this.Column8.MinimumWidth = 84;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 129;
             // 
             // RentalForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnProcess);

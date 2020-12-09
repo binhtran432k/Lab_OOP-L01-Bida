@@ -73,14 +73,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookAndRentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookAndRentForm.Designer.cs">
+      <DependentUpon>BookAndRentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="CarRentalManagement.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
@@ -114,6 +120,18 @@
     <Compile Include="RentInfoForm.Designer.cs">
       <DependentUpon>RentInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RentUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RentUserForm.Designer.cs">
+      <DependentUpon>RentUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,8 +153,11 @@
     <Compile Include="VehicleInfoForm.Designer.cs">
       <DependentUpon>VehicleInfoForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="BookAndRentForm.resx">
+      <DependentUpon>BookAndRentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
@@ -158,6 +179,12 @@
     <EmbeddedResource Include="RentInfoForm.resx">
       <DependentUpon>RentInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RentUserForm.resx">
+      <DependentUpon>RentUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServiceForm.resx">
       <DependentUpon>ServiceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,7 +194,6 @@
     <EmbeddedResource Include="VehicleInfoForm.resx">
       <DependentUpon>VehicleInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -15,121 +15,83 @@ namespace CarRentalWF
     }
     public class Rent
     {
-        private Database _database = Database.GetInstance();
-
-        private static int NumberOfRent = 0;
-        public int ID { get; set; }
-        public int CustomerID { get; set; }
-        public int VehicleID { get; set; }
+        public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public int VehicleId { get; set; }
+        public int? Mileage { get; set; }
         public double Total { get; set; }
+        public double Price { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime? ReturnDate { get; set; }
         public RentStatus Status { get; set; }
+
+        private Database _database = Database.GetInstance();
 
         public Rent()
         {
             ReturnDate = null;
         }
 
-        public Rent(int customerId, int vehicleID, double pricePerDay, DateTime startDate, DateTime endDate)
+        public Rent(int customerId, int vehicleId, double price, double total, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
-            GenerateID();
-            CustomerID = customerId;
-            VehicleID = vehicleID;
+            CustomerId = customerId;
+            VehicleId = vehicleId;
+            Price = price;
             StartDate = startDate;
             EndDate = endDate;
-            ReturnDate = null;
-            Total = (endDate - startDate).TotalDays * pricePerDay;
-            Status = RentStatus.Ready;
-        }
-
-        public Rent(int customerId, int vehicleID, double pricePerDay, DateTime endDate)
-        {
-            GenerateID();
-            CustomerID = customerId;
-            VehicleID = vehicleID;
-            StartDate = DateTime.Today;
-            EndDate = endDate;
-            ReturnDate = null;
-            Total = (endDate - StartDate).TotalDays * pricePerDay;
-            Status = RentStatus.Ready;
-        }
-
-        public Rent(int customerId, int vehicleID, double pricePerDay)
-        {
-            GenerateID();
-            CustomerID = customerId;
-            VehicleID = vehicleID;
-            StartDate = DateTime.Today;
-            EndDate = DateTime.Today.AddDays(1);
-            ReturnDate = null;
-            Total = pricePerDay;
-            Status = RentStatus.Ready;
-        }
-
-        public Rent(int customerId, int vehicleID, double pricePerDay, DateTime startDate, DateTime endDate, RentStatus status)
-        {
-            GenerateID();
-            CustomerID = customerId;
-            VehicleID = vehicleID;
-            StartDate = startDate;
-            EndDate = endDate;
-            ReturnDate = null;
-            Total = (endDate - startDate).TotalDays * pricePerDay;
+            ReturnDate = returnDate;
+            Mileage = mileage;
+            Total = total;
             Status = status;
         }
-
-        private void GenerateID()
+        public Rent(int customerId, int vehicleId, double price, double total, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
-            NumberOfRent += 1;
-            ID = NumberOfRent;
-        }
-
-        public void Update(int customerId, int vehicleID, double total, DateTime startDate, DateTime endDate, RentStatus status)
-        {
-            CustomerID = customerId;
-            VehicleID = vehicleID;
+            CustomerId = customerId;
+            VehicleId = vehicleId;
+            Price = price;
+            StartDate = startDate;
+            EndDate = startDate.AddDays(period);
+            ReturnDate = returnDate;
+            Mileage = mileage;
             Total = total;
+            Status = status;
+        }
+       public void Update(int customerId, int vehicleId, double price, double total, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status)
+       {
+            CustomerId = customerId;
+            VehicleId = vehicleId;
+            Price = price;
             StartDate = startDate;
             EndDate = endDate;
+            ReturnDate = returnDate;
+            Mileage = mileage;
+            Total = total;
             Status = status;
             Save();
         }
-
-        public void UpdateStatus()
+        public void Update(double total, DateTime? returnDate, int? mileage, RentStatus status)
         {
-            switch (Status)
-            {
-                case RentStatus.Ready:
-                    Status = RentStatus.Ongoing;
-                    Save();
-                    break;
-                case RentStatus.Ongoing:
-                    Status = RentStatus.Finish;
-                    ReturnDate = DateTime.Now;
-                    Vehicle vehicle = _database.GetVehicle(VehicleID);
-                    vehicle.UpdateAvailable(true);
-                    Save();
-                    break;
-                default:
-                    break;
-            }
+            Total = total;
+            ReturnDate = returnDate;
+            Mileage = mileage;
+            Status = status;
+            Save();
         }
-
-        public void Cancel()
+        public void Update(RentStatus status)
         {
-            if (Status == RentStatus.Ready)
-            {
-                Status = RentStatus.Cancel;
-                Save();
-            }
+            Status = status;
+            Save();
         }
-
+        public void Update(double total, RentStatus status)
+        {
+            Total = total;
+            Status = status;
+            Save();
+        }
         public void Save()
         {
             _database.UpdateRent(this);
         }
-
     }
 }

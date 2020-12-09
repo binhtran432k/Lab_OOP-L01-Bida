@@ -28,7 +28,6 @@ namespace CarRentalWF
 
             vehicleGridView.AutoGenerateColumns = false;
             vehicleGridView.DataSource = _vehicleBindingSource;
-            
 
         }
 
@@ -80,7 +79,7 @@ namespace CarRentalWF
             var data = JsonConvert.SerializeObject(vec, Formatting.Indented);
 
             string directory = @"../../json/";
-            string path = directory + vec.ID + ".json";
+            string path = directory + vec.Id + ".json";
 
             if (!Directory.Exists(directory))
             {
@@ -91,7 +90,7 @@ namespace CarRentalWF
             {
                 sw.WriteLine(data);
             }
-            MessageBox.Show( "File  saved at json/"+vec.ID+".json");
+            MessageBox.Show( "File  saved at json/" + vec.Id + ".json");
         }
 
         private void BtnServiceHistory_Click(object sender, EventArgs e)

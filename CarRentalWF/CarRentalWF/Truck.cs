@@ -9,18 +9,17 @@ namespace CarRentalWF
     class Truck : Vehicle
     {
         public Truck() { }
-
         public Truck(string name, string color, int year, double price, int condition, int curMileage = 0, int engineMileage = 0, int transmissionMilage = 0, int tireMilage = 0, bool available=true)
         {
-            GenerateID();
             Type = "Truck";
             Name = name;
             Color = color;
-            Brand = "truck";
+            Brand = "";
             Year = year;
             NumberOfSeat = 2;
             Price = price;
             Condition = condition;
+            ConditionText = GetCondition();
             Available = available;
             CurrentMileage = curMileage;
             LastEngineServiceMileage = engineMileage;
@@ -48,14 +47,13 @@ namespace CarRentalWF
                 {
                     type = "minor";
                 }
-
-                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceForm serviceForm = new ServiceForm(kind, type, Id, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
                 MaintenanceJob job = serviceForm.Job;
                 if (job == null)
                 {
-                    return "Cancel " + type + " " + kind + " service for vehicle #" + ID.ToString() + "\n";
+                    return "Cancel " + type + " " + kind + " service for vehicle #" + Id.ToString() + "\n";
                 }
                 else
                 {
@@ -86,14 +84,13 @@ namespace CarRentalWF
                 {
                     type = "overhaul";
                 }
-
-                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceForm serviceForm = new ServiceForm(kind, type, Id, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
                 MaintenanceJob job = serviceForm.Job;
                 if (job == null)
                 {
-                    return "Cancel " + type + " " + kind + " service for vehicle #" + ID.ToString() + "\n";
+                    return "Cancel " + type + " " + kind + " service for vehicle #" + Id.ToString() + "\n";
                 }
                 else
                 {
@@ -120,14 +117,13 @@ namespace CarRentalWF
                 {
                     type = "adjustment";
                 }
-
-                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceForm serviceForm = new ServiceForm(kind, type, Id, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
                 MaintenanceJob job = serviceForm.Job;
                 if (job == null)
                 {
-                    return "Cancel " + type + " " + kind + " service for vehicle #" + ID.ToString() + "\n";
+                    return "Cancel " + type + " " + kind + " service for vehicle #" + Id.ToString() + "\n";
                 }
                 else
                 {

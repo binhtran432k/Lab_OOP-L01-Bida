@@ -19,10 +19,12 @@ namespace CarRentalWF
             ConnectToDatabase();
         }
 
+        /*
         ~Database()
         {
             CloseConnection();
         }
+        */
 
         public List<Vehicle> GetAllVehicles(bool availableOnly=false)
         {
@@ -58,13 +60,13 @@ namespace CarRentalWF
                 if (type == "Car")
                 {
                     Car car = new Car(name, color, brand, year, numberOfSeat, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage, available);
-                    car.ID = id;
+                    car.Id = id;
                     vecList.Add(car);
                 }
                 else
                 {
                     Truck truck = new Truck(name, color, year, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage, available);
-                    truck.ID = id;
+                    truck.Id = id;
                     vecList.Add(truck);
                 }
             }
@@ -86,9 +88,9 @@ namespace CarRentalWF
             {
                 Rent rent = new Rent
                 {
-                    ID = sqlite_datareader.GetInt32(0),
-                    CustomerID = sqlite_datareader.GetInt32(1),
-                    VehicleID = sqlite_datareader.GetInt32(2),
+                    Id = sqlite_datareader.GetInt32(0),
+                    CustomerId = sqlite_datareader.GetInt32(1),
+                    VehicleId = sqlite_datareader.GetInt32(2),
                     Total = (double)sqlite_datareader.GetDouble(3),
                     Status = (RentStatus)Enum.Parse(typeof(RentStatus), sqlite_datareader.GetString(4)),
                     StartDate = DateTime.ParseExact(sqlite_datareader.GetString(5), "yyyy-MM-dd", culture),
@@ -178,7 +180,7 @@ namespace CarRentalWF
             sqlite_cmd.Parameters.AddWithValue("@lastEngineService", vehicle.LastEngineServiceMileage);
             sqlite_cmd.Parameters.AddWithValue("@lastTransmissionService", vehicle.LastTransmissionServiceMileage);
             sqlite_cmd.Parameters.AddWithValue("@lastTireService", vehicle.LastTireServiceMileage);
-            sqlite_cmd.Parameters.AddWithValue("@id", vehicle.ID);
+            sqlite_cmd.Parameters.AddWithValue("@id", vehicle.Id);
             sqlite_cmd.ExecuteNonQuery();
         }
 
@@ -210,25 +212,25 @@ namespace CarRentalWF
                 if (type == "Car")
                 {
                     Car car = new Car(name, color, brand, year, numberOfSeat, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage, available);
-                    car.ID = id;
+                    car.Id = id;
                     return car;
                 }
                 else
                 {
                     Truck truck = new Truck(name, color, year, price, condition, currentMileage, engineMileage, transmissionMileage, tireMileage, available);
-                    truck.ID = id;
+                    truck.Id = id;
                     return truck;
                 }
             }
             return null;
         }
 
-        public void RemoveVehicle(int vehicleID)
+        public void RemoveVehicle(int vehicleId)
         {
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = _sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "DELETE FROM vehicle WHERE id = @id";
-            sqlite_cmd.Parameters.AddWithValue("@id", vehicleID);
+            sqlite_cmd.Parameters.AddWithValue("@id", vehicleId);
             sqlite_cmd.ExecuteNonQuery();
         }
 
@@ -237,8 +239,8 @@ namespace CarRentalWF
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = _sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "INSERT INTO rent (customer_id, vehicle_id, total, status, start_date, end_date) VALUES (@customer_id, @vehicle_id, @total, @status, @start_date, @end_date)";
-            sqlite_cmd.Parameters.AddWithValue("@customer_id", rent.CustomerID);
-            sqlite_cmd.Parameters.AddWithValue("@vehicle_id", rent.VehicleID);
+            sqlite_cmd.Parameters.AddWithValue("@customer_id", rent.CustomerId);
+            sqlite_cmd.Parameters.AddWithValue("@vehicle_id", rent.VehicleId);
             sqlite_cmd.Parameters.AddWithValue("@total", rent.Total);
             sqlite_cmd.Parameters.AddWithValue("@status", rent.Status.ToString());
             sqlite_cmd.Parameters.AddWithValue("@start_date", rent.StartDate.ToString("yyyy-MM-dd"));
@@ -255,14 +257,14 @@ namespace CarRentalWF
             SQLiteCommand sqlite_cmd;
             sqlite_cmd = _sqlite_conn.CreateCommand();
             sqlite_cmd.CommandText = "UPDATE rent SET customer_id=@customer_id, vehicle_id=@vehicle_id, total=@total, status=@status, start_date=@start_date, end_date=@end_date, return_date=@return_date WHERE id=@id";
-            sqlite_cmd.Parameters.AddWithValue("@customer_id", rent.CustomerID);
-            sqlite_cmd.Parameters.AddWithValue("@vehicle_id", rent.VehicleID);
+            sqlite_cmd.Parameters.AddWithValue("@customer_id", rent.CustomerId);
+            sqlite_cmd.Parameters.AddWithValue("@vehicle_id", rent.VehicleId);
             sqlite_cmd.Parameters.AddWithValue("@total", rent.Total);
             sqlite_cmd.Parameters.AddWithValue("@status", rent.Status.ToString());
             sqlite_cmd.Parameters.AddWithValue("@start_date", rent.StartDate.ToString("yyyy-MM-dd"));
             sqlite_cmd.Parameters.AddWithValue("@end_date", rent.EndDate.ToString("yyyy-MM-dd"));
             sqlite_cmd.Parameters.AddWithValue("@return_date", rent.ReturnDate?.ToString("yyyy-MM-dd"));
-            sqlite_cmd.Parameters.AddWithValue("@id", rent.ID);
+            sqlite_cmd.Parameters.AddWithValue("@id", rent.Id);
             sqlite_cmd.ExecuteNonQuery();
         }
 
@@ -289,9 +291,9 @@ namespace CarRentalWF
             {
                 Rent rent = new Rent
                 {
-                    ID = sqlite_datareader.GetInt32(0),
-                    CustomerID = sqlite_datareader.GetInt32(1),
-                    VehicleID = sqlite_datareader.GetInt32(2),
+                    Id = sqlite_datareader.GetInt32(0),
+                    CustomerId = sqlite_datareader.GetInt32(1),
+                    VehicleId = sqlite_datareader.GetInt32(2),
                     Total = (double)sqlite_datareader.GetDouble(3),
                     Status = (RentStatus)Enum.Parse(typeof(RentStatus), sqlite_datareader.GetString(4)),
                     StartDate = DateTime.ParseExact(sqlite_datareader.GetString(5), "yyyy-MM-dd", culture),

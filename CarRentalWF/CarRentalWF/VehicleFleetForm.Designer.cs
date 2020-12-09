@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnServeFleet = new System.Windows.Forms.Button();
             this.vehicleGroupBox = new System.Windows.Forms.GroupBox();
             this.vehicleGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,10 +55,10 @@
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(557, 38);
+            this.btnNew.Location = new System.Drawing.Point(690, 50);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(155, 56);
+            this.btnNew.Size = new System.Drawing.Size(160, 50);
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New Vehicle";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -64,12 +66,12 @@
             // 
             // btnServeFleet
             // 
-            this.btnServeFleet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServeFleet.Location = new System.Drawing.Point(557, 477);
+            this.btnServeFleet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnServeFleet.Location = new System.Drawing.Point(690, 476);
             this.btnServeFleet.Margin = new System.Windows.Forms.Padding(4);
             this.btnServeFleet.Name = "btnServeFleet";
-            this.btnServeFleet.Size = new System.Drawing.Size(155, 50);
-            this.btnServeFleet.TabIndex = 6;
+            this.btnServeFleet.Size = new System.Drawing.Size(160, 50);
+            this.btnServeFleet.TabIndex = 5;
             this.btnServeFleet.Text = "Serve Fleet";
             this.btnServeFleet.UseVisualStyleBackColor = true;
             this.btnServeFleet.Click += new System.EventHandler(this.BtnServeFleet_Click);
@@ -80,9 +82,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.vehicleGroupBox.Controls.Add(this.vehicleGridView);
-            this.vehicleGroupBox.Location = new System.Drawing.Point(35, 26);
+            this.vehicleGroupBox.Location = new System.Drawing.Point(20, 20);
+            this.vehicleGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.vehicleGroupBox.Name = "vehicleGroupBox";
-            this.vehicleGroupBox.Size = new System.Drawing.Size(479, 515);
+            this.vehicleGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.vehicleGroupBox.Size = new System.Drawing.Size(640, 520);
             this.vehicleGroupBox.TabIndex = 2;
             this.vehicleGroupBox.TabStop = false;
             this.vehicleGroupBox.Text = "Vehicle Fleet";
@@ -92,11 +96,12 @@
             this.vehicleGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.vehicleGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.vehicleGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.vehicleGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.vehicleGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
+            this.Column10,
             this.Column3,
             this.Column4,
             this.Column5,
@@ -104,103 +109,104 @@
             this.Column7,
             this.Column8,
             this.Column9});
-            this.vehicleGridView.Location = new System.Drawing.Point(6, 37);
+            this.vehicleGridView.Location = new System.Drawing.Point(8, 30);
             this.vehicleGridView.Name = "vehicleGridView";
             this.vehicleGridView.ReadOnly = true;
             this.vehicleGridView.RowHeadersWidth = 51;
             this.vehicleGridView.RowTemplate.Height = 24;
             this.vehicleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.vehicleGridView.Size = new System.Drawing.Size(467, 464);
+            this.vehicleGridView.Size = new System.Drawing.Size(626, 470);
             this.vehicleGridView.TabIndex = 0;
             // 
             // Column1
             // 
             this.Column1.DataPropertyName = "ID";
             this.Column1.HeaderText = "ID";
-            this.Column1.MinimumWidth = 6;
+            this.Column1.MinimumWidth = 40;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 55;
             // 
             // Column2
             // 
             this.Column2.DataPropertyName = "Name";
             this.Column2.HeaderText = "Name";
-            this.Column2.MinimumWidth = 6;
+            this.Column2.MinimumWidth = 150;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 82;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "Type";
+            this.Column10.HeaderText = "Type";
+            this.Column10.MinimumWidth = 50;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
             // 
             // Column3
             // 
             this.Column3.DataPropertyName = "Brand";
             this.Column3.HeaderText = "Brand";
-            this.Column3.MinimumWidth = 6;
+            this.Column3.MinimumWidth = 70;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 83;
             // 
             // Column4
             // 
             this.Column4.DataPropertyName = "Color";
             this.Column4.HeaderText = "Color";
-            this.Column4.MinimumWidth = 6;
+            this.Column4.MinimumWidth = 60;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 78;
             // 
             // Column5
             // 
             this.Column5.DataPropertyName = "Year";
             this.Column5.HeaderText = "Year";
-            this.Column5.MinimumWidth = 6;
+            this.Column5.MinimumWidth = 50;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 72;
             // 
             // Column6
             // 
             this.Column6.DataPropertyName = "NumberOfSeat";
             this.Column6.HeaderText = "Seat";
-            this.Column6.MinimumWidth = 6;
+            this.Column6.MinimumWidth = 46;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            this.Column6.Width = 72;
             // 
             // Column7
             // 
             this.Column7.DataPropertyName = "Price";
             this.Column7.HeaderText = "Price";
-            this.Column7.MinimumWidth = 6;
+            this.Column7.MinimumWidth = 70;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 77;
             // 
             // Column8
             // 
             this.Column8.DataPropertyName = "Condition";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column8.HeaderText = "Condition";
-            this.Column8.MinimumWidth = 6;
+            this.Column8.MinimumWidth = 76;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 108;
             // 
             // Column9
             // 
             this.Column9.DataPropertyName = "Available";
             this.Column9.HeaderText = "Available";
-            this.Column9.MinimumWidth = 6;
+            this.Column9.MinimumWidth = 70;
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
-            this.Column9.Width = 82;
             // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(557, 119);
+            this.btnUpdate.Location = new System.Drawing.Point(690, 136);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(155, 52);
+            this.btnUpdate.Size = new System.Drawing.Size(160, 50);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update Vehicle";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -209,10 +215,10 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(557, 199);
+            this.btnDelete.Location = new System.Drawing.Point(690, 204);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(155, 50);
+            this.btnDelete.Size = new System.Drawing.Size(160, 50);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete Vehicle";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -221,34 +227,32 @@
             // btnServiceHistory
             // 
             this.btnServiceHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServiceHistory.Location = new System.Drawing.Point(557, 328);
+            this.btnServiceHistory.Location = new System.Drawing.Point(690, 340);
             this.btnServiceHistory.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceHistory.Name = "btnServiceHistory";
-            this.btnServiceHistory.Size = new System.Drawing.Size(155, 50);
+            this.btnServiceHistory.Size = new System.Drawing.Size(160, 50);
             this.btnServiceHistory.TabIndex = 3;
             this.btnServiceHistory.Text = "View Service History";
             this.btnServiceHistory.UseVisualStyleBackColor = true;
-            this.btnServiceHistory.Click += new System.EventHandler(this.BtnServiceHistory_Click);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(557, 410);
+            this.button1.Location = new System.Drawing.Point(690, 408);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 50);
+            this.button1.Size = new System.Drawing.Size(160, 50);
             this.button1.TabIndex = 4;
             this.button1.Text = "Export Service History";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ViewMaintenance
             // 
             this.ViewMaintenance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewMaintenance.Location = new System.Drawing.Point(557, 257);
+            this.ViewMaintenance.Location = new System.Drawing.Point(690, 272);
             this.ViewMaintenance.Margin = new System.Windows.Forms.Padding(4);
             this.ViewMaintenance.Name = "ViewMaintenance";
-            this.ViewMaintenance.Size = new System.Drawing.Size(155, 50);
+            this.ViewMaintenance.Size = new System.Drawing.Size(160, 50);
             this.ViewMaintenance.TabIndex = 7;
             this.ViewMaintenance.Text = "View Maintenance History";
             this.ViewMaintenance.UseVisualStyleBackColor = true;
@@ -256,9 +260,9 @@
             // 
             // VehicleFleetForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 562);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.ViewMaintenance);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnServiceHistory);
@@ -286,8 +290,11 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView vehicleGridView;
+        private System.Windows.Forms.Button btnServiceHistory;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
@@ -295,8 +302,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column9;
-        private System.Windows.Forms.Button btnServiceHistory;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ViewMaintenance;
     }
 }

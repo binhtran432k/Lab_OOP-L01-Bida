@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace CarRentalWF
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private Form _activeForm = null;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             OpenChildForm(new HomeForm());
@@ -57,6 +57,14 @@ namespace CarRentalWF
             panelChildForm.Controls.Add(childForm);
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        private void RentVehicleBtn_Click(object sender, EventArgs e)
+        {
+            if (!(_activeForm is BookAndRentForm))
+            {
+                OpenChildForm(new BookAndRentForm());
+            }
         }
     }
 }
