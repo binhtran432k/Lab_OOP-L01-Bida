@@ -39,7 +39,6 @@ namespace CarRentalWF
             rentForm.FormClosed += (s, a) =>
             {
                 _vehicleBindingSource.DataSource = _carRentalManagement.GetAvailableVehicleList();
-                _vehicleBindingSource.ResetBindings(true);
             };
 
             rentForm.Show();
@@ -51,7 +50,7 @@ namespace CarRentalWF
 
             searchForm.FormClosed += (s, a) =>
             {
-                _vehicleBindingSource.ResetBindings(false);
+                _vehicleBindingSource.DataSource = _carRentalManagement.GetAvailableVehicleList();
             };
 
             searchForm.Show();

@@ -23,9 +23,18 @@ namespace CarRentalWF
         public int LastEngineServiceMileage { get; set; }
         public int LastTransmissionServiceMileage { get; set; }
         public int LastTireServiceMileage { get; set; }
-        public ServiceHistory ServiceHistoryList { get; set; }
+        public ServiceHistory ServiceHistory { get; set; }
 
         protected Database _database = Database.GetInstance();
+        public ServiceHistory GetServiceHistory()
+        {
+            ServiceHistory.LoadMainTenanceJobs(Id);
+            return ServiceHistory;
+        }
+        public MaintenanceJob GetMaintenanceJob(int index)
+        {
+            return ServiceHistory.GetMaintenanceJob(index);
+        }
 
         public void Update(string name, string color, string brand, int year, int numberOfSeat, double price, double condition, int currentMileage)
         {

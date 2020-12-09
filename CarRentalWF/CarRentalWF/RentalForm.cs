@@ -35,7 +35,7 @@ namespace CarRentalWF
 
             rentForm.FormClosed += (s, a) =>
             {
-                _rentBindingSource.ResetBindings(false);
+                _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
             };
 
             rentForm.Show();
@@ -49,7 +49,7 @@ namespace CarRentalWF
 
             rentForm.FormClosed += (s, a) =>
             {
-                _rentBindingSource.ResetBindings(false);
+                _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
                 UpdateBtnProcess();
             };
 
@@ -92,7 +92,7 @@ namespace CarRentalWF
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             int index = (int)rentDataGridView.SelectedRows[0].Cells[0].Value;
-            _carRentalManagement.RemoveRent(index);
+            _carRentalManagement.RemoveRent(_carRentalManagement.GetRent(index));
             _rentBindingSource.DataSource = _carRentalManagement.GetRentList();
             UpdateBtnProcess();
         }

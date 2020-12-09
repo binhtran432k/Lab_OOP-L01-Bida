@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalWF
 {
-    class CarRentalManagement : IServeFleet
+    class CarRentalManagement : IServeFleet, IBookAndRent
     {
         public string Location;
         public int Capacity { get; private set; }
@@ -85,6 +85,15 @@ namespace CarRentalWF
             _database.RemoveVehicle(vehicle.Id);
         }
 
+        public void RentVehicle(int customerId, Vehicle vehicle, DateTime startDate, DateTime endDate)
+        {
+            double total = _generateTotal(vehicle.Price, startDate, endDate, null);
+            Rent rent = new Rent(customerId, vehicle.Id, vehicle.Price, total, startDate, endDate, null, null, RentStatus.Ready);
+            _database.InsertRent(rent);
+            _retalVehicleHandle(vehicle, RentStatus.Ready, null);
+
+        }
+
         public void AddRent(Rent rent)
         {
             _database.InsertRent(rent);
@@ -94,30 +103,31 @@ namespace CarRentalWF
             double total = _generateTotal(vehicle.Price, startDate, endDate, returnDate);
             Rent rent = new Rent(customerId, vehicle.Id, vehicle.Price, total, startDate, endDate, returnDate, mileage, status);
             _database.InsertRent(rent);
-            _retalVehicleHandle(rent.Id, mileage);
+            _retalVehicleHandle(vehicle, status, mileage);
         }
         public void AddRent(int customerId, Vehicle vehicle, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
             double total = _generateTotal(vehicle.Price, startDate, startDate.AddDays(period), returnDate);
             Rent rent = new Rent(customerId, vehicle.Id, vehicle.Price, total, startDate, period, returnDate, mileage, status);
             _database.InsertRent(rent);
-            _retalVehicleHandle(rent.Id, mileage);
+            _retalVehicleHandle(vehicle, status, mileage);
         }
         public void UpdateRent(int customerId, int rentId, Vehicle vehicle, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status)
         {
             double total = _generateTotal(vehicle.Price, startDate, endDate, returnDate);
             GetRent(rentId).Update(customerId, vehicle.Id, vehicle.Price, total, startDate, endDate, returnDate, mileage, status);
-            _retalVehicleHandle(rentId, mileage);
+            _retalVehicleHandle(vehicle, status, mileage);
         }
         public void UpdateRent(int customerId, int rentId, Vehicle vehicle, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status)
         {
             double total = _generateTotal(vehicle.Price, startDate, startDate.AddDays(period), returnDate);
             GetRent(rentId).Update(customerId, vehicle.Id, vehicle.Price, total, startDate, startDate.AddDays(period), returnDate, mileage, status);
-            _retalVehicleHandle(rentId, mileage);
+            _retalVehicleHandle(vehicle, status, mileage);
         }
-        public void RemoveRent(int rentId)
+        public void RemoveRent(Rent rent)
         {
-            _database.RemoveRent(rentId);
+            GetVehicle(rent.VehicleId).UpdateAvailable(true);
+            _database.RemoveRent(rent.Id);
         }
 
         public Rent GetRent(int rentId)
@@ -158,7 +168,7 @@ namespace CarRentalWF
                     break;
                 case RentStatus.Ongoing:
                     rent.Update(_generateTotal(rent.Price, rent.StartDate, rent.EndDate, returnDate), returnDate, mileage, RentStatus.Finish);
-                    _retalVehicleHandle(rent.Id, mileage);
+                    _retalVehicleHandle(GetVehicle(rent.VehicleId), rent.Status, mileage);
                     break;
                 default:
                     break;
@@ -206,11 +216,9 @@ namespace CarRentalWF
             }
             return vehicles;
         }
-        private void _retalVehicleHandle(int rentId, int? mileage)
+        private void _retalVehicleHandle(Vehicle vehicle, RentStatus status, int? mileage)
         {
-            Rent rent = GetRent(rentId);
-            Vehicle vehicle = GetVehicle(rent.VehicleId);
-            if (rent.Status == RentStatus.Finish)
+            if (status == RentStatus.Finish)
             {
                 vehicle.Update(mileage, true);
             }

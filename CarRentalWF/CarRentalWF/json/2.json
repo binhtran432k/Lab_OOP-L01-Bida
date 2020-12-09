@@ -1,0 +1,34 @@
+{
+  "MaintenaceJobs": [
+    {
+      "ID": 1,
+      "Kind": "engine",
+      "Type": "oil change",
+      "VehicleID": 2,
+      "ServeTime": "2020-12-06T06:06:06",
+      "Mileage": 1000,
+      "Cost": 100.0,
+      "Garage": "BKCS"
+    },
+    {
+      "ID": 3,
+      "Kind": "engine",
+      "Type": "oil change",
+      "VehicleID": 2,
+      "ServeTime": "2020-12-09T21:11:55",
+      "Mileage": 2000,
+      "Cost": 80.0,
+      "Garage": "Bach Khoa"
+    },
+    {
+      "ID": 4,
+      "Kind": "tire",
+      "Type": "adjustment",
+      "VehicleID": 2,
+      "ServeTime": "2020-12-09T21:12:13",
+      "Mileage": 2000,
+      "Cost": 95.0,
+      "Garage": "BK CS2"
+    }
+  ]
+}

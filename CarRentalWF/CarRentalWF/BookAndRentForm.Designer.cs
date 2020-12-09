@@ -91,6 +91,7 @@ namespace CarRentalWF
             this.vehicleGridView.Location = new System.Drawing.Point(8, 30);
             this.vehicleGridView.Name = "vehicleGridView";
             this.vehicleGridView.ReadOnly = true;
+            this.vehicleGridView.RowHeadersVisible = false;
             this.vehicleGridView.RowHeadersWidth = 51;
             this.vehicleGridView.RowTemplate.Height = 24;
             this.vehicleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

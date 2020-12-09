@@ -51,11 +51,11 @@ namespace CarRentalWF
                     if (cbCustomEndDate.Checked)
                     {
                         endDate = dtEndDate.Value;
-                        _carRentalManagement.AddRent(customerId, vehicle, startDate, endDate, null, null);
+                        _carRentalManagement.RentVehicle(customerId, vehicle, startDate, endDate);
                     }
                     else
                     {
-                        _carRentalManagement.AddRent(customerId, vehicle, startDate, double.Parse(txtPeriod.Text), null, null);
+                        _carRentalManagement.RentVehicle(customerId, vehicle, startDate, startDate.AddDays(double.Parse(txtPeriod.Text)));
                     }
                 }
                 FormSaved = true;
