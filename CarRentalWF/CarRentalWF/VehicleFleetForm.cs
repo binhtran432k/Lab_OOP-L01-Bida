@@ -28,7 +28,7 @@ namespace CarRentalWF
 
             vehicleGridView.AutoGenerateColumns = false;
             vehicleGridView.DataSource = _vehicleBindingSource;
-
+            vehicleGridView.Columns[6].DefaultCellStyle.Format = "N2";
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -71,12 +71,18 @@ namespace CarRentalWF
             MessageBox.Show(serviceReport, "Service Report");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnExport_Click(object sender, EventArgs e)
         {
+            if (vehicleGridView.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select only 1 vehicle to continue", "Error");
+                return;
+            }
             int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
             Vehicle vec = _carRentalManagement.GetVehicle(index);
+            ServiceHistory serviceHistory = vec.GetServiceHistory();
 
-            var data = JsonConvert.SerializeObject(vec, Formatting.Indented);
+            var data = JsonConvert.SerializeObject(serviceHistory, Formatting.Indented);
 
             string directory = @"../../json/";
             string path = directory + vec.Id + ".json";
@@ -90,23 +96,45 @@ namespace CarRentalWF
             {
                 sw.WriteLine(data);
             }
-            MessageBox.Show( "File  saved at json/" + vec.Id + ".json");
+            MessageBox.Show( "File  saved at json/"+vec.ID+".json");
         }
 
         private void BtnServiceHistory_Click(object sender, EventArgs e)
         {
+            if (vehicleGridView.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select only 1 vehicle to continue", "Error");
+                return;
+            }
             int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
             Vehicle vec = _carRentalManagement.GetVehicle(index);
+            ServiceHistory serviceHistory = vec.GetServiceHistory();
 
-            var data=JsonConvert.SerializeObject(vec,Formatting.Indented);
-            MessageBox.Show(data, "Service Report");
+            var data = JsonConvert.SerializeObject(serviceHistory, Formatting.Indented);
+            MessageBox.Show(data, "Service History");
         }
 
         private void ViewMaintenance_Click(object sender, EventArgs e)
         {
-            int index = vehicleGridView.SelectedRows[0].Index;
-            int id = int.Parse(vehicleGridView.Rows[index].Cells[0].Value.ToString());
-            Form maintenaceForm = new MaintenanceForm(id);
+            int id1 = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
+            Vehicle vehicle1 = _carRentalManagement.GetVehicle(id1);
+            Form maintenaceForm;
+
+            if (vehicleGridView.SelectedRows.Count > 2)
+            {
+                MessageBox.Show("You can select at most 2 vehicles to view service history", "Error");
+                return;
+            }
+            else if (vehicleGridView.SelectedRows.Count == 2)
+            {
+                int id2 = int.Parse(vehicleGridView.SelectedRows[1].Cells[0].Value.ToString());
+                Vehicle vehicle2 = _carRentalManagement.GetVehicle(id2);
+                maintenaceForm = new MaintenanceJobForm(vehicle2, vehicle1);
+            }
+            else
+            {
+                maintenaceForm = new MaintenanceJobForm(vehicle1);
+            }
             maintenaceForm.ShowDialog();
         }
     }

@@ -9,7 +9,8 @@ namespace CarRentalWF
     
     public class ServiceHistory
     {
-        public List<MaintenanceJob> MaintenaceJobs;
+        private Database _database = Database.GetInstance();
+        public List<MaintenanceJob> MaintenaceJobs { get; set; }
 
         public ServiceHistory()
         {
@@ -21,14 +22,14 @@ namespace CarRentalWF
             MaintenaceJobs.Add(job);
         }
 
-        public string View()
+        public MaintenanceJob GetMaintenanceJob(int index)
         {
-            string history = "";
-            foreach (MaintenanceJob maintenance in MaintenaceJobs)
-            {
-                history += maintenance.ToString();
-            }
-            return history;
+            return MaintenaceJobs[index];
+        }
+
+        public void LoadMainTenanceJobs(int vehicleID)
+        {
+            MaintenaceJobs = _database.GetMaintenanceJobs(vehicleID);
         }
         
     }

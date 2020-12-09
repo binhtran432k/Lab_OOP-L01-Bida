@@ -28,16 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxRental = new System.Windows.Forms.GroupBox();
             this.rentDataGridView = new System.Windows.Forms.DataGridView();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnProcess = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +38,11 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnProcess = new System.Windows.Forms.Button();
             this.groupBoxRental.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rentDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -67,10 +64,11 @@
             // 
             // rentDataGridView
             // 
+            this.rentDataGridView.AllowUserToAddRows = false;
             this.rentDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.rentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.rentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -84,12 +82,85 @@
             this.rentDataGridView.Location = new System.Drawing.Point(7, 26);
             this.rentDataGridView.Name = "rentDataGridView";
             this.rentDataGridView.ReadOnly = true;
+            this.rentDataGridView.RowHeadersVisible = false;
             this.rentDataGridView.RowHeadersWidth = 51;
             this.rentDataGridView.RowTemplate.Height = 24;
             this.rentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.rentDataGridView.Size = new System.Drawing.Size(626, 487);
             this.rentDataGridView.TabIndex = 0;
             this.rentDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RentDataGridView_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "Id";
+            this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 55;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "CustomerId";
+            this.Column2.HeaderText = "Customer ID";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 133;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "VehicleId";
+            this.Column3.HeaderText = "Vehicle ID";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 115;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Status";
+            this.Column4.HeaderText = "Status";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 86;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Total";
+            this.Column5.HeaderText = "Total";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 75;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "StartDate";
+            this.Column6.HeaderText = "Start Date";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 115;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "EndDate";
+            this.Column7.HeaderText = "End Date";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 108;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "ReturnDate";
+            this.Column8.HeaderText = "Return Date";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 129;
             // 
             // btnNew
             // 
@@ -145,84 +216,6 @@
             this.btnProcess.Text = "Pickup Vehicle";
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.BtnProcess_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Id";
-            this.Column1.FillWeight = 54F;
-            this.Column1.HeaderText = "Id";
-            this.Column1.MinimumWidth = 30;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "CustomerId";
-            this.Column2.FillWeight = 99F;
-            this.Column2.HeaderText = "Customer Id";
-            this.Column2.MinimumWidth = 100;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "VehicleId";
-            this.Column3.FillWeight = 56.27266F;
-            this.Column3.HeaderText = "Vehicle";
-            this.Column3.MinimumWidth = 60;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Status";
-            this.Column4.FillWeight = 56.27266F;
-            this.Column4.HeaderText = "Status";
-            this.Column4.MinimumWidth = 73;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "Total";
-            this.Column5.FillWeight = 56.27266F;
-            this.Column5.HeaderText = "Total";
-            this.Column5.MinimumWidth = 72;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "StartDate";
-            dataGridViewCellStyle10.Format = "dd/MM/yyyy";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Column6.FillWeight = 56.27266F;
-            this.Column6.HeaderText = "Start Date";
-            this.Column6.MinimumWidth = 84;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "EndDate";
-            dataGridViewCellStyle11.Format = "dd/MM/yyyy";
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Column7.FillWeight = 56.27266F;
-            this.Column7.HeaderText = "End Date";
-            this.Column7.MinimumWidth = 84;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "ReturnDate";
-            dataGridViewCellStyle12.Format = "dd/MM/yyyy";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Column8.FillWeight = 56.27266F;
-            this.Column8.HeaderText = "Return Date";
-            this.Column8.MinimumWidth = 84;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
             // 
             // RentalForm
             // 

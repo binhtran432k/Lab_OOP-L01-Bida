@@ -95,16 +95,13 @@
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interface.cs" />
-    <Compile Include="MaintenaceManagement.cs" />
-    <Compile Include="MaintenanceForm.cs">
+    <Compile Include="MaintenanceJobForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MaintenanceForm.Designer.cs" />
+    <Compile Include="MaintenanceJobForm.Designer.cs">
+      <DependentUpon>MaintenanceJobForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaintenanceJob.cs" />
-    <Compile Include="MaintenanceSubtractForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MaintenanceSubtractForm.Designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rent.cs" />
@@ -162,8 +159,9 @@
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaintenanceForm.resx" />
-    <EmbeddedResource Include="MaintenanceSubtractForm.resx" />
+    <EmbeddedResource Include="MaintenanceJobForm.resx">
+      <DependentUpon>MaintenanceJobForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
