@@ -13,8 +13,8 @@ namespace CarRentalWF
     public partial class SearchForm : Form
     {
         readonly CarRentalManagement _carRentalManagement = CarRentalManagement.GetInstance();
-        private bool _isBook;
-        private bool _needAvailable;
+        private readonly bool _isBook;
+        private readonly bool _needAvailable;
         public Vehicle Vehicle { get; private set; }
         public List<Vehicle> VehicleList { get; private set; }
         public SearchForm(bool isBook = false, bool needAvailable = false)
@@ -33,9 +33,9 @@ namespace CarRentalWF
             typeComboBox.SelectedIndex = 0;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
-            string errorMessage = _searchHandle();
+            string errorMessage = SearchHandle();
             if (errorMessage != "")
             {
                 MessageBox.Show(errorMessage, "Error");
@@ -74,7 +74,7 @@ namespace CarRentalWF
             }
             Close();
         }
-        private string _searchHandle()
+        private string SearchHandle()
         {
             double testD;
             if (minPriceText.Text != "" && !double.TryParse(minPriceText.Text, out testD))

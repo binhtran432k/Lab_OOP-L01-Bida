@@ -19,6 +19,36 @@
       "Mileage": 1000,
       "Cost": 200.0,
       "Garage": "49 Dinh Tien Hoang"
+    },
+    {
+      "ID": 8,
+      "Kind": "engine",
+      "Type": "oil change",
+      "VehicleID": 3,
+      "ServeTime": "2020-12-10T04:07:35",
+      "Mileage": 1000,
+      "Cost": 234.0,
+      "Garage": "What"
+    },
+    {
+      "ID": 9,
+      "Kind": "transmission",
+      "Type": "overhaul",
+      "VehicleID": 3,
+      "ServeTime": "2020-12-10T04:07:54",
+      "Mileage": 1000,
+      "Cost": 2034.0,
+      "Garage": "Giaro"
+    },
+    {
+      "ID": 10,
+      "Kind": "tire",
+      "Type": "replacement",
+      "VehicleID": 3,
+      "ServeTime": "2020-12-10T04:08:15",
+      "Mileage": 1000,
+      "Cost": 204.0,
+      "Garage": "gasf"
     }
   ]
 }

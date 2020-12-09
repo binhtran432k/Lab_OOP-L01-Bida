@@ -51,7 +51,7 @@ namespace CarRentalWF
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete Customer";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -63,7 +63,7 @@ namespace CarRentalWF
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "Update Customer";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // vehicleGridView
             // 
@@ -112,7 +112,7 @@ namespace CarRentalWF
             this.btnNew.TabIndex = 8;
             this.btnNew.Text = "New Customer";
             this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
             // 
             // Column1
             // 

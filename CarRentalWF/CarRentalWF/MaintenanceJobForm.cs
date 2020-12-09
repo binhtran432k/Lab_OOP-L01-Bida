@@ -29,6 +29,7 @@ namespace CarRentalWF
             InitializeComponent();
             _vehicle1 = vehicle1;
             _vehicle2 = null;
+            gbVehicle2.Visible = false;
         }
 
         public MaintenanceJobForm(Vehicle vehicle1, Vehicle vehicle2)
@@ -64,10 +65,7 @@ namespace CarRentalWF
         {
             try
             {
-                MaintenanceJob job1;
-                MaintenanceJob job2;
-
-                GetMaintenanceJob(out job1, out job2);
+                GetMaintenanceJob(out MaintenanceJob job1, out MaintenanceJob job2);
 
                 int result = job1 - job2;
                 txtResult.Text = result.ToString() + " Kms";
@@ -82,10 +80,7 @@ namespace CarRentalWF
         {
             try
             {
-                MaintenanceJob job1;
-                MaintenanceJob job2;
-
-                GetMaintenanceJob(out job1, out job2);
+                GetMaintenanceJob(out MaintenanceJob job1, out MaintenanceJob job2);
 
                 bool result = job1 > job2;
                 if (result == false)

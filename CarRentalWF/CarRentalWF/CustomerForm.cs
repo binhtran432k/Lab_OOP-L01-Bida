@@ -27,7 +27,7 @@ namespace CarRentalWF
             vehicleGridView.DataSource = _customerBindingSource;
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private void BtnNew_Click(object sender, EventArgs e)
         {
             Form vehicleForm = new CustomerInfoForm();
             vehicleForm.FormClosed += (s, a) =>
@@ -38,7 +38,7 @@ namespace CarRentalWF
             vehicleForm.Show();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
             int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
             Customer customer = _customerManagement.GetCustomer(index);
@@ -51,7 +51,7 @@ namespace CarRentalWF
             vehicleForm.Show();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
             int index = int.Parse(vehicleGridView.SelectedRows[0].Cells[0].Value.ToString());
             Customer customer = _customerManagement.GetCustomer(index);

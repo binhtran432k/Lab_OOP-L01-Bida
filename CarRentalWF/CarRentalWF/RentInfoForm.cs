@@ -75,7 +75,7 @@ namespace CarRentalWF
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            string errorMessage = _rentInfoHandle();
+            string errorMessage = RentInfoHandle();
             if (errorMessage != "")
             {
                 MessageBox.Show(errorMessage, "Error");
@@ -160,7 +160,7 @@ namespace CarRentalWF
             }
         }
 
-        private void cbCustomEndDate_CheckedChanged(object sender, EventArgs e)
+        private void CbCustomEndDate_CheckedChanged(object sender, EventArgs e)
         {
             if (_isReturn)
             {
@@ -184,12 +184,10 @@ namespace CarRentalWF
                 txtPeriod.Enabled = true;
             }
         }
-        private string _rentInfoHandle()
+        private string RentInfoHandle()
         {
-            double testDou;
-            int testI;
             int status = _isReturn ? cbStatus.SelectedIndex + 1 : cbStatus.SelectedIndex;
-            if (!int.TryParse(txtCustomer.Text, out testI))
+            if (!int.TryParse(txtCustomer.Text, out int testI))
             {
                 return "Customer ID mus be a number!";
             }
@@ -201,7 +199,7 @@ namespace CarRentalWF
             {
                 return "Your end date must be happenned after start date!";
             }
-            else if (!cbCustomEndDate.Checked && !double.TryParse(txtPeriod.Text, out testDou))
+            else if (!cbCustomEndDate.Checked && !double.TryParse(txtPeriod.Text, out double testDou))
             {
                 return "Your period must be a number!";
             }
@@ -227,7 +225,7 @@ namespace CarRentalWF
             return "";
         }
 
-        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             int status = _isReturn? cbStatus.SelectedIndex + 1 : cbStatus.SelectedIndex;
             if (status != (int)RentStatus.Finish)

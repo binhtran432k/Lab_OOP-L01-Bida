@@ -19,13 +19,6 @@ namespace CarRentalWF
             ConnectToDatabase();
         }
 
-        /*
-        ~Database()
-        {
-            CloseConnection();
-        }
-        */
-
         #region Query
         public List<Vehicle> GetAllVehicles(bool availableOnly=false)
         {
@@ -430,11 +423,6 @@ namespace CarRentalWF
             {
                 Console.WriteLine(ex.ToString());
             }
-        }
-
-        private void CloseConnection()
-        {
-            _sqlite_conn.Close();
         }
 
         public static Database GetInstance()

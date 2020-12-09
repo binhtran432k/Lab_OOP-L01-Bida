@@ -117,7 +117,7 @@
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(204, 24);
             this.cbStatus.TabIndex = 6;
-            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             // 
             // btnSave
             // 
@@ -226,7 +226,7 @@
             this.cbCustomEndDate.TabIndex = 9;
             this.cbCustomEndDate.Text = "Custom End Date";
             this.cbCustomEndDate.UseVisualStyleBackColor = true;
-            this.cbCustomEndDate.CheckedChanged += new System.EventHandler(this.cbCustomEndDate_CheckedChanged);
+            this.cbCustomEndDate.CheckedChanged += new System.EventHandler(this.CbCustomEndDate_CheckedChanged);
             // 
             // txtMileage
             // 

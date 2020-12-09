@@ -45,6 +45,7 @@ namespace CarRentalWF
             Total = total;
             Status = status;
         }
+
         public Rent(int customerId, int vehicleId, double price, double total, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
             CustomerId = customerId;
@@ -57,6 +58,7 @@ namespace CarRentalWF
             Total = total;
             Status = status;
         }
+
        public void Update(int customerId, int vehicleId, double price, double total, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status)
        {
             CustomerId = customerId;
@@ -70,6 +72,7 @@ namespace CarRentalWF
             Status = status;
             Save();
         }
+
         public void Update(double total, DateTime? returnDate, int? mileage, RentStatus status)
         {
             Total = total;
@@ -78,17 +81,20 @@ namespace CarRentalWF
             Status = status;
             Save();
         }
+
         public void Update(RentStatus status)
         {
             Status = status;
             Save();
         }
+
         public void Update(double total, RentStatus status)
         {
             Total = total;
             Status = status;
             Save();
         }
+
         public void Save()
         {
             _database.UpdateRent(this);

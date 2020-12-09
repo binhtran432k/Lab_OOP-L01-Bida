@@ -8,7 +8,7 @@ namespace CarRentalWF
     {
         readonly CarRentalManagement _carRentalManagement = CarRentalManagement.GetInstance();
         readonly CustomerManagement _customerManagement = CustomerManagement.GetInstance();
-        private Rent _rent = null;
+        private readonly Rent _rent = null;
         public bool FormSaved { get; private set; }
         public RentUserForm(Vehicle vec)
         {
@@ -91,7 +91,7 @@ namespace CarRentalWF
             return "";
         }
 
-        private void cbCustomEndDate_CheckedChanged(object sender, EventArgs e)
+        private void CbCustomEndDate_CheckedChanged(object sender, EventArgs e)
         {
             DateTime startDate = dtStartDate.Value;
             double period;

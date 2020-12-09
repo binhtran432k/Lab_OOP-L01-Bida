@@ -29,7 +29,7 @@ namespace CarRentalWF
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            string errorMessage = _customerInfoHandle();
+            string errorMessage = CustomerInfoHandle();
             if (errorMessage != "")
             {
                 MessageBox.Show(errorMessage, "Error");
@@ -48,7 +48,7 @@ namespace CarRentalWF
             }
             Close();
         }
-        private string _customerInfoHandle()
+        private string CustomerInfoHandle()
         {
             if (txtCustomer.Text == "")
             {

@@ -12,22 +12,26 @@ namespace CarRentalWF
         public string Name { get; set; }
         public string Phone { get; set; }
         protected Database _database = Database.GetInstance();
+
         public Customer()
         {
             Name = null;
             Phone = null;
         }
+
         public Customer(string name, string phone)
         {
             Name = name;
             Phone = phone;
         }
+
         public void Update(string name, string phone)
         {
             Name = name;
             Phone = phone;
             Save();
         }
+
         public void Save()
         {
             _database.UpdateCustomer(this);

@@ -167,7 +167,7 @@ namespace CarRentalWF
             this.cbCustomEndDate.TabIndex = 10;
             this.cbCustomEndDate.Text = "Custom End Date";
             this.cbCustomEndDate.UseVisualStyleBackColor = true;
-            this.cbCustomEndDate.CheckedChanged += new System.EventHandler(this.cbCustomEndDate_CheckedChanged);
+            this.cbCustomEndDate.CheckedChanged += new System.EventHandler(this.CbCustomEndDate_CheckedChanged);
             // 
             // groupBox2
             // 
