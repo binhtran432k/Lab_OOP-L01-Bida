@@ -14,7 +14,7 @@ namespace CarRentalWF
     public partial class RentInfoForm : Form
     {
         readonly CarRentalManagement _carRentalManagement = CarRentalManagement.GetInstance();
-        Rent _rent = null;
+        private Rent _rent;
         private bool _isReturn;
         public int MileageForm { get; private set; }
         public DateTime ReturnDateForm { get; private set; }
@@ -22,6 +22,7 @@ namespace CarRentalWF
 
         public RentInfoForm()
         {
+            _rent = null;
             InitializeComponent();
             _isReturn = false;
         }
@@ -32,21 +33,23 @@ namespace CarRentalWF
             _rent = rent;
 
             txtCustomer.Text = _rent.CustomerName;
-            txtVehicle.Text = _rent.VehicleID;
-            txtStartDate.Text = _rent.StartDate.ToString("dd/MM/yyyy");
-            txtEndDate.Text = _rent.EndDate.ToString("dd/MM/yyyy");
+            txtVehicle.Text = _rent.VehicleId;
+            dtStartDate.Value = _rent.StartDate;
+            dtEndDate.Value = _rent.EndDate;
             txtMileage.Text = _rent.Mileage.ToString();
             if (_rent.ReturnDate != null)
             {
-                txtReturnDate.Text = ((DateTime)_rent.ReturnDate).ToString("dd/MM/yyyy");
+                dtReturnDate.Value = (DateTime)_rent.ReturnDate;
             }
             _isReturn = isReturn;
             if (isReturn)
             {
                 txtCustomer.Enabled = false;
                 txtVehicle.Enabled = false;
-                txtStartDate.Enabled = false;
-                txtEndDate.Enabled = false;
+                dtStartDate.Enabled = false;
+                dtEndDate.Enabled = false;
+                txtPeriod.Enabled = false;
+                cbCustomEndDate.Enabled = false;
                 cbStatus.Enabled = false;
                 FormSaved = false;
             }
@@ -70,93 +73,80 @@ namespace CarRentalWF
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            string vehicleID = txtVehicle.Text;
-            Vehicle vehicle = _carRentalManagement.GetVehicle(vehicleID);
+            string errorMessage = _rentInfoHandle();
+            if (errorMessage != "")
+            {
+                MessageBox.Show(errorMessage, "Error");
+                return;
+            }
+            string vehicleId = txtVehicle.Text;
+            Vehicle vehicle = _carRentalManagement.GetVehicle(vehicleId);
             if (vehicle == null)
             {
                 MessageBox.Show("Can't find vehicle", "Error");
             }
-            else if (vehicle.Available == false && cbStatus.SelectedIndex != (int)RentStatus.Ongoing && _isReturn)
+            else if (vehicle.Available == false && (_rent == null || (_rent != null && _rent.VehicleId != vehicleId)))
             {
                 MessageBox.Show("The vehicle is unavailable for rent", "Error");
             }
+            //else if ((_isReturn || cbStatus.SelectedIndex == (int)RentStatus.Finish) && )
             else
             {
-                CultureInfo culture = CultureInfo.InvariantCulture;
-                string customerName = txtCustomer.Text;
-                DateTime startDate;
-                DateTime endDate;
-                RentStatus status = (RentStatus)Enum.Parse(typeof(RentStatus), cbStatus.Text);
-                string errorMessage = infoManagement();
-                if (errorMessage != "")
+                if ((_isReturn || cbStatus.SelectedIndex == (int)RentStatus.Finish) && int.Parse(txtMileage.Text) < vehicle.CurrentMileage)
                 {
-                    MessageBox.Show(errorMessage);
-                    return;
+                    DialogResult isAccept = MessageBox.Show("The mileage is smaller than the current mileage(" + vehicle.CurrentMileage + "). Are you sure to continue?", "Warning", MessageBoxButtons.YesNo);
+                    if (isAccept != DialogResult.Yes)
+                    {
+                        return;
+                    }
                 }
                 if (_isReturn)
                 {
                     MileageForm = int.Parse(txtMileage.Text);
-                    ReturnDateForm = DateTime.ParseExact(txtReturnDate.Text, "dd/MM/yyyy", culture);
+                    ReturnDateForm = dtReturnDate.Value;
+                    FormSaved = true;
+                    Close();
+                    return;
                 }
-                startDate = DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture);
-                if (_rent == null)
+                string customerName = txtCustomer.Text;
+                DateTime startDate;
+                DateTime endDate;
+                RentStatus status = (RentStatus)Enum.Parse(typeof(RentStatus), cbStatus.Text);
+                startDate = dtStartDate.Value;
+                int? mileage;
+                DateTime? returnDate;
+                if (cbStatus.SelectedIndex == (int)RentStatus.Finish || _isReturn)
                 {
-                    if (txtMileage.Text == "" || txtReturnDate.Text == "")
-                    {
-                        if (cbCustomEndDate.Checked)
-                        {
-                            endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
-                            _rent = new Rent(customerName, vehicle, startDate, endDate, status);
-                        }
-                        else
-                        {
-                            _rent = new Rent(customerName, vehicle, startDate, double.Parse(txtEndDate.Text), status);
-                        }
-                    }
-                    else
-                    {
-                        int mileage = int.Parse(txtMileage.Text);
-                        DateTime returnDate = DateTime.ParseExact(txtReturnDate.Text, "dd/MM/yyyy", culture);
-                        if (cbCustomEndDate.Checked)
-                        {
-                            endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
-                            _rent = new Rent(customerName, vehicle, mileage, startDate, endDate, returnDate, status);
-                        }
-                        else
-                        {
-                            _rent = new Rent(customerName, vehicle, mileage, startDate, double.Parse(txtEndDate.Text), returnDate, status);
-                        }
-                    }
-                    _carRentalManagement.AddRent(_rent);
-                    //vehicle.Available = false;
+                    mileage = int.Parse(txtMileage.Text);
+                    returnDate = dtReturnDate.Value;
                 }
                 else
                 {
-                    if (txtMileage.Text == "" || txtReturnDate.Text == "")
+                    mileage = null;
+                    returnDate = null;
+                }
+                if (_rent == null)
+                {
+                    if (cbCustomEndDate.Checked)
                     {
-                        if (cbCustomEndDate.Checked)
-                        {
-                            endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
-                            _rent.Update(customerName, startDate, endDate, status);
-                        }
-                        else
-                        {
-                            _rent.Update(customerName, startDate, double.Parse(txtEndDate.Text), status);
-                        }
+                        endDate = dtEndDate.Value;
+                        _carRentalManagement.AddRental(customerName, vehicle, startDate, endDate, returnDate, mileage, status);
                     }
                     else
                     {
-                        int mileage = int.Parse(txtMileage.Text);
-                        DateTime returnDate = DateTime.ParseExact(txtReturnDate.Text, "dd/MM/yyyy", culture);
-                        if (cbCustomEndDate.Checked)
-                        {
-                            endDate = DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture);
-                            _rent.Update(customerName, mileage, startDate, endDate, returnDate, status);
-                        }
-                        else
-                        {
-                            _rent.Update(customerName, mileage, startDate, double.Parse(txtEndDate.Text), returnDate, status);
-                        }
+                        _carRentalManagement.AddRental(customerName, vehicle, startDate, double.Parse(txtPeriod.Text), returnDate, mileage, status);
+                    }
+                }
+                else
+                {
+                    if (cbCustomEndDate.Checked)
+                    {
+                        endDate = dtEndDate.Value;
+                        _carRentalManagement.UpdateRental(customerName, _rent.Id, vehicle, startDate, endDate, returnDate, mileage, status);
+                    }
+                    else
+                    {
+                        _carRentalManagement.UpdateRental(customerName, _rent.Id, vehicle, startDate, double.Parse(txtPeriod.Text), returnDate, mileage, status);
                     }
                 }
                 FormSaved = true;
@@ -166,54 +156,30 @@ namespace CarRentalWF
 
         private void cbCustomEndDate_CheckedChanged(object sender, EventArgs e)
         {
-            CultureInfo culture = CultureInfo.InvariantCulture;
-            DateTime startDate;
-            DateTime endDate;
-            if (!DateTime.TryParseExact(txtStartDate.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out startDate))
+            if (_isReturn)
             {
-                updateTxtEndDate();
                 return;
             }
-            if (!DateTime.TryParseExact(txtEndDate.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out endDate))
-            {
-                double period;
-                if (double.TryParse(txtEndDate.Text, out period))
-                {
-                    endDate = startDate.AddDays(period);
-                }
-                else
-                {
-                    updateTxtEndDate();
-                    txtEndDate.Text = string.Empty;
-                    return;
-                }
-            }
+            DateTime startDate = dtStartDate.Value;
+            double period;
             if (cbCustomEndDate.Checked)
             {
-                lblEndDate.Text = "End Date";
-                txtEndDate.Text = endDate.ToString("dd/MM/yyyy");
+                if (double.TryParse(txtPeriod.Text, out period))
+                {
+                    dtEndDate.Value = startDate.AddDays(period);
+                }
+                txtPeriod.Enabled = false;
+                dtEndDate.Enabled = true;
             }
             else
             {
-                lblEndDate.Text = "Period (Day)";
-                txtEndDate.Text = (endDate - startDate).TotalDays.ToString();
+                txtPeriod.Text = ((int)((dtEndDate.Value - dtStartDate.Value).TotalDays + 0.5)).ToString();
+                dtEndDate.Enabled = false;
+                txtPeriod.Enabled = true;
             }
         }
-        private void updateTxtEndDate()
+        private string _rentInfoHandle()
         {
-            if (cbCustomEndDate.Checked)
-            {
-                lblEndDate.Text = "End Date";
-            }
-            else
-            {
-                lblEndDate.Text = "Period (Day)";
-            }
-        }
-        private string infoManagement()
-        {
-            CultureInfo culture = CultureInfo.InvariantCulture;
-            DateTime testDate;
             double testDou;
             int testI;
             int status = _isReturn ? cbStatus.SelectedIndex + 1 : cbStatus.SelectedIndex;
@@ -225,52 +191,21 @@ namespace CarRentalWF
             {
                 return "You must complete vehicle id field!";
             }
-            else if (txtStartDate.Text == "")
-            {
-                return "You must complete start date field!";
-            }
-            else if (txtEndDate.Text == "")
-            {
-                return "You must complete end date field!";
-            }
-            else if (!DateTime.TryParseExact(txtStartDate.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out testDate))
-            {
-                return "Your start date does not match the date format dd/mm/yyyy!";
-            }
-            else if (cbCustomEndDate.Checked && !DateTime.TryParseExact(txtEndDate.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out testDate))
-            {
-                return "Your end date does not match the date format dd/mm/yyyy!";
-            }
-            else if (cbCustomEndDate.Checked && DateTime.ParseExact(txtEndDate.Text, "dd/MM/yyyy", culture) <= DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture))
+            else if (cbCustomEndDate.Checked && dtEndDate.Value <= dtStartDate.Value)
             {
                 return "Your end date must be happenned after start date!";
             }
-            else if (!cbCustomEndDate.Checked && !double.TryParse(txtEndDate.Text, out testDou))
+            else if (!cbCustomEndDate.Checked && !double.TryParse(txtPeriod.Text, out testDou))
             {
                 return "Your period must be a number!";
             }
-            else if (!cbCustomEndDate.Checked && double.Parse(txtEndDate.Text) <= 0)
+            else if (!cbCustomEndDate.Checked && double.Parse(txtPeriod.Text) <= 0)
             {
                 return "Your period must be greater than zero!";
             }
-            else if (txtMileage.Text != "" || txtReturnDate.Text != "")
-            {
-                if (status == (int)RentStatus.Ready || status == (int)RentStatus.Ongoing)
-                {
-                    return "Your mileage and return date must be empty when status is ready or ongoing!";
-                }
-            }
             else if (status == (int)RentStatus.Finish)
             {
-                if (txtMileage.Text == "" || txtReturnDate.Text == "")
-                {
-                    return "You must complete mileage and return date when status is finish!";
-                }
-                else if (!DateTime.TryParseExact(txtReturnDate.Text, "dd/MM/yyyy", culture, DateTimeStyles.None, out testDate))
-                {
-                    return "Your return date does not match the date format dd/mm/yyyy!";
-                }
-                else if (DateTime.ParseExact(txtReturnDate.Text, "dd/MM/yyyy", culture) <= DateTime.ParseExact(txtStartDate.Text, "dd/MM/yyyy", culture))
+                if (dtReturnDate.Value <= dtStartDate.Value)
                 {
                     return "Your return date must be happenned after start date!";
                 }
@@ -284,6 +219,21 @@ namespace CarRentalWF
                 }
             }
             return "";
+        }
+
+        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int status = _isReturn? cbStatus.SelectedIndex + 1 : cbStatus.SelectedIndex;
+            if (status != (int)RentStatus.Finish)
+            {
+                txtMileage.Enabled = false;
+                dtReturnDate.Enabled = false;
+            }
+            else
+            {
+                txtMileage.Enabled = true;
+                dtReturnDate.Enabled = true;
+            }
         }
     }
 }

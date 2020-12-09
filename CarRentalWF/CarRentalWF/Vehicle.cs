@@ -9,7 +9,7 @@ namespace CarRentalWF
     public abstract class Vehicle
     {
         static int NumberOfVehicle = 0;
-        public string ID { get; protected set; }
+        public string Id { get; protected set; }
         public string Type { get; protected set; }
         public string Name { get; protected set; }
         public string Color { get; protected set; }
@@ -19,17 +19,17 @@ namespace CarRentalWF
         public double Price { get; protected set; }
         public double Condition { get; protected set; }
         public string ConditionText { get; protected set; }
-        public bool Available { get; set; }
-        public int CurrentMileage { get; set; }
-        public int LastEngineServiceMileage { get; set; }
-        public int LastTransmissionServiceMileage { get; set; }
-        public int LastTireServiceMileage { get; set; }
+        public bool Available { get; protected set; }
+        public int CurrentMileage { get; protected set; }
+        public int LastEngineServiceMileage { get; protected set; }
+        public int LastTransmissionServiceMileage { get; protected set; }
+        public int LastTireServiceMileage { get; protected set; }
         public ServiceHistory ServiceHistoryList { get; protected set; }
 
         public void GenerateID()
         {
             NumberOfVehicle += 1;
-            ID = NumberOfVehicle.ToString();
+            Id = NumberOfVehicle.ToString();
         }
 
         public virtual string ServeEngine() { return ""; }
@@ -41,7 +41,7 @@ namespace CarRentalWF
         public void ViewDetail()
         {
             Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("Vehicle #" + ID);
+            Console.WriteLine("Vehicle #" + Id);
             Console.WriteLine(string.Format("Name: {0}", Name));
             Console.WriteLine(string.Format("Color: {0}", Color));
             Console.WriteLine(string.Format("Brand: {0}", Brand));
@@ -62,12 +62,6 @@ namespace CarRentalWF
             Condition = condition;
             CurrentMileage = currentMileage;
         }
-
-        public void SetAvailable(bool value)
-        {
-            Available = value;
-        }
-
         public string GetCondition()
         {
             if (Condition >= 0.8)
@@ -84,7 +78,7 @@ namespace CarRentalWF
         public override string ToString()
         {
             string detail = "";
-            detail += "Vehicle #" + ID + "\n";
+            detail += "Vehicle #" + Id + "\n";
             detail += string.Format("Type: {0}\n", Type);
             detail += string.Format("Name: {0}\n", Name);
             detail += string.Format("Color: {0}\n", Color);
@@ -94,6 +88,18 @@ namespace CarRentalWF
             detail += string.Format("Condition: {0}\n", GetCondition());
             detail += string.Format("Price per day: {0}$/day\n", Price);
             return detail;
+        }
+        public void SetAvailable(bool available)
+        {
+            Available = available;
+        }
+        public void Update(int? mileage, bool available)
+        {
+            if (mileage != null)
+            {
+                CurrentMileage = (int)mileage;
+            }
+            Available = available;
         }
     }
 }

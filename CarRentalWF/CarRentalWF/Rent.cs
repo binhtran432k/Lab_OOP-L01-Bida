@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRentalWF
 {
@@ -16,176 +12,59 @@ namespace CarRentalWF
     public class Rent
     {
         private static int NumberOfRent = 0;
-        public string ID { get; private set; }
-        public string CustomerName { get; set; }
-        public string VehicleID { get; set; }
-        public Nullable<int> Mileage { get; set; }
-        public double Total { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public Nullable<DateTime> ReturnDate { get; set; }
-        public RentStatus Status { get; set; }
-        private Vehicle _vehicle;
-
-        public Rent(string customerName, Vehicle vehicle, DateTime startDate, DateTime endDate, RentStatus status = RentStatus.Ready)
+        public string Id { get; private set; }
+        public string CustomerName { get; private set; }
+        public string VehicleId { get; private set; }
+        public int? Mileage { get; private set; }
+        public double Total { get; private set; }
+        public double Price { get; private set; }
+        public DateTime StartDate { get; private set; }
+        public DateTime EndDate { get; private set; }
+        public DateTime? ReturnDate { get; private set; }
+        public RentStatus Status { get; private set; }
+     
+        public Rent(string customerName, string vehicleId, double price, double total, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
             GenerateID();
-            CustomerName = customerName;
-            _vehicle = vehicle;
-            VehicleID = vehicle.ID;
-            Mileage = null;
-            StartDate = startDate;
-            EndDate = endDate;
-            ReturnDate = null;
-            Total = _generateTotal(vehicle.Price, startDate, endDate);
-            Status = status;
+            Update(customerName, vehicleId, price, total, startDate, endDate, returnDate, mileage, status);
         }
-
-        public Rent(string customerName, Vehicle vehicle, int mileage, DateTime startDate, DateTime endDate, DateTime returnDate, RentStatus status = RentStatus.Ready)
+        public Rent(string customerName, string vehicleId, double price, double total, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
             GenerateID();
-            CustomerName = customerName;
-            _vehicle = vehicle;
-            VehicleID = vehicle.ID;
-            Mileage = mileage;
-            StartDate = startDate;
-            EndDate = endDate;
-            ReturnDate = returnDate;
-            Total = _generateTotal(vehicle.Price, mileage, startDate, endDate, returnDate);
-            Status = status;
-        }
-        public Rent(string customerName, Vehicle vehicle, DateTime startDate, double period, RentStatus status = RentStatus.Ready)
-        {
-            GenerateID();
-            CustomerName = customerName;
-            _vehicle = vehicle;
-            VehicleID = vehicle.ID;
-            Mileage = null;
-            StartDate = startDate;
-            DateTime endDate = startDate.AddDays(period);
-            EndDate = endDate;
-            ReturnDate = null;
-            Total = _generateTotal(vehicle.Price, startDate, endDate);
-            Status = status;
-        }
-
-        public Rent(string customerName, Vehicle vehicle, int mileage, DateTime startDate, double period, DateTime returnDate, RentStatus status = RentStatus.Ready)
-        {
-            GenerateID();
-            CustomerName = customerName;
-            _vehicle = vehicle;
-            VehicleID = vehicle.ID;
-            Mileage = mileage;
-            StartDate = startDate;
-            DateTime endDate = startDate.AddDays(period);
-            EndDate = endDate;
-            ReturnDate = returnDate;
-            Total = _generateTotal(vehicle.Price, mileage, startDate, endDate, returnDate);
-            Status = status;
+            Update(customerName, vehicleId, price, total, startDate, startDate.AddDays(period), returnDate, mileage, status);
         }
         private void GenerateID()
         {
             NumberOfRent += 1;
-            ID = NumberOfRent.ToString();
+            Id = NumberOfRent.ToString();
         }
-        public void Update(string customerName, DateTime startDate, DateTime endDate, RentStatus status)
-        {
+       public void Update(string customerName, string vehicleId, double price, double total, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status)
+       {
             CustomerName = customerName;
-            VehicleID = _vehicle.ID;
-            Mileage = null;
-            StartDate = startDate;
-            EndDate = endDate;
-            ReturnDate = null;
-            Total = _generateTotal(_vehicle.Price, startDate, endDate);
-            Status = status;
-        }
-        public void Update(string customerName, int mileage, DateTime startDate, DateTime endDate, DateTime returnDate, RentStatus status)
-        {
-            CustomerName = customerName;
-            VehicleID = _vehicle.ID;
-            Mileage = mileage;
+            VehicleId = vehicleId;
+            Price = price;
             StartDate = startDate;
             EndDate = endDate;
             ReturnDate = returnDate;
-            Total = _generateTotal(_vehicle.Price, mileage, startDate, endDate, returnDate);
-            Status = status;
-        }
-        public void Update(string customerName, DateTime startDate, double period, RentStatus status)
-        {
-            CustomerName = customerName;
-            VehicleID = _vehicle.ID;
-            Mileage = null;
-            StartDate = startDate;
-            DateTime endDate = startDate.AddDays(period);
-            EndDate = endDate;
-            ReturnDate = null;
-            Total = _generateTotal(_vehicle.Price, startDate, endDate);
-            Status = status;
-        }
-        public void Update(string customerName, int mileage, DateTime startDate, double period, DateTime returnDate, RentStatus status)
-        {
-            CustomerName = customerName;
-            VehicleID = _vehicle.ID;
             Mileage = mileage;
-            StartDate = startDate;
-            DateTime endDate = startDate.AddDays(period);
-            EndDate = endDate;
+            Total = total;
+            Status = status;
+       }
+        public void Update(double total, DateTime? returnDate, int? mileage, RentStatus status)
+        {
+            Total = total;
             ReturnDate = returnDate;
-            Total = _generateTotal(_vehicle.Price, mileage, startDate, endDate, returnDate);
+            Mileage = mileage;
             Status = status;
         }
-
-        public void UpdateStatus(int mileage, DateTime returnDate)
+        public void Update(RentStatus status)
         {
-            if (Status == RentStatus.Ongoing)
-            {
-                Status = RentStatus.Finish;
-                _vehicle.SetAvailable(true);
-                Update(CustomerName, mileage, StartDate, EndDate, returnDate, Status);
-            }
+            Status = status;
         }
-        public void UpdateStatus()
+        public void Update(double total, RentStatus status)
         {
-            switch (Status)
-            {
-                case RentStatus.Ready:
-                    Status = RentStatus.Ongoing;
-                    _vehicle.SetAvailable(false);
-                    break;
-                case RentStatus.Ongoing:
-                    Status = RentStatus.Finish;
-                    _vehicle.SetAvailable(true);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public void Cancel()
-        {
-            if (Status == RentStatus.Ready)
-            {
-                Total = 0;
-                Status = RentStatus.Cancel;
-                _vehicle.SetAvailable(true);
-            }
-        }
-
-        private double _generateTotal(double price, int mileage, DateTime startDate, DateTime endDate, DateTime returnDate)
-        {
-            double dayDifference = (endDate - startDate).TotalDays;
-            double maxDayDiff = (returnDate > endDate) ? (returnDate - startDate).TotalDays : (endDate - startDate).TotalDays;
-            double overrunDateCost = (maxDayDiff - dayDifference) * price * 1.5;
-            double overrunMileageCost = (mileage > 200 * maxDayDiff) ? (mileage / 200 - maxDayDiff) * price * 1.25 : 0;
-            double total = dayDifference * price + overrunDateCost + overrunMileageCost;
-            return total;
-        }
-
-        private double _generateTotal(double price, DateTime startDate, DateTime endDate)
-        {
-            double dayDifference = (endDate - startDate).TotalDays;
-            double total = dayDifference * price;
-            return total;
+            Total = total;
+            Status = status;
         }
     }
 }

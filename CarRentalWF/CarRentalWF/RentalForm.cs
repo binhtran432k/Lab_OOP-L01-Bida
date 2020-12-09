@@ -73,7 +73,7 @@ namespace CarRentalWF
                 {
                     if (rentForm.FormSaved)
                     {
-                        rent.UpdateStatus(rentForm.MileageForm, rentForm.ReturnDateForm);
+                        _carRentalManagement.UpdateRentalStatus(rent.Id, rentForm.MileageForm, rentForm.ReturnDateForm);
                     }
                     _rentBindingSource.ResetBindings(false);
                     UpdateBtnProcess();
@@ -83,7 +83,7 @@ namespace CarRentalWF
             }
             else
             {
-                rent.UpdateStatus();
+                _carRentalManagement.UpdateRentalStatus(rent.Id, null, null);
                 _rentBindingSource.ResetBindings(false);
                 UpdateBtnProcess();
             }
@@ -92,9 +92,7 @@ namespace CarRentalWF
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             int index = rentDataGridView.SelectedRows[0].Index;
-            Rent rent = _carRentalManagement.RentList[index];
-            _carRentalManagement.GetVehicle(rentDataGridView.SelectedRows[0].Cells[2].Value.ToString()).SetAvailable(true);
-            _carRentalManagement.RemoveRent(rent);
+            _carRentalManagement.RemoveRent(index.ToString());
             _rentBindingSource.ResetBindings(false);
             UpdateBtnProcess();
         }
@@ -102,8 +100,7 @@ namespace CarRentalWF
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             int index = rentDataGridView.SelectedRows[0].Index;
-            Rent rent = _carRentalManagement.RentList[index];
-            rent.Cancel();
+            _carRentalManagement.CancelRental(index.ToString());
             _rentBindingSource.ResetBindings(false);
             UpdateBtnProcess();
         }

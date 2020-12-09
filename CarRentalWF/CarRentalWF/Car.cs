@@ -50,7 +50,7 @@ namespace CarRentalWF
                     type = "minor";
                 }
 
-                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceForm serviceForm = new ServiceForm(kind, type, Id, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
                 MaintenaceJob job = serviceForm.Job;
@@ -81,7 +81,7 @@ namespace CarRentalWF
                     type = "overhaul";
                 }
 
-                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceForm serviceForm = new ServiceForm(kind, type, Id, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
                 MaintenaceJob job = serviceForm.Job;
@@ -108,7 +108,7 @@ namespace CarRentalWF
                     type = "adjustment";
                 }
 
-                ServiceForm serviceForm = new ServiceForm(kind, type, ID, DateTime.Now, CurrentMileage);
+                ServiceForm serviceForm = new ServiceForm(kind, type, Id, DateTime.Now, CurrentMileage);
                 serviceForm.ShowDialog();
 
                 MaintenaceJob job = serviceForm.Job;

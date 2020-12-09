@@ -32,8 +32,6 @@ namespace CarRentalWF
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
             this.vehicleGridView = new System.Windows.Forms.DataGridView();
-            this.vehicleGroupBox = new System.Windows.Forms.GroupBox();
-            this.btnRent = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +41,8 @@ namespace CarRentalWF
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.vehicleGroupBox = new System.Windows.Forms.GroupBox();
+            this.btnRent = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleGridView)).BeginInit();
             this.vehicleGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +57,7 @@ namespace CarRentalWF
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search Vehicle";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnBook
             // 
@@ -69,6 +69,7 @@ namespace CarRentalWF
             this.btnBook.TabIndex = 7;
             this.btnBook.Text = "Book Vehicle";
             this.btnBook.UseVisualStyleBackColor = true;
+            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
             // 
             // vehicleGridView
             // 
@@ -86,8 +87,7 @@ namespace CarRentalWF
             this.Column5,
             this.Column6,
             this.Column7,
-            this.Column8,
-            this.Column9});
+            this.Column8});
             this.vehicleGridView.Location = new System.Drawing.Point(8, 30);
             this.vehicleGridView.Name = "vehicleGridView";
             this.vehicleGridView.ReadOnly = true;
@@ -96,33 +96,6 @@ namespace CarRentalWF
             this.vehicleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.vehicleGridView.Size = new System.Drawing.Size(626, 470);
             this.vehicleGridView.TabIndex = 0;
-            // 
-            // vehicleGroupBox
-            // 
-            this.vehicleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.vehicleGroupBox.Controls.Add(this.vehicleGridView);
-            this.vehicleGroupBox.Location = new System.Drawing.Point(20, 20);
-            this.vehicleGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.vehicleGroupBox.Name = "vehicleGroupBox";
-            this.vehicleGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.vehicleGroupBox.Size = new System.Drawing.Size(640, 520);
-            this.vehicleGroupBox.TabIndex = 9;
-            this.vehicleGroupBox.TabStop = false;
-            this.vehicleGroupBox.Text = "Vehicle Fleet";
-            // 
-            // btnRent
-            // 
-            this.btnRent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRent.Location = new System.Drawing.Point(690, 50);
-            this.btnRent.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRent.Name = "btnRent";
-            this.btnRent.Size = new System.Drawing.Size(160, 50);
-            this.btnRent.TabIndex = 6;
-            this.btnRent.Text = "Rent Vehicle";
-            this.btnRent.UseVisualStyleBackColor = true;
-            this.btnRent.Click += new System.EventHandler(this.btnRent_Click);
             // 
             // Column1
             // 
@@ -196,13 +169,32 @@ namespace CarRentalWF
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
-            // Column9
+            // vehicleGroupBox
             // 
-            this.Column9.DataPropertyName = "Available";
-            this.Column9.HeaderText = "Available";
-            this.Column9.MinimumWidth = 70;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
+            this.vehicleGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vehicleGroupBox.Controls.Add(this.vehicleGridView);
+            this.vehicleGroupBox.Location = new System.Drawing.Point(20, 20);
+            this.vehicleGroupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.vehicleGroupBox.Name = "vehicleGroupBox";
+            this.vehicleGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.vehicleGroupBox.Size = new System.Drawing.Size(640, 520);
+            this.vehicleGroupBox.TabIndex = 9;
+            this.vehicleGroupBox.TabStop = false;
+            this.vehicleGroupBox.Text = "Vehicle Fleet";
+            // 
+            // btnRent
+            // 
+            this.btnRent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRent.Location = new System.Drawing.Point(690, 50);
+            this.btnRent.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRent.Name = "btnRent";
+            this.btnRent.Size = new System.Drawing.Size(160, 50);
+            this.btnRent.TabIndex = 6;
+            this.btnRent.Text = "Rent Vehicle";
+            this.btnRent.UseVisualStyleBackColor = true;
+            this.btnRent.Click += new System.EventHandler(this.btnRent_Click);
             // 
             // BookAndRentForm
             // 
@@ -239,6 +231,5 @@ namespace CarRentalWF
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column9;
     }
 }

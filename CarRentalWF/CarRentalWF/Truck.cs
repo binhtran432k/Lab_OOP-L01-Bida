@@ -48,7 +48,7 @@ namespace CarRentalWF
                 {
                     type = "minor";
                 }
-                MaintenaceJob job = new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage);
+                MaintenaceJob job = new MaintenaceJob(kind, type, Id, DateTime.Now, CurrentMileage);
                 ServiceHistoryList.AddJob(job);
                 return job.ToString();
             }
@@ -75,7 +75,7 @@ namespace CarRentalWF
                 {
                     type = "overhaul";
                 }
-                MaintenaceJob job = new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage);
+                MaintenaceJob job = new MaintenaceJob(kind, type, Id, DateTime.Now, CurrentMileage);
                 ServiceHistoryList.AddJob(job);
                 return job.ToString();
             }
@@ -98,7 +98,7 @@ namespace CarRentalWF
                 {
                     type = "adjustment";
                 }
-                MaintenaceJob job = new MaintenaceJob(kind, type, ID, DateTime.Now, CurrentMileage);
+                MaintenaceJob job = new MaintenaceJob(kind, type, Id, DateTime.Now, CurrentMileage);
                 ServiceHistoryList.AddJob(job);
                 return job.ToString();
             }

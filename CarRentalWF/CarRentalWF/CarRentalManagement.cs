@@ -53,7 +53,7 @@ namespace CarRentalWF
             string serviceReport = "";
             foreach (Vehicle vec in VehicleList)
             {
-                serviceReport += "Checking for vehicle #" + vec.ID;
+                serviceReport += "Checking for vehicle #" + vec.Id;
                 serviceReport += "\nType: " + vec.Type + "\n";
                 serviceReport += "Name: " + vec.Name + "\n";
 
@@ -75,7 +75,7 @@ namespace CarRentalWF
 
         public Vehicle GetVehicle(string number)
         {
-            Vehicle vec = VehicleList.Find(x => x.ID == number);
+            Vehicle vec = VehicleList.Find(x => x.Id == number);
             return vec;
         }
 
@@ -135,19 +135,11 @@ namespace CarRentalWF
             VehicleList.Remove(vehicle);
         }
 
-        public void UpdateVehicle(Vehicle vehicle)
+        public void RemoveRent(string rentId)
         {
-            Vehicle vec = VehicleList.Find(x => x.ID == vehicle.ID);
-            vec = vehicle;
-        }
-
-        public void AddRent(Rent rent)
-        {
-            RentList.Add(rent);
-        }
-
-        public void RemoveRent(Rent rent)
-        {
+            Rent rent = GetRent(rentId);
+            Vehicle vehicle = GetVehicle(rent.VehicleId);
+            vehicle.SetAvailable(true);
             RentList.Remove(rent);
         }
 
@@ -208,14 +200,14 @@ namespace CarRentalWF
             AddVehicle(new Car("Lamboghini ACBC", "yellow", "Lambo", 2015, 7, 199.99, 0.9));
             AddVehicle(new Car("Mech 7000X", "black", "Mech", 2016, 4, 99.99, 1.0));
             AddVehicle(new Truck("Truck kun", "gray", 2013, 45, 1.0));
-            AddRent(new Rent("Romado Alice", GetVehicle("1"), new DateTime(2019, 12, 30), new DateTime(2020, 1, 13)));
-            AddRent(new Rent("Amanda Simon", GetVehicle("2"), new DateTime(2018, 10, 30), new DateTime(2018, 11, 11)));
-            GetRent("2").UpdateStatus();
-            AddRent(new Rent("Roberto Shisui", GetVehicle("3"), new DateTime(2019, 2, 20), new DateTime(2019, 2, 28)));
-            GetRent("3").UpdateStatus();
-            GetRent("3").UpdateStatus(3000, new DateTime(2019, 3, 30));
-            AddRent(new Rent("John Smith", GetVehicle("4"), new DateTime(2020, 10, 19), new DateTime(2020, 10, 22)));
-            GetRent("4").Cancel();
+            AddRental("Romado Alice", GetVehicle("1"), new DateTime(2019, 12, 30), new DateTime(2020, 1, 13), null, null);
+            AddRental("Amanda Simon", GetVehicle("2"), new DateTime(2018, 10, 30), new DateTime(2018, 11, 11), null, null);
+            UpdateRentalStatus("2", null, null);
+            AddRental("Roberto Shisui", GetVehicle("3"), new DateTime(2019, 2, 20), new DateTime(2019, 2, 28), null, null);
+            UpdateRentalStatus("3", null, null);
+            UpdateRentalStatus("3", 3000, new DateTime(2019, 3, 30));
+            AddRental("John Smith", GetVehicle("4"), new DateTime(2020, 10, 19), new DateTime(2020, 10, 22), null, null);
+            CancelRental("4");
         }
 
         public List<Vehicle> GetAvailableVehicleList()
@@ -232,7 +224,7 @@ namespace CarRentalWF
         }
         public Rent GetRent(string rentID)
         {
-            Rent rent = RentList.Find(x => x.ID == rentID);
+            Rent rent = RentList.Find(x => x.Id == rentID);
             return rent;
         }
         public List<Rent> GetRentList()
@@ -240,6 +232,121 @@ namespace CarRentalWF
             List<Rent> rents;
             rents = RentList;
             return rents;
+        }
+        public void UpdateRentalStatus(string rentId, int? mileage, DateTime? returnDate)
+        {
+            Rent rent = GetRent(rentId);
+            switch (rent.Status)
+            {
+                case RentStatus.Ready:
+                    rent.Update(RentStatus.Ongoing);
+                    break;
+                case RentStatus.Ongoing:
+                    rent.Update(_generateTotal(rent.Price, rent.StartDate, rent.EndDate, returnDate), returnDate, mileage, RentStatus.Finish);
+                    _retalVehicleHandle(rent.Id, mileage);
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void AddRental(string customerName, Vehicle vehicle, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
+        {
+            double total = _generateTotal(vehicle.Price, startDate, endDate, returnDate);
+            Rent rent = new Rent(customerName, vehicle.Id, vehicle.Price, total, startDate, endDate, returnDate, mileage, status);
+            RentList.Add(rent);
+            _retalVehicleHandle(rent.Id, mileage);
+        }
+        public void AddRental(string customerName, Vehicle vehicle, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
+        {
+            double total = _generateTotal(vehicle.Price, startDate, startDate.AddDays(period), returnDate);
+            Rent rent = new Rent(customerName, vehicle.Id, vehicle.Price, total, startDate, period, returnDate, mileage, status);
+            RentList.Add(rent);
+            _retalVehicleHandle(rent.Id, mileage);
+        }
+        public void UpdateRental(string customerName, string rentId, Vehicle vehicle, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status)
+        {
+            double total = _generateTotal(vehicle.Price, startDate, endDate, returnDate);
+            GetRent(rentId).Update(customerName, vehicle.Id, vehicle.Price, total, startDate, endDate, returnDate, mileage, status);
+            _retalVehicleHandle(rentId, mileage);
+        }
+        public void UpdateRental(string customerName, string rentId, Vehicle vehicle, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status)
+        {
+            double total = _generateTotal(vehicle.Price, startDate, startDate.AddDays(period), returnDate);
+            GetRent(rentId).Update(customerName, vehicle.Id, vehicle.Price, total, startDate, startDate.AddDays(period), returnDate, mileage, status);
+            _retalVehicleHandle(rentId, mileage);
+        }
+        private void _retalVehicleHandle(string rentId, int? mileage)
+        {
+            Rent rent = GetRent(rentId);
+            Vehicle vehicle = GetVehicle(rent.VehicleId);
+            if (rent.Status == RentStatus.Finish)
+            {
+                vehicle.Update(mileage, true);
+            }
+            else
+            {
+                vehicle.SetAvailable(false);
+            }
+        }
+        public void CancelRental(string rentId)
+        {
+            Rent rent = GetRent(rentId);
+            Vehicle vehicle = GetVehicle(rent.VehicleId);
+            if (rent.Status == RentStatus.Ready)
+            {
+                rent.Update(0, RentStatus.Cancel);
+                vehicle.SetAvailable(true);
+            }
+        }
+        private double _generateTotal(double price, DateTime startDate, DateTime endDate, DateTime? returnDate)
+        {
+            double dayDifference = (endDate - startDate).TotalDays;
+            double maxDayDiff = (returnDate != null && returnDate > endDate) ? ((DateTime)returnDate - startDate).TotalDays : dayDifference;
+            double overrunDateCost = (maxDayDiff - dayDifference) * price * 1.2;
+            double total = dayDifference * price + overrunDateCost;
+            return total;
+        }
+        public Vehicle BookAvailableVehicle(string type, string name, string color, string brand, double? minPrice, double? maxPrice)
+        {
+            Vehicle vehicle;
+            if (minPrice != null && maxPrice != null)
+            {
+                vehicle = VehicleList.Find(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()) && x.Price >= minPrice && x.Price <= maxPrice);
+            }
+            else if (minPrice != null)
+            {
+                vehicle = VehicleList.Find(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()) && x.Price >= minPrice);
+            }
+            else if (maxPrice != null)
+            {
+                vehicle = VehicleList.Find(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()) && x.Price <= maxPrice);
+            }
+            else
+            {
+                vehicle = VehicleList.Find(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()));
+            }
+            return vehicle;
+        }
+        public List<Vehicle> SearchAvailableVehicle(string type, string name, string color, string brand, double? minPrice, double? maxPrice)
+        {
+            List<Vehicle> vehicles;
+            if (minPrice != null && maxPrice != null)
+            {
+                vehicles = VehicleList.FindAll(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()) && x.Price >= minPrice && x.Price <= maxPrice);
+            }
+            else if (minPrice != null)
+            {
+                vehicles = VehicleList.FindAll(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()) && x.Price >= minPrice);
+            }
+            else if (maxPrice != null)
+            {
+                vehicles = VehicleList.FindAll(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()) && x.Price <= maxPrice);
+            }
+            else
+            {
+                vehicles = VehicleList.FindAll(x => x.Available == true && x.Type == type && x.Name.ToLower().Contains(name.ToLower()) && x.Color.ToLower().Contains(color.ToLower()) && x.Brand.ToLower().Contains(brand.ToLower()));
+            }
+            return vehicles;
         }
     }
 }
