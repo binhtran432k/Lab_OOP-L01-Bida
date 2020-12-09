@@ -24,6 +24,7 @@ namespace CarRentalWF
             CloseConnection();
         }
 
+        #region Query
         public List<Vehicle> GetAllVehicles(bool availableOnly=false)
         {
             SQLiteDataReader sqlite_datareader;
@@ -113,7 +114,7 @@ namespace CarRentalWF
             CultureInfo culture = CultureInfo.InvariantCulture;
 
             sqlite_cmd = _sqlite_conn.CreateCommand();
-            sqlite_cmd.CommandText = "SELECT * FROM maintenanceJob WHERE vehicleID=@vehicleID";
+            sqlite_cmd.CommandText = "SELECT * FROM maintenaceJob WHERE vehicleID=@vehicleID";
             sqlite_cmd.Parameters.AddWithValue("@vehicleID", vehicleID);
 
             sqlite_datareader = sqlite_cmd.ExecuteReader();
@@ -126,7 +127,7 @@ namespace CarRentalWF
                     Kind = sqlite_datareader.GetString(2),
                     Type = sqlite_datareader.GetString(3),
                     Mileage = sqlite_datareader.GetInt32(4),
-                    ServeTime = DateTime.ParseExact(sqlite_datareader.GetString(5), "yyyy-MM-dd", culture),
+                    ServeTime = DateTime.ParseExact(sqlite_datareader.GetString(5), "yyyy-MM-dd HH:mm:ss", culture),
                     Cost = sqlite_datareader.GetDouble(6),
                     Garage = sqlite_datareader.GetString(7)
                 };
@@ -135,7 +136,9 @@ namespace CarRentalWF
             }
             return jobList;
         }
+        #endregion
 
+        #region Vehicle
         public int InsertVehicle(Vehicle vehicle)
         {
             SQLiteCommand sqlite_cmd;
@@ -231,7 +234,9 @@ namespace CarRentalWF
             sqlite_cmd.Parameters.AddWithValue("@id", vehicleID);
             sqlite_cmd.ExecuteNonQuery();
         }
+#endregion
 
+        #region Rent
         public int InsertRent(Rent rent)
         {
             SQLiteCommand sqlite_cmd;
@@ -307,6 +312,30 @@ namespace CarRentalWF
             }
             return null;
         }
+        #endregion
+
+        #region MaintenanceJob
+        public int InsertMaintenanceJob(MaintenanceJob job)
+        {
+            SQLiteCommand sqlite_cmd;
+            CultureInfo culture = CultureInfo.InvariantCulture;
+
+            sqlite_cmd = _sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "INSERT INTO maintenaceJob (vehicleID, kind, type, mileage, serveTime, cost, garage) values (@vehicleID, @kind, @type, @mileage, @serveTime, @cost, @garage)";
+            sqlite_cmd.Parameters.AddWithValue("@vehicleID", job.VehicleID);
+            sqlite_cmd.Parameters.AddWithValue("@kind", job.Kind);
+            sqlite_cmd.Parameters.AddWithValue("@type", job.Type);
+            sqlite_cmd.Parameters.AddWithValue("@mileage", job.Mileage);
+            sqlite_cmd.Parameters.AddWithValue("@serveTime", job.ServeTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            sqlite_cmd.Parameters.AddWithValue("@cost", job.Cost);
+            sqlite_cmd.Parameters.AddWithValue("@garage", job.Garage);
+            sqlite_cmd.ExecuteNonQuery();
+
+            int newId = (int)_sqlite_conn.LastInsertRowId;
+
+            return newId;
+        }
+        #endregion
 
         private void ConnectToDatabase()
         {

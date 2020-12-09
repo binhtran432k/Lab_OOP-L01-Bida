@@ -25,7 +25,7 @@ namespace CarRentalWF
         public int LastEngineServiceMileage { get; set; }
         public int LastTransmissionServiceMileage { get; set; }
         public int LastTireServiceMileage { get; set; }
-        public ServiceHistory ServiceHistoryList { get; protected set; }
+        public ServiceHistory ServiceHistory { get; protected set; }
 
         public void GenerateID()
         {
@@ -38,6 +38,17 @@ namespace CarRentalWF
         public virtual string ServeTransmission() { return ""; }
 
         public virtual string ServeTire() { return ""; }
+
+        public ServiceHistory GetServiceHistory()
+        {
+            ServiceHistory.LoadMainTenanceJobs(ID);
+            return ServiceHistory;
+        }
+
+        public MaintenanceJob GetMaintenanceJob(int index)
+        {
+            return ServiceHistory.GetMaintenanceJob(index);
+        }
 
         public void Update(string name, string color, string brand, int year, int numberOfSeat, double price, int condition, int currentMileage)
         {

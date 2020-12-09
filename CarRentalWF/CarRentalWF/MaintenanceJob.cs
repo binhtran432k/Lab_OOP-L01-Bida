@@ -8,6 +8,7 @@ namespace CarRentalWF
 {
     public class MaintenanceJob
     {
+        private Database _database = Database.GetInstance();
         private static int _numberOfJob = 0;
 
         public int ID { get; set; }
@@ -21,7 +22,7 @@ namespace CarRentalWF
 
         public MaintenanceJob() { }
 
-        public MaintenanceJob(string kind, string type, int vehicleID, DateTime serveTime, int mileage, double cost = 0, string garage = "")
+        public MaintenanceJob(string kind, string type, int vehicleID, DateTime serveTime, int mileage, double cost, string garage, bool isNew=false)
         {
             GenerateID();
             Kind = kind;
@@ -31,6 +32,11 @@ namespace CarRentalWF
             Mileage = mileage;
             Cost = cost;
             Garage = garage;
+
+            if (isNew)
+            {
+                ID = _database.InsertMaintenanceJob(this);
+            }
         }
 
         private void GenerateID()

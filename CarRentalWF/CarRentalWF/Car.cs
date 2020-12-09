@@ -30,7 +30,7 @@ namespace CarRentalWF
             LastEngineServiceMileage = engineMileage;
             LastTransmissionServiceMileage = transmissionMilage;
             LastTireServiceMileage = tireMilage;
-            ServiceHistoryList = new ServiceHistory();
+            ServiceHistory = new ServiceHistory();
         }
 
         public override string ServeEngine()
@@ -64,7 +64,7 @@ namespace CarRentalWF
                 else
                 {
                     LastEngineServiceMileage = CurrentMileage;
-                    ServiceHistoryList.AddJob(job);
+                    ServiceHistory.AddJob(job);
                     return job.ToString();
                 }
             }
@@ -102,7 +102,7 @@ namespace CarRentalWF
                 else
                 {
                     LastTransmissionServiceMileage = CurrentMileage;
-                    ServiceHistoryList.AddJob(job);
+                    ServiceHistory.AddJob(job);
                     return job.ToString();
                 }
             }
@@ -136,7 +136,7 @@ namespace CarRentalWF
                 else
                 {
                     LastTireServiceMileage = CurrentMileage;
-                    ServiceHistoryList.AddJob(job);
+                    ServiceHistory.AddJob(job);
                     return job.ToString();
                 }
             }

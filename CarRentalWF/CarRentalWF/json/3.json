@@ -1,0 +1,24 @@
+{
+  "MaintenaceJobs": [
+    {
+      "ID": 2,
+      "Kind": "replacement",
+      "Type": "tire",
+      "VehicleID": 3,
+      "ServeTime": "2020-12-07T07:08:08",
+      "Mileage": 800,
+      "Cost": 120.0,
+      "Garage": "BKCS"
+    },
+    {
+      "ID": 5,
+      "Kind": "transmission",
+      "Type": "overhaul",
+      "VehicleID": 3,
+      "ServeTime": "2020-12-09T21:12:34",
+      "Mileage": 1000,
+      "Cost": 200.0,
+      "Garage": "49 Dinh Tien Hoang"
+    }
+  ]
+}

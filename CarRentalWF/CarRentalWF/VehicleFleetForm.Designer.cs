@@ -44,7 +44,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnServiceHistory = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.ViewMaintenance = new System.Windows.Forms.Button();
             this.vehicleGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleGridView)).BeginInit();
@@ -64,7 +64,7 @@
             // 
             // btnServeFleet
             // 
-            this.btnServeFleet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnServeFleet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnServeFleet.Location = new System.Drawing.Point(557, 477);
             this.btnServeFleet.Margin = new System.Windows.Forms.Padding(4);
             this.btnServeFleet.Name = "btnServeFleet";
@@ -107,6 +107,7 @@
             this.vehicleGridView.Location = new System.Drawing.Point(6, 37);
             this.vehicleGridView.Name = "vehicleGridView";
             this.vehicleGridView.ReadOnly = true;
+            this.vehicleGridView.RowHeadersVisible = false;
             this.vehicleGridView.RowHeadersWidth = 51;
             this.vehicleGridView.RowTemplate.Height = 24;
             this.vehicleGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -209,7 +210,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(557, 199);
+            this.btnDelete.Location = new System.Drawing.Point(557, 196);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(155, 50);
@@ -221,7 +222,7 @@
             // btnServiceHistory
             // 
             this.btnServiceHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServiceHistory.Location = new System.Drawing.Point(557, 328);
+            this.btnServiceHistory.Location = new System.Drawing.Point(557, 338);
             this.btnServiceHistory.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceHistory.Name = "btnServiceHistory";
             this.btnServiceHistory.Size = new System.Drawing.Size(155, 50);
@@ -230,22 +231,22 @@
             this.btnServiceHistory.UseVisualStyleBackColor = true;
             this.btnServiceHistory.Click += new System.EventHandler(this.BtnServiceHistory_Click);
             // 
-            // button1
+            // btnExport
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(557, 410);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 50);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Export Service History";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Location = new System.Drawing.Point(557, 410);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(155, 50);
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "Export Service History";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
             // ViewMaintenance
             // 
             this.ViewMaintenance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewMaintenance.Location = new System.Drawing.Point(557, 257);
+            this.ViewMaintenance.Location = new System.Drawing.Point(557, 268);
             this.ViewMaintenance.Margin = new System.Windows.Forms.Padding(4);
             this.ViewMaintenance.Name = "ViewMaintenance";
             this.ViewMaintenance.Size = new System.Drawing.Size(155, 50);
@@ -260,7 +261,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 562);
             this.Controls.Add(this.ViewMaintenance);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnServiceHistory);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -296,7 +297,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column9;
         private System.Windows.Forms.Button btnServiceHistory;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button ViewMaintenance;
     }
 }

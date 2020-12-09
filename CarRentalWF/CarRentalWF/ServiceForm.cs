@@ -55,7 +55,7 @@ namespace CarRentalWF
         {
             double cost = double.Parse(txtCost.Text);
             string garage = txtGarage.Text;
-            Job = new MaintenanceJob(Kind, Type, VehicleID, ServeTime, Mileage, cost, garage);
+            Job = new MaintenanceJob(Kind, Type, VehicleID, ServeTime, Mileage, cost, garage, true);
             Close();
         }
 
