@@ -43,6 +43,22 @@ namespace CarRentalWF
             }
         }
 
+    
+        private void RentVehicleBtn_Click(object sender, EventArgs e)
+        {
+            if (!(_activeForm is BookAndRentForm))
+            {
+                OpenChildForm(new BookAndRentForm());
+            }
+        }
+
+        private void CustomerBtn_Click(object sender, EventArgs e)
+        {
+            if (!(_activeForm is CustomerForm))
+            {
+                OpenChildForm(new CustomerForm());
+            }
+        }
         private void OpenChildForm(Form childForm)
         {
             if (_activeForm != null)
@@ -57,14 +73,6 @@ namespace CarRentalWF
             panelChildForm.Controls.Add(childForm);
             childForm.BringToFront();
             childForm.Show();
-        }
-
-        private void RentVehicleBtn_Click(object sender, EventArgs e)
-        {
-            if (!(_activeForm is BookAndRentForm))
-            {
-                OpenChildForm(new BookAndRentForm());
-            }
         }
     }
 }

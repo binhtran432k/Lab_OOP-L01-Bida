@@ -14,6 +14,7 @@ namespace CarRentalWF
     public partial class RentInfoForm : Form
     {
         readonly CarRentalManagement _carRentalManagement = CarRentalManagement.GetInstance();
+        readonly CustomerManagement _customerManagement = CustomerManagement.GetInstance();
         private Rent _rent;
         private bool _isReturn;
         public int MileageForm { get; private set; }
@@ -82,7 +83,13 @@ namespace CarRentalWF
             }
             int vehicleId = int.Parse(txtVehicle.Text);
             Vehicle vehicle = _carRentalManagement.GetVehicle(vehicleId);
-            if (vehicle == null)
+            int customerId = int.Parse(txtCustomer.Text);
+            Customer customer = _customerManagement.GetCustomer(customerId);
+            if (customer == null)
+            {
+                MessageBox.Show("Can't find customer", "Error");
+            }
+            else if (vehicle == null)
             {
                 MessageBox.Show("Can't find vehicle", "Error");
             }
@@ -108,7 +115,6 @@ namespace CarRentalWF
                     Close();
                     return;
                 }
-                int customerId = int.Parse(txtCustomer.Text);
                 DateTime startDate;
                 DateTime endDate;
                 RentStatus status = (RentStatus)Enum.Parse(typeof(RentStatus), cbStatus.Text);
@@ -183,13 +189,13 @@ namespace CarRentalWF
             double testDou;
             int testI;
             int status = _isReturn ? cbStatus.SelectedIndex + 1 : cbStatus.SelectedIndex;
-            if (txtCustomer.Text == "")
+            if (!int.TryParse(txtCustomer.Text, out testI))
             {
-                return "You must complete customer name field!";
+                return "Customer ID mus be a number!";
             }
-            else if (txtVehicle.Text == "")
+            else if (!int.TryParse(txtVehicle.Text, out testI))
             {
-                return "You must complete vehicle id field!";
+                return "Vehicle ID mus be a number!";
             }
             else if (cbCustomEndDate.Checked && dtEndDate.Value <= dtStartDate.Value)
             {

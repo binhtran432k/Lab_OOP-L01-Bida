@@ -46,11 +46,17 @@ namespace CarRentalWF
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-            Form searchForm = new SearchForm(true);
+            SearchForm searchForm = new SearchForm(true);
 
             searchForm.FormClosed += (s, a) =>
             {
-                _vehicleBindingSource.DataSource = _carRentalManagement.GetAvailableVehicleList();
+                Form rentForm = new RentUserForm(searchForm.Vehicle);
+                rentForm.FormClosed += (ss, aa) =>
+                {
+                    _vehicleBindingSource.DataSource = _carRentalManagement.GetAvailableVehicleList();
+                };
+
+                rentForm.Show();
             };
 
             searchForm.Show();

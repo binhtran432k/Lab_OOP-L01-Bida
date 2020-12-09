@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnServeFleet = new System.Windows.Forms.Button();
             this.vehicleGroupBox = new System.Windows.Forms.GroupBox();
@@ -186,8 +186,8 @@
             // Column8
             // 
             this.Column8.DataPropertyName = "Condition";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column8.HeaderText = "Condition";
             this.Column8.MinimumWidth = 76;
             this.Column8.Name = "Column8";
@@ -204,7 +204,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(690, 136);
+            this.btnUpdate.Location = new System.Drawing.Point(690, 121);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(160, 50);
@@ -216,7 +216,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(690, 204);
+            this.btnDelete.Location = new System.Drawing.Point(690, 192);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(160, 50);
@@ -228,7 +228,7 @@
             // btnServiceHistory
             // 
             this.btnServiceHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnServiceHistory.Location = new System.Drawing.Point(690, 340);
+            this.btnServiceHistory.Location = new System.Drawing.Point(690, 334);
             this.btnServiceHistory.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceHistory.Name = "btnServiceHistory";
             this.btnServiceHistory.Size = new System.Drawing.Size(160, 50);
@@ -240,7 +240,7 @@
             // btnExport
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Location = new System.Drawing.Point(690, 408);
+            this.btnExport.Location = new System.Drawing.Point(690, 405);
             this.btnExport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(160, 50);
@@ -252,7 +252,7 @@
             // ViewMaintenance
             // 
             this.ViewMaintenance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewMaintenance.Location = new System.Drawing.Point(690, 272);
+            this.ViewMaintenance.Location = new System.Drawing.Point(690, 263);
             this.ViewMaintenance.Margin = new System.Windows.Forms.Padding(4);
             this.ViewMaintenance.Name = "ViewMaintenance";
             this.ViewMaintenance.Size = new System.Drawing.Size(160, 50);

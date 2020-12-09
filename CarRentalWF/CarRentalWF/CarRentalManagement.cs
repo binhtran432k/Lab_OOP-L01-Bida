@@ -14,7 +14,7 @@ namespace CarRentalWF
         private static CarRentalManagement _instance = null;
         protected Database _database = Database.GetInstance();
 
-        public CarRentalManagement()
+        private CarRentalManagement()
         {
             Location = "128 To Hien Thanh";
             Capacity = 100;
@@ -22,7 +22,7 @@ namespace CarRentalWF
         }
 
         ///*
-        public CarRentalManagement(string location, int capacity = 100)
+        private CarRentalManagement(string location, int capacity = 100)
         {
             Location = location;
             Capacity = capacity;
@@ -87,7 +87,8 @@ namespace CarRentalWF
 
         public void RentVehicle(int customerId, Vehicle vehicle, DateTime startDate, DateTime endDate)
         {
-            double total = _generateTotal(vehicle.Price, startDate, endDate, null);
+            double price = (startDate - endDate).TotalDays * vehicle.Price;
+            double total = _generateTotal(price, startDate, endDate, null);
             Rent rent = new Rent(customerId, vehicle.Id, vehicle.Price, total, startDate, endDate, null, null, RentStatus.Ready);
             _database.InsertRent(rent);
             _retalVehicleHandle(vehicle, RentStatus.Ready, null);
@@ -100,27 +101,31 @@ namespace CarRentalWF
         }
         public void AddRent(int customerId, Vehicle vehicle, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
-            double total = _generateTotal(vehicle.Price, startDate, endDate, returnDate);
+            double price = (startDate - endDate).TotalDays * vehicle.Price;
+            double total = _generateTotal(price, startDate, endDate, returnDate);
             Rent rent = new Rent(customerId, vehicle.Id, vehicle.Price, total, startDate, endDate, returnDate, mileage, status);
             _database.InsertRent(rent);
             _retalVehicleHandle(vehicle, status, mileage);
         }
         public void AddRent(int customerId, Vehicle vehicle, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status = RentStatus.Ready)
         {
-            double total = _generateTotal(vehicle.Price, startDate, startDate.AddDays(period), returnDate);
+            double price = period * vehicle.Price;
+            double total = _generateTotal(price, startDate, startDate.AddDays(period), returnDate);
             Rent rent = new Rent(customerId, vehicle.Id, vehicle.Price, total, startDate, period, returnDate, mileage, status);
             _database.InsertRent(rent);
             _retalVehicleHandle(vehicle, status, mileage);
         }
         public void UpdateRent(int customerId, int rentId, Vehicle vehicle, DateTime startDate, DateTime endDate, DateTime? returnDate, int? mileage, RentStatus status)
         {
-            double total = _generateTotal(vehicle.Price, startDate, endDate, returnDate);
+            double price = GetRent(rentId).Total;
+            double total = _generateTotal(price, startDate, endDate, returnDate);
             GetRent(rentId).Update(customerId, vehicle.Id, vehicle.Price, total, startDate, endDate, returnDate, mileage, status);
             _retalVehicleHandle(vehicle, status, mileage);
         }
         public void UpdateRent(int customerId, int rentId, Vehicle vehicle, DateTime startDate, double period, DateTime? returnDate, int? mileage, RentStatus status)
         {
-            double total = _generateTotal(vehicle.Price, startDate, startDate.AddDays(period), returnDate);
+            double price = GetRent(rentId).Total;
+            double total = _generateTotal(price, startDate, startDate.AddDays(period), returnDate);
             GetRent(rentId).Update(customerId, vehicle.Id, vehicle.Price, total, startDate, startDate.AddDays(period), returnDate, mileage, status);
             _retalVehicleHandle(vehicle, status, mileage);
         }
@@ -167,7 +172,7 @@ namespace CarRentalWF
                     rent.Update(RentStatus.Ongoing);
                     break;
                 case RentStatus.Ongoing:
-                    rent.Update(_generateTotal(rent.Price, rent.StartDate, rent.EndDate, returnDate), returnDate, mileage, RentStatus.Finish);
+                    rent.Update(_generateTotal(rent.Total, rent.StartDate, rent.EndDate, returnDate), returnDate, mileage, RentStatus.Finish);
                     _retalVehicleHandle(GetVehicle(rent.VehicleId), rent.Status, mileage);
                     break;
                 default:
@@ -231,8 +236,8 @@ namespace CarRentalWF
         {
             double dayDifference = (endDate - startDate).TotalDays;
             double maxDayDiff = (returnDate != null && returnDate > endDate) ? ((DateTime)returnDate - startDate).TotalDays : dayDifference;
-            double overrunDateCost = (maxDayDiff - dayDifference) * price * 1.2;
-            double total = dayDifference * price + overrunDateCost;
+            double overrunDateCost = ((maxDayDiff - dayDifference) / dayDifference) * price * 1.2;
+            double total = price + overrunDateCost;
             return total;
         }
     }

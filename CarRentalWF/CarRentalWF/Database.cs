@@ -108,6 +108,29 @@ namespace CarRentalWF
             return rentList;
         }
 
+        public List<Customer> GetAllCustomers()
+        {
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            List<Customer> customerList = new List<Customer>();
+      
+            sqlite_cmd = _sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "SELECT * FROM customer";
+
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
+            {
+                Customer customer = new Customer
+                {
+                    Id = sqlite_datareader.GetInt32(0),
+                    Name = sqlite_datareader.GetString(1),
+                    Phone = sqlite_datareader.GetString(2)
+                };
+                customerList.Add(customer);
+            }
+            return customerList;
+        }
+
         public List<MaintenanceJob> GetMaintenanceJobs(int vehicleID)
         {
             SQLiteDataReader sqlite_datareader;
@@ -336,6 +359,62 @@ namespace CarRentalWF
             int newId = (int)_sqlite_conn.LastInsertRowId;
 
             return newId;
+        }
+        #endregion
+
+        #region Customer
+        public int InsertCustomer(Customer customer)
+        {
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = _sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "INSERT INTO customer (name, phone) VALUES (@name, @phone)";
+            sqlite_cmd.Parameters.AddWithValue("@name", customer.Name);
+            sqlite_cmd.Parameters.AddWithValue("@phone", customer.Phone);
+            sqlite_cmd.ExecuteNonQuery();
+
+            int newId = (int)_sqlite_conn.LastInsertRowId;
+
+            return newId;
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = _sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "UPDATE customer SET name=@name, phone=@phone WHERE id = @id";
+            sqlite_cmd.Parameters.AddWithValue("@name", customer.Name);
+            sqlite_cmd.Parameters.AddWithValue("@phone", customer.Phone);
+            sqlite_cmd.Parameters.AddWithValue("@id", customer.Id);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public Customer GetCustomer(int customerId)
+        {
+            SQLiteDataReader sqlite_datareader;
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = _sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "SELECT * FROM customer WHERE id = @id";
+            sqlite_cmd.Parameters.AddWithValue("@id", customerId);
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+            while (sqlite_datareader.Read())
+            {
+                int id = sqlite_datareader.GetInt32(0);
+                string name = (string)sqlite_datareader[1];
+                string phone = (string)sqlite_datareader[2];
+                Customer customer = new Customer(name, phone);
+                customer.Id = id;
+                return customer;
+            }
+            return null;
+        }
+
+        public void RemoveCustomer(int customerId)
+        {
+            SQLiteCommand sqlite_cmd;
+            sqlite_cmd = _sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "DELETE FROM customer WHERE id = @id";
+            sqlite_cmd.Parameters.AddWithValue("@id", customerId);
+            sqlite_cmd.ExecuteNonQuery();
         }
         #endregion
 

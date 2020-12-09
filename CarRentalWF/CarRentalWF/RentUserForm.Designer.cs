@@ -36,6 +36,9 @@ namespace CarRentalWF
             this.lblPeriod = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblEndDate = new System.Windows.Forms.Label();
+            this.dtEndDate = new System.Windows.Forms.DateTimePicker();
+            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
             this.cbCustomEndDate = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblCondition = new System.Windows.Forms.Label();
@@ -54,9 +57,6 @@ namespace CarRentalWF
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtEndDate = new System.Windows.Forms.DateTimePicker();
-            this.lblEndDate = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +67,7 @@ namespace CarRentalWF
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(131, 26);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Customer Name";
+            this.lblName.Text = "Customer ID";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnRent
@@ -130,6 +130,33 @@ namespace CarRentalWF
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rent Info";
+            // 
+            // lblEndDate
+            // 
+            this.lblEndDate.Location = new System.Drawing.Point(6, 119);
+            this.lblEndDate.Name = "lblEndDate";
+            this.lblEndDate.Size = new System.Drawing.Size(131, 20);
+            this.lblEndDate.TabIndex = 13;
+            this.lblEndDate.Text = "End Date";
+            this.lblEndDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // dtEndDate
+            // 
+            this.dtEndDate.CustomFormat = "dd/MM/yyyy";
+            this.dtEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtEndDate.Location = new System.Drawing.Point(153, 116);
+            this.dtEndDate.Name = "dtEndDate";
+            this.dtEndDate.Size = new System.Drawing.Size(204, 23);
+            this.dtEndDate.TabIndex = 12;
+            // 
+            // dtStartDate
+            // 
+            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
+            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStartDate.Location = new System.Drawing.Point(153, 75);
+            this.dtStartDate.Name = "dtStartDate";
+            this.dtStartDate.Size = new System.Drawing.Size(204, 23);
+            this.dtStartDate.TabIndex = 11;
             // 
             // cbCustomEndDate
             // 
@@ -310,33 +337,6 @@ namespace CarRentalWF
             this.label1.TabIndex = 8;
             this.label1.Text = "ID:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // dtStartDate
-            // 
-            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
-            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStartDate.Location = new System.Drawing.Point(153, 75);
-            this.dtStartDate.Name = "dtStartDate";
-            this.dtStartDate.Size = new System.Drawing.Size(204, 23);
-            this.dtStartDate.TabIndex = 11;
-            // 
-            // dtEndDate
-            // 
-            this.dtEndDate.CustomFormat = "dd/MM/yyyy";
-            this.dtEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEndDate.Location = new System.Drawing.Point(153, 116);
-            this.dtEndDate.Name = "dtEndDate";
-            this.dtEndDate.Size = new System.Drawing.Size(204, 23);
-            this.dtEndDate.TabIndex = 12;
-            // 
-            // lblEndDate
-            // 
-            this.lblEndDate.Location = new System.Drawing.Point(6, 119);
-            this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(131, 20);
-            this.lblEndDate.TabIndex = 13;
-            this.lblEndDate.Text = "End Date";
-            this.lblEndDate.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // RentUserForm
             // 

@@ -7,6 +7,7 @@ namespace CarRentalWF
     public partial class RentUserForm : Form
     {
         readonly CarRentalManagement _carRentalManagement = CarRentalManagement.GetInstance();
+        readonly CustomerManagement _customerManagement = CustomerManagement.GetInstance();
         private Rent _rent = null;
         public bool FormSaved { get; private set; }
         public RentUserForm(Vehicle vec)
@@ -33,7 +34,13 @@ namespace CarRentalWF
             }
             int vehicleId = int.Parse(lblID.Text);
             Vehicle vehicle = _carRentalManagement.GetVehicle(vehicleId);
-            if (vehicle == null)
+            int customerId = int.Parse(txtCustomer.Text);
+            Customer customer = _customerManagement.GetCustomer(customerId);
+            if (customer == null)
+            {
+                MessageBox.Show("Can't find customer", "Error");
+            }
+            else if (vehicle == null)
             {
                 MessageBox.Show("Can't find vehicle", "Error");
             }
@@ -43,7 +50,6 @@ namespace CarRentalWF
             }
             else
             {
-                int customerId = int.Parse(txtCustomer.Text);
                 DateTime startDate = dtStartDate.Value;
                 DateTime endDate;
                 if (_rent == null)
@@ -65,9 +71,10 @@ namespace CarRentalWF
         private string _rentUserHandle()
         {
             double temp;
-            if (txtCustomer.Text == "")
+            int testI;
+            if (!int.TryParse(txtCustomer.Text, out testI))
             {
-                return "You must complete customer name field!";
+                return "Customer ID mus be a number!";
             }
             else if (cbCustomEndDate.Checked && dtEndDate.Value <= dtStartDate.Value)
             {

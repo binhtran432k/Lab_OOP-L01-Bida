@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelNavMenu = new System.Windows.Forms.Panel();
-            this.aboutBtn = new System.Windows.Forms.Button();
+            this.customerBtn = new System.Windows.Forms.Button();
             this.rentalBtn = new System.Windows.Forms.Button();
             this.rentVehicleBtn = new System.Windows.Forms.Button();
             this.vehicleBtn = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             // 
             this.panelNavMenu.AutoScroll = true;
             this.panelNavMenu.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panelNavMenu.Controls.Add(this.aboutBtn);
+            this.panelNavMenu.Controls.Add(this.customerBtn);
             this.panelNavMenu.Controls.Add(this.rentalBtn);
             this.panelNavMenu.Controls.Add(this.rentVehicleBtn);
             this.panelNavMenu.Controls.Add(this.vehicleBtn);
@@ -57,19 +57,20 @@
             this.panelNavMenu.Size = new System.Drawing.Size(200, 600);
             this.panelNavMenu.TabIndex = 0;
             // 
-            // aboutBtn
+            // customerBtn
             // 
-            this.aboutBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.aboutBtn.FlatAppearance.BorderSize = 0;
-            this.aboutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.aboutBtn.Location = new System.Drawing.Point(0, 280);
-            this.aboutBtn.Name = "aboutBtn";
-            this.aboutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.aboutBtn.Size = new System.Drawing.Size(200, 45);
-            this.aboutBtn.TabIndex = 5;
-            this.aboutBtn.Text = "About Us";
-            this.aboutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.aboutBtn.UseVisualStyleBackColor = true;
+            this.customerBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.customerBtn.FlatAppearance.BorderSize = 0;
+            this.customerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customerBtn.Location = new System.Drawing.Point(0, 280);
+            this.customerBtn.Name = "customerBtn";
+            this.customerBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.customerBtn.Size = new System.Drawing.Size(200, 45);
+            this.customerBtn.TabIndex = 5;
+            this.customerBtn.Text = "Customer List";
+            this.customerBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.customerBtn.UseVisualStyleBackColor = true;
+            this.customerBtn.Click += new System.EventHandler(this.CustomerBtn_Click);
             // 
             // rentalBtn
             // 
@@ -173,7 +174,7 @@
         private System.Windows.Forms.Button vehicleBtn;
         private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.Button rentVehicleBtn;
-        private System.Windows.Forms.Button aboutBtn;
+        private System.Windows.Forms.Button customerBtn;
         private System.Windows.Forms.Button rentalBtn;
         private System.Windows.Forms.Panel panelChildForm;
     }

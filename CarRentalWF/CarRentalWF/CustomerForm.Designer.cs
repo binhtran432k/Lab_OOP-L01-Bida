@@ -36,7 +36,7 @@ namespace CarRentalWF
             this.btnNew = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.vehicleGridView)).BeginInit();
             this.vehicleGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -49,22 +49,25 @@ namespace CarRentalWF
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(160, 50);
             this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete Vehicle";
+            this.btnDelete.Text = "Delete Customer";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(697, 136);
+            this.btnUpdate.Location = new System.Drawing.Point(697, 127);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(160, 50);
             this.btnUpdate.TabIndex = 9;
-            this.btnUpdate.Text = "Update Vehicle";
+            this.btnUpdate.Text = "Update Customer";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // vehicleGridView
             // 
+            this.vehicleGridView.AllowUserToAddRows = false;
             this.vehicleGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -73,7 +76,7 @@ namespace CarRentalWF
             this.vehicleGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column10});
+            this.Column3});
             this.vehicleGridView.Location = new System.Drawing.Point(8, 30);
             this.vehicleGridView.Name = "vehicleGridView";
             this.vehicleGridView.ReadOnly = true;
@@ -107,8 +110,9 @@ namespace CarRentalWF
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(160, 50);
             this.btnNew.TabIndex = 8;
-            this.btnNew.Text = "New Vehicle";
+            this.btnNew.Text = "New Customer";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // Column1
             // 
@@ -126,13 +130,13 @@ namespace CarRentalWF
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // Column10
+            // Column3
             // 
-            this.Column10.DataPropertyName = "Phone";
-            this.Column10.HeaderText = "Type";
-            this.Column10.MinimumWidth = 50;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
+            this.Column3.DataPropertyName = "Phone";
+            this.Column3.HeaderText = "Phone";
+            this.Column3.MinimumWidth = 50;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // CustomerForm
             // 
@@ -144,9 +148,10 @@ namespace CarRentalWF
             this.Controls.Add(this.vehicleGroupBox);
             this.Controls.Add(this.btnNew);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CustomerForm";
             this.Text = "CustomerForm";
+            this.Load += new System.EventHandler(this.CustomerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.vehicleGridView)).EndInit();
             this.vehicleGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -161,6 +166,6 @@ namespace CarRentalWF
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

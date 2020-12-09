@@ -38,15 +38,15 @@
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtReturnDate = new System.Windows.Forms.DateTimePicker();
+            this.dtEndDate = new System.Windows.Forms.DateTimePicker();
+            this.txtPeriod = new System.Windows.Forms.TextBox();
+            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
+            this.lblPeriod = new System.Windows.Forms.Label();
             this.lblReturn = new System.Windows.Forms.Label();
             this.lblMileage = new System.Windows.Forms.Label();
             this.cbCustomEndDate = new System.Windows.Forms.CheckBox();
             this.txtMileage = new System.Windows.Forms.TextBox();
-            this.txtPeriod = new System.Windows.Forms.TextBox();
-            this.lblPeriod = new System.Windows.Forms.Label();
-            this.dtEndDate = new System.Windows.Forms.DateTimePicker();
-            this.dtStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtReturnDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(131, 26);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Customer";
+            this.lblName.Text = "Customer ID";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtCustomer
@@ -156,6 +156,49 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rent Info";
             // 
+            // dtReturnDate
+            // 
+            this.dtReturnDate.CustomFormat = "dd/MM/yyyy";
+            this.dtReturnDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReturnDate.Location = new System.Drawing.Point(153, 229);
+            this.dtReturnDate.Name = "dtReturnDate";
+            this.dtReturnDate.Size = new System.Drawing.Size(204, 23);
+            this.dtReturnDate.TabIndex = 15;
+            // 
+            // dtEndDate
+            // 
+            this.dtEndDate.CustomFormat = "dd/MM/yyyy";
+            this.dtEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtEndDate.Location = new System.Drawing.Point(153, 151);
+            this.dtEndDate.Name = "dtEndDate";
+            this.dtEndDate.Size = new System.Drawing.Size(204, 23);
+            this.dtEndDate.TabIndex = 14;
+            // 
+            // txtPeriod
+            // 
+            this.txtPeriod.Location = new System.Drawing.Point(153, 190);
+            this.txtPeriod.Name = "txtPeriod";
+            this.txtPeriod.Size = new System.Drawing.Size(204, 23);
+            this.txtPeriod.TabIndex = 14;
+            // 
+            // dtStartDate
+            // 
+            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
+            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtStartDate.Location = new System.Drawing.Point(153, 112);
+            this.dtStartDate.Name = "dtStartDate";
+            this.dtStartDate.Size = new System.Drawing.Size(204, 23);
+            this.dtStartDate.TabIndex = 13;
+            // 
+            // lblPeriod
+            // 
+            this.lblPeriod.Location = new System.Drawing.Point(6, 195);
+            this.lblPeriod.Name = "lblPeriod";
+            this.lblPeriod.Size = new System.Drawing.Size(131, 20);
+            this.lblPeriod.TabIndex = 13;
+            this.lblPeriod.Text = "Period (Day)";
+            this.lblPeriod.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // lblReturn
             // 
             this.lblReturn.Location = new System.Drawing.Point(6, 233);
@@ -191,49 +234,6 @@
             this.txtMileage.Name = "txtMileage";
             this.txtMileage.Size = new System.Drawing.Size(204, 23);
             this.txtMileage.TabIndex = 8;
-            // 
-            // txtPeriod
-            // 
-            this.txtPeriod.Location = new System.Drawing.Point(153, 190);
-            this.txtPeriod.Name = "txtPeriod";
-            this.txtPeriod.Size = new System.Drawing.Size(204, 23);
-            this.txtPeriod.TabIndex = 14;
-            // 
-            // lblPeriod
-            // 
-            this.lblPeriod.Location = new System.Drawing.Point(6, 195);
-            this.lblPeriod.Name = "lblPeriod";
-            this.lblPeriod.Size = new System.Drawing.Size(131, 20);
-            this.lblPeriod.TabIndex = 13;
-            this.lblPeriod.Text = "Period (Day)";
-            this.lblPeriod.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // dtEndDate
-            // 
-            this.dtEndDate.CustomFormat = "dd/MM/yyyy";
-            this.dtEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEndDate.Location = new System.Drawing.Point(153, 151);
-            this.dtEndDate.Name = "dtEndDate";
-            this.dtEndDate.Size = new System.Drawing.Size(204, 23);
-            this.dtEndDate.TabIndex = 14;
-            // 
-            // dtStartDate
-            // 
-            this.dtStartDate.CustomFormat = "dd/MM/yyyy";
-            this.dtStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtStartDate.Location = new System.Drawing.Point(153, 112);
-            this.dtStartDate.Name = "dtStartDate";
-            this.dtStartDate.Size = new System.Drawing.Size(204, 23);
-            this.dtStartDate.TabIndex = 13;
-            // 
-            // dtReturnDate
-            // 
-            this.dtReturnDate.CustomFormat = "dd/MM/yyyy";
-            this.dtReturnDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReturnDate.Location = new System.Drawing.Point(153, 229);
-            this.dtReturnDate.Name = "dtReturnDate";
-            this.dtReturnDate.Size = new System.Drawing.Size(204, 23);
-            this.dtReturnDate.TabIndex = 15;
             // 
             // RentInfoForm
             // 

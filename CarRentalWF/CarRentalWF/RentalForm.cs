@@ -43,7 +43,7 @@ namespace CarRentalWF
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            int index = rentDataGridView.SelectedRows[0].Index;
+            int index = (int)rentDataGridView.SelectedRows[0].Cells[0].Value;
             Rent rent = _carRentalManagement.GetRent(index);
             Form rentForm = new RentInfoForm(rent);
 
