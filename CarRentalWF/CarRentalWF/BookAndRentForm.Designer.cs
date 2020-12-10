@@ -57,7 +57,7 @@ namespace CarRentalWF
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search Vehicle";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // btnBook
             // 
@@ -69,7 +69,7 @@ namespace CarRentalWF
             this.btnBook.TabIndex = 7;
             this.btnBook.Text = "Book Vehicle";
             this.btnBook.UseVisualStyleBackColor = true;
-            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
+            this.btnBook.Click += new System.EventHandler(this.BtnBook_Click);
             // 
             // vehicleGridView
             // 
@@ -195,7 +195,7 @@ namespace CarRentalWF
             this.btnRent.TabIndex = 6;
             this.btnRent.Text = "Rent Vehicle";
             this.btnRent.UseVisualStyleBackColor = true;
-            this.btnRent.Click += new System.EventHandler(this.btnRent_Click);
+            this.btnRent.Click += new System.EventHandler(this.BtnRent_Click);
             // 
             // BookAndRentForm
             // 

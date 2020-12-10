@@ -30,7 +30,7 @@ namespace CarRentalWF
             _searching = false;
         }
 
-        private void btnRent_Click(object sender, EventArgs e)
+        private void BtnRent_Click(object sender, EventArgs e)
         {
             int index = (int)vehicleGridView.SelectedRows[0].Cells[0].Value;
             Vehicle vec = _carRentalManagement.GetVehicle(index);
@@ -44,7 +44,7 @@ namespace CarRentalWF
             rentForm.Show();
         }
 
-        private void btnBook_Click(object sender, EventArgs e)
+        private void BtnBook_Click(object sender, EventArgs e)
         {
             SearchForm searchForm = new SearchForm(true);
 
@@ -62,7 +62,7 @@ namespace CarRentalWF
             searchForm.Show();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
             if (_searching)
             {
